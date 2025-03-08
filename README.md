@@ -28,12 +28,13 @@ This tool identifies and analyzes open-source repositories affiliated with unive
 
 ## Usage
 There are already configuration files available for six universities:
-UCSC (University of California, Santa Cruz)
-UCSD (University of California, San Diego)
-UCLA (University of California, Los Angeles)
-UCB (University of California, Berkeley)
-UCI (University of California, Irvine)
-UCD (University of California, Davis)
+- UCSC (University of California, Santa Cruz)
+- UCSD (University of California, San Diego)
+- UCLA (University of California, Los Angeles)
+- UCB (University of California, Berkeley)
+- UCI (University of California, Irvine)
+- UCD (University of California, Davis)
+
 For a simple test case, replace `university_acronyms = ['UCSD']` in `main.py` with the acronym of the university you would like to collect data from.
 
 For any other university, create a configuration file inside the config folder and update the path accordingly.
