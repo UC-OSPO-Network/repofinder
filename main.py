@@ -8,7 +8,7 @@ Created on Tue Mar  4 13:50:46 2025
 
 from dotenv import load_dotenv
 from scraping.repofinder import repo_finder
-from scraping.jason_to_db import create_and_populate_database
+from scraping.json_to_db import create_and_populate_database
 from scraping.get_contributors import get_contributor_data
 from scraping.get_organizations import get_organization_data
 from scraping.get_repo_extras import get_readme_data
