@@ -25,7 +25,6 @@ This tool identifies and analyzes open-source repositories affiliated with unive
      ```
      GITHUB_API_TOKEN=your_personal_access_token
      ```
-   - This is necessary to increase GitHub API rate limits.
 
 ## Usage
 There are already configuration files available for six universities:
