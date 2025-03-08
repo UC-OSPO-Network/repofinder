@@ -32,7 +32,7 @@ There are already configuration files available for six universities:
 - UCSD (University of California, San Diego)
 - UCLA (University of California, Los Angeles)
 - UCB (University of California, Berkeley)
-- UCI (University of California, Irvine)
+- UCSB (University of California, Santa Barbara)
 - UCD (University of California, Davis)
 
 For a simple test case, replace `university_acronyms = ['UCSD']` in `main.py` with the acronym of the university you would like to collect data from.
