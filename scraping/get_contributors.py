@@ -82,6 +82,8 @@ def get_contributor_data(repo_file, db_file, headers):
 
     # TODO: This should probably read the database instead 
     repo_df = pd.read_json(repo_file)
+    repo_df = repo_df.drop_duplicates(subset=['full_name'])
+    repo_df = repo_df.reset_index(drop=True)
     repo_df["contributors"] = None
     conn = sqlite3.connect(db_file)
     cursor = conn.cursor()
@@ -113,7 +115,7 @@ def get_contributor_data(repo_file, db_file, headers):
     )
     """)
     
-    for i in range(3361, len(repo_df)):  #TODO: Fix API rate limits
+    for i in range(len(repo_df)):  #TODO: Fix API rate limits
         full_name = repo_df["full_name"][i]
         owner, repo_name = full_name.split("/")
         contributors = get_contributors(owner, repo_name, headers)
