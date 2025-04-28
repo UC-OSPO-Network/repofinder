@@ -11,7 +11,7 @@ from scraping.repofinder import repo_finder
 from scraping.json_to_db import create_and_populate_database
 from scraping.get_contributors import get_contributor_data
 from scraping.get_organizations import get_organization_data
-from scraping.get_repo_extras import get_readme_data
+from scraping.get_repo_extras import get_features_data
 import os
 import time
 
@@ -25,6 +25,18 @@ headers = {
     'User-Agent': 'Juanis2112'
 }
 university_acronyms = ['UCSD']
+
+
+FEATURES = [
+    "release_downloads",
+    "readme",
+    "code_of_conduct",
+    "contributing",
+    "security_policy",
+    "issue_templates",
+    "pull_request_template",
+    "subscribers_count",
+]
 
 for acronym in university_acronyms:
 
@@ -54,17 +66,17 @@ for acronym in university_acronyms:
     print('Organizations done')
     
     start_time = time.time()
-    get_readme_data(repo_file, db_file, headers)
+    get_features_data(repo_file, db_file, headers, FEATURES)
     end_time = time.time()
     times.append(end_time - start_time)
-    print('Readme done')
+    print('Extra features done')
     
     start_time = time.time()
     get_contributor_data(repo_file, db_file, headers)
     end_time = time.time()
     times.append(end_time - start_time)
     print('Contributors done')
-    
+
     # Print execution times
     print("Execution times (seconds):", times)
 

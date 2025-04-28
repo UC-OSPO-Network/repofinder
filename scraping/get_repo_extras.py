@@ -12,103 +12,168 @@ import base64
 import time
 import os
 from dotenv import load_dotenv
+import requests
 from scraping.repo_scraping_utils import github_api_request
 
+import base64
+import requests
+import pandas as pd
+import sqlite3
 
-def get_readme_content(full_name, headers):
+
+
+def get_feature_content(full_name, headers, feature):
     """
-    Fetches the README content for a given repository.
+    Tries to fetch the content for a given feature (like README, license, etc.)
+    from either the GitHub API or from fallback paths in the repo contents.
 
     Parameters
     ----------
     full_name : str
-        The full name of the repository (e.g., "owner/repo").
+        The repository full name, e.g., "owner/repo".
+    feature : str
+        The feature to retrieve (e.g., "readme", "contributing").
     headers : dict
-        HTTP headers for the request.
+        Headers with auth and API options.
 
     Returns
     -------
     str or None
-        The decoded README content if available, otherwise None.
+        Content string if available, otherwise None.
     """
-    url = f"https://api.github.com/repos/{full_name}/readme"
-    try:
-        readme, _ = github_api_request(url, headers)
-        return base64.b64decode(readme['content']).decode('utf-8')
 
-    except Exception as e:
+    base_url = f"https://api.github.com/repos/{full_name}"
+
+    # Direct API endpoints (with special treatment)
+    if feature == "license":
+        try:
+            repo, _ = github_api_request(base_url, headers)
+            return repo.get("license", {}).get("key")
+        except Exception as e:
+            print(f"Failed to fetch license for {full_name}: {e}")
+            return None
+ 
+    if feature == "subscribers_count": # These are the watchers
+        try:
+            repo_data, _ = github_api_request(f"{base_url}", headers)
+            return repo_data.get("subscribers_count", 0)
+        except Exception as e:
+            print(f"Failed to fetch subscribers count for {full_name}: {e}")
+            return None
+
+    if feature == "readme":
+        try:
+            res, _ = github_api_request(f"{base_url}/readme", headers)
+            return base64.b64decode(res['content']).decode('utf-8')
+        except Exception as e:
             print(f"Failed to decode README for {full_name}: {e}")
             return None
-    
-    
-    
-# def get_readme_content(full_name, headers) -> str:
-#     """
-#     Fetch the README content for a specific repository.
 
-#     :param owner: Repository owner.
-#     :param repo: Repository name.
-#     :return: Decoded README content.
-#     """
-#     url = f"{GITHUB_API_URL}/repos/{full_name}/readme"
-#     try:      
-#         response = requests.get(url, headers=headers)
-#         content = response.json().get("content", "")
-#         return base64.b64decode(content).decode('utf-8')
-#     except Exception as e:
-#         print(f"Error fetching README for {full_name}: {response.status_code} {response.text}")
-#         return None    
+    if feature == "release_downloads":
+        try:
+            releases, _ = github_api_request(f"{base_url}/releases", headers)
+            total_downloads = 0
+            for release in releases:
+                for asset in release.get("assets", []):
+                    total_downloads += asset.get("download_count", 0)
+            return total_downloads
+        except Exception as e:
+            print(f"Failed to fetch release downloads for {full_name}: {e}")
+            return None
     
 
-def get_readme_data(repo_file, db_file, headers):
+    # Optional API endpoint for structured data (e.g., code of conduct)
+    feature_api_endpoints = {
+        "code_of_conduct": f"{base_url}/community/code_of_conduct",
+        "security_policy": f"{base_url}/security/policy"
+    }
+
+    if feature in feature_api_endpoints:
+        try:
+            res, _ = github_api_request(feature_api_endpoints[feature], headers)
+            return res.get("key") or res.get("content")  # fallback to raw content if no key
+        except:
+            pass  # Try fallback paths next
+
+    # Fallback file paths to try for each feature
+    fallback_paths = {
+        "code_of_conduct": [
+            ".github/CODE_OF_CONDUCT.md",
+            "CODE_OF_CONDUCT.md"
+        ],
+        "contributing": [
+            ".github/CONTRIBUTING.md",
+            "CONTRIBUTING.md"
+        ],
+        "security_policy": [
+            ".github/SECURITY.md",
+            "SECURITY.md"
+        ],
+        "issue_templates": [
+            ".github/ISSUE_TEMPLATE/config.yml",  # GitHub issue template config
+            ".github/ISSUE_TEMPLATE"
+        ],
+        "pull_request_template": [
+            ".github/PULL_REQUEST_TEMPLATE.md",
+            "PULL_REQUEST_TEMPLATE.md"
+        ]
+    }
+
+    for path in fallback_paths.get(feature, []):
+        try:
+            res, _ = github_api_request(f"{base_url}/contents/{path}", headers)
+            if isinstance(res, list):
+                # If it's a directory listing, just return True (exists)
+                return "Directory exists"
+            return base64.b64decode(res['content']).decode('utf-8')
+        except:
+            continue
+
+    print(f"{feature} not found for {full_name}.")
+    return None
+
+def get_features_data(repo_file, db_file, headers, features_list):
     """
-    Fetches and stores the README content for repositories listed in a JSON file.
-    
+    Iterates over repositories and stores specified features in the database.
+
     Parameters
     ----------
     repo_file : str
-        Path to the JSON file containing repository information, including the "full_name" field.
+        Path to the JSON file containing the list of repositories.
     db_file : str
-        Path to the SQLite database file where the README content will be stored.
+        Path to the SQLite database.
     headers : dict
-        HTTP headers for authentication and API requests.
-    
-    Returns
-    -------
-    None
-        The function updates the database in place and prints progress for each repository.
-    
-    Notes
-    -----
-    - Assumes the database has a `repositories` table with a `full_name` column.
-    - Calls `get_readme_content(full_name, headers)` to fetch the README from GitHub.
-    - Commits updates to the database after each repository is processed.
-    - Catches and ignores errors during database updates.
+        HTTP headers for GitHub API.
+    features_list : list
+        List of features to retrieve and store (e.g., ['readme', 'license']).
     """
-    repo_df = pd.read_json(repo_file)
-    repo_df = repo_df.drop_duplicates(subset=['full_name'])
-    repo_df = repo_df.reset_index(drop=True)
+    repo_df = pd.read_json(repo_file).drop_duplicates(subset=["full_name"]).reset_index(drop=True)
     conn = sqlite3.connect(db_file)
     cursor = conn.cursor()
-    try:
-    # Ensure the repositories table has the organization column
-        cursor.execute("ALTER TABLE repositories ADD COLUMN readme TEXT;")  # Adjust the column type as needed
-    except:
-        pass
-    
-    for i in range(len(repo_df)):
-        full_name = repo_df["full_name"][i]
-        readme = get_readme_content(full_name, headers)
+
+    # Add columns if they don't exist
+    for feature in features_list:
         try:
-            conn.execute(
-                "UPDATE repositories SET readme = ? WHERE full_name = ?;",
-                (readme, full_name)
-            )  # Adjust the column type as needed
-        except:
+            if feature == "subscribers_count" or feature== "release_downloads":
+                cursor.execute(f"ALTER TABLE repositories ADD COLUMN {feature} INTEGER;")
+            else:
+                cursor.execute(f"ALTER TABLE repositories ADD COLUMN {feature} TEXT;")
+        except sqlite3.OperationalError:
             pass
-    
+
+    for i, row in repo_df.iterrows():
+        full_name = row["full_name"]
+        values = []
+        for feature in features_list:
+            result = get_feature_content(full_name, headers, feature)
+            values.append(str(result) if result is not None else None)
+        set_clause = ", ".join([f"{feature} = ?" for feature in features_list])
+        sql = f"UPDATE repositories SET {set_clause} WHERE full_name = ?"
+        cursor.execute(sql, (*values, full_name))
         conn.commit()
-        print(str(i+1)+"/"+str(len(repo_df)))
+        print(f"{i+1}/{len(repo_df)}: Processed {full_name}")
+
+    conn.close()
 
 #------------------------------------------------------------------------------
 
@@ -123,7 +188,7 @@ def get_readme_data(repo_file, db_file, headers):
 #     repo_file = f'../Data/json/repository_data_{acronym}.json'
 #     db_file = f'../Data/db/repository_data_{acronym}_database.db'
 
-#     get_readme(repo_file, db_file, headers)
+#     get_features_data(repo_file, db_file, headers, features)
     
 #     end_time = time.time()
 #     print("--- %s seconds ---" % (end_time - start_time))    
