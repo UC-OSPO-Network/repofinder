@@ -7,7 +7,7 @@ This tool identifies and analyzes open-source repositories affiliated with unive
 - **Repository Discovery:** Extracts repositories based on a configuration file.
 - **Database Population:** Creates and fills a database with repository information.
 - **Organization Analysis:** Gathers organization-related data.
-- **README Extraction:** Retrieves README content from repositories.
+- **Feature Extraction:** Retrieves extra content from repositories.
 - **Contributor Analysis:** Collects contributor details and statistics.
 
 ## Installation
@@ -48,7 +48,7 @@ This will execute the following steps:
 1. **Repository Finder:** Generates a JSON file with repositories based on a configuration file (~5 mins).
 2. **Database Creation:** Reads the JSON file and creates a database (~1 secs).
 3. **Organization Data Collection:** Gathers organization metadata (~1 hour).
-4. **README Extraction:** Retrieves README content (~1 hour).
+4. **Extra Features Extraction:** Retrieves extra features that are not collected by default. (This includes release downloads, readme, code of conduct, contributing, security policy, issue templates, pull request template, subscribers count) (~6 hours).
 5. **Contributor Data Collection:** Fetches contributor details (~4 hours).
 
 Execution times may vary based on the number of repositories and API rate limits.
