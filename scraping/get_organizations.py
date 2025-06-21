@@ -46,6 +46,24 @@ def get_organization_details(org_login, headers):
 
 
 def get_organization_data(repo_file, db_file, headers):
+    """
+    Processes a list of repositories to identify those owned by organizations
+    and stores organization metadata in a SQLite database.
+    
+    This function:
+    - Reads repository metadata from a JSON file.
+    - Identifies which repositories are owned by GitHub organizations.
+    - Updates the 'repositories' table to mark organizational ownership.
+    - Creates or updates an 'organizations' table with detailed organization info.
+    
+    Args:
+        repo_file (str): Path to the JSON file containing repository metadata.
+        db_file (str): Path to the SQLite database file.
+        headers (dict): HTTP headers for authenticated GitHub API requests.
+    
+    Returns:
+        pd.DataFrame: A DataFrame of the repositories with an added 'organization' column.
+    """
     
     # TODO: Should probably read the db instead
     repo_df = pd.read_json(repo_file)
@@ -115,24 +133,4 @@ def get_organization_data(repo_file, db_file, headers):
     conn.close()
 # TODO: Should I try to build a JSON object with this too?
     return repo_df
-
-
-#------------------------------------------------------------------------------
-
-# Uncomment for running this file only
-
-#university_acronyms = ['UCSB', 'UCD', 'UCLA', 'UCSD', 'UCB', 'UCSC']
-
-
-# for acronym in university_acronyms:
-    
-#     start_time = time.time()
-#     repo_file = f'../Data/json/repository_data_{acronym}.json'
-#     db_file = f'../Data/db/repository_data_{acronym}_database.db'
-
-#     get_organization_data(repo_file, db_file)
-    
-#     end_time = time.time()
-#     print("--- %s seconds ---" % (end_time - start_time))    
-
 

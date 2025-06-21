@@ -9,17 +9,7 @@ Created on Thu Dec 12 12:03:22 2024
 import pandas as pd
 import sqlite3
 import base64
-import time
-import os
-from dotenv import load_dotenv
-import requests
 from scraping.repo_scraping_utils import github_api_request
-
-import base64
-import requests
-import pandas as pd
-import sqlite3
-
 
 
 def get_feature_content(full_name, headers, feature):
@@ -174,25 +164,4 @@ def get_features_data(repo_file, db_file, headers, features_list):
         print(f"{i+1}/{len(repo_df)}: Processed {full_name}")
 
     conn.close()
-
-#------------------------------------------------------------------------------
-
-# Uncomment for running this file only
-
-# #university_acronyms = ['UCSB', 'UCD', 'UCLA', 'UCSD', 'UCB', 'UCSC']
-
-
-# for acronym in university_acronyms:
-    
-#     start_time = time.time()
-#     repo_file = f'../Data/json/repository_data_{acronym}.json'
-#     db_file = f'../Data/db/repository_data_{acronym}_database.db'
-
-#     get_features_data(repo_file, db_file, headers, features)
-    
-#     end_time = time.time()
-#     print("--- %s seconds ---" % (end_time - start_time))    
-
-
-
 

@@ -11,7 +11,6 @@ import time
 import json 
 import itertools
 
-# Initialize the logger
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
@@ -46,14 +45,6 @@ def github_api_request(url, headers, params=None):
         try:
             response = requests.get(url, headers=headers, params=params, timeout=10)
             response.raise_for_status()
-        # except requests.exceptions.Timeout:
-        #     logger.error(f"Timeout occurred for URL: {url}")
-        #     time.sleep(RETRY_DELAY)
-        #     continue
-        # except requests.exceptions.RequestException as e:
-        #     logger.error(f"Request exception: {e}")
-        #     time.sleep(RETRY_DELAY)
-        #     continue
         except:
             pass
         logger.debug(f"Response status code: {response.status_code}")
@@ -62,7 +53,7 @@ def github_api_request(url, headers, params=None):
             return response.json(), response.headers
         elif response.status_code == 404:
             logger.warning(f"Resource not found: {url}. Exiting without retry.")
-            return None, None  # Or handle as per your requirements
+            return None, None
         elif response.status_code == 403 and 'X-RateLimit-Remaining' in response.headers:
             if response.headers['X-RateLimit-Remaining'] == '0':
                 reset_time = int(response.headers.get('X-RateLimit-Reset', time.time()))
@@ -183,7 +174,6 @@ def search_repositories_with_queries(query_terms, headers):
             except Exception as e:
                 logger.error(f"Error searching repositories: {e}")
                 break
-            # TODO  Add another scripte for getting the readme and any extra information
             if data:  # TODO: Figure out caching
                 items = data.get('items', [])
                 repositories.extend(items)

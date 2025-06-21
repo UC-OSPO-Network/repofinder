@@ -7,18 +7,10 @@ Created on Thu Dec 12 12:03:22 2024
 """
 
 import pandas as pd
-import requests
-import time
-import json
-import os
 import sqlite3
-from dotenv import load_dotenv
 from scraping.repo_scraping_utils import github_api_request, get_next_link
 
-
-
 #TODO: Figure out how to get duplicates
-#TODO: Figure out how to get top contributors
 
 def get_contributors(owner, repo_name, headers):
     """
@@ -38,7 +30,7 @@ def get_contributors(owner, repo_name, headers):
     while url:
         try:
             contributors_data, headers_response = github_api_request(url, headers, params)
-        except Exception as e:
+        except:
             break
         if contributors_data:
             contributors.extend(contributors_data)
@@ -165,19 +157,3 @@ def get_contributor_data(repo_file, db_file, headers):
 # TODO: Should I try to build a JSON object with this too?
     return repo_df
 
-#------------------------------------------------------------------------------
-
-# Uncomment to run this file only
-
-# university_acronyms = ['UCSC']
-
-# for acronym in university_acronyms:
-    
-#     start_time = time.time()
-#     repo_file = f'../Data/json/repository_data_{acronym}.json'
-#     db_file = f'../Data/db/repository_data_{acronym}_database.db'
-
-#     get_contributor_data(repo_file, db_file)
-    
-#     end_time = time.time()
-#     print("--- %s seconds ---" % (end_time - start_time))   

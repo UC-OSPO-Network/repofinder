@@ -2,7 +2,6 @@
 import json
 import logging
 import os
-import time
 from scraping.repo_scraping_utils import search_repositories_with_queries, build_queries
 
 logger = logging.getLogger(__name__)
@@ -26,12 +25,6 @@ def repo_finder(env, path, headers):
         The function saves the retrieved repositories in a JSON file named 
         `repository_data_<university_acronym>.json` in the `Data/` directory.
 
-    Notes
-    -----
-    - The function reads the environment file and constructs search queries.
-    - It retrieves repositories using `search_repositories_with_queries`.
-    - The results are logged and stored in a JSON file.
-    - The execution time is printed at the end.
     """
 
     query_terms, university_acronym = build_queries(env)
