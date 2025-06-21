@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 
-def repo_finder(env, path, headers):   
+def repo_finder(config, headers):
     """
     Searches for repositories based on query terms built from an environment file 
     and saves the results to a JSON file.
@@ -27,12 +27,12 @@ def repo_finder(env, path, headers):
 
     """
 
-    query_terms, university_acronym = build_queries(env)
+    query_terms, university_acronym = build_queries(config)
     repositories = search_repositories_with_queries(query_terms, headers)
     logger.info(f"Total repositories found: {len(repositories)}")
     os.makedirs('Data/json', exist_ok=True)
     os.makedirs('Data/db', exist_ok=True)
-    output_filename_json = f"{path}/Data/json/repository_data_{university_acronym}.json"
+    output_filename_json = f"Data/json/repository_data_{university_acronym}.json"
     
     with open(output_filename_json, 'w', encoding='utf-8') as f:
         json.dump(repositories, f, ensure_ascii=False, indent=4)
