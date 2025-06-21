@@ -27,13 +27,17 @@ This tool identifies and analyzes open-source repositories affiliated with unive
      ```
 
 ## Usage
-There are already configuration files available for six universities:
-- UCSC (University of California, Santa Cruz)
-- UCSD (University of California, San Diego)
-- UCLA (University of California, Los Angeles)
-- UCB (University of California, Berkeley)
-- UCSB (University of California, Santa Barbara)
-- UCD (University of California, Davis)
+There are already configuration files available for ten universities from the University of California System:
+- UCB (University of California, Berkeley)  
+- UCD (University of California, Davis)  
+- UCI (University of California, Irvine)  
+- UCLA (University of California, Los Angeles)  
+- UCM (University of California, Merced)  
+- UCR (University of California, Riverside)  
+- UCSD (University of California, San Diego)  
+- UCSB (University of California, Santa Barbara)  
+- UCSC (University of California, Santa Cruz)  
+- UCSF (University of California, San Francisco)
 
 For a simple test case, replace `university_acronyms = ['UCSD']` in `main.py` with the acronym of the university you would like to collect data from.
 
@@ -48,7 +52,7 @@ This will execute the following steps:
 1. **Repository Finder:** Generates a JSON file with repositories based on a configuration file (~5 mins).
 2. **Database Creation:** Reads the JSON file and creates a database (~1 secs).
 3. **Organization Data Collection:** Gathers organization metadata (~1 hour).
-4. **Extra Features Extraction:** Retrieves extra features that are not collected by default. (This includes release downloads, readme, code of conduct, contributing, security policy, issue templates, pull request template, subscribers count) (~6 hours).
+4. **Extra Features Extraction:** Retrieves extra features that are not collected by default. (This includes release downloads, readme, code of conduct, contributing, security policy, issue templates, pull request template, subscribers count) (~24 hours).
 5. **Contributor Data Collection:** Fetches contributor details (~4 hours).
 
 Execution times may vary based on the number of repositories and API rate limits.
