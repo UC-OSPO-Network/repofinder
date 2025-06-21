@@ -15,7 +15,7 @@ from scraping.get_repo_extras import get_features_data
 import os
 import time
 
-path = os.getenv('PWD')
+
 DOTENV = ".env" 
 load_dotenv(DOTENV)
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
@@ -40,15 +40,15 @@ FEATURES = [
 
 for acronym in university_acronyms:
 
-    config_file= f"{path}/config/config_{acronym}.json"
-    repo_file=f"{path}/Data/json/repository_data_{acronym}.json"
-    db_file = f"{path}/Data/db/repository_data_{acronym}_database.db"
+    config_file= f"config/config_{acronym}.json"
+    repo_file=f"Data/json/repository_data_{acronym}.json"
+    db_file = f"Data/db/repository_data_{acronym}_database.db"
 
     # Scraping
     times = []  
     
     start_time = time.time()
-    repo_finder(config_file, path, headers)
+    repo_finder(config_file, headers)
     end_time = time.time()
     times.append(end_time - start_time)
     print('Repo finder done')
@@ -81,6 +81,3 @@ for acronym in university_acronyms:
     print("Execution times (seconds):", times)
 
 
-    
-    
-    
