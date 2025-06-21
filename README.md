@@ -23,7 +23,7 @@ This tool identifies and analyzes open-source repositories affiliated with unive
 3. **Set up GitHub API access:**
    - Create a `.env` file in the root directory and add:
      ```
-     GITHUB_API_TOKEN=your_personal_access_token
+     GITHUB_TOKEN=your_personal_access_token
      ```
 
 ## Usage
