@@ -174,7 +174,7 @@ Explanation: <your explanation here>
     # Add results to the DataFrame
     df['gpt_belonging'] = results
     df['gpt_explanation'] = explanations
-    predictions_path = f'results/{acronym}/ai_{model}_{acronym}_predictions.csv'
+    predictions_path = f'results/{acronym}/predictions_ai_{model}_{acronym}.csv'
     df.to_csv(predictions_path, index=False, escapechar='\\')
     return predictions_path
 

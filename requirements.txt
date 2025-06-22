@@ -4,3 +4,6 @@ numpy>=1.26.4,<2.0
 pandas>=2.2.3
 requests>=2.32.3
 openai>=1.75.0
+scipy>=1.15.2
+scikit-learn>=1.6.1
+imbalanced-learn>=0.13.0

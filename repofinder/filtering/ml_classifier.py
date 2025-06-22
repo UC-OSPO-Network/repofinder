@@ -72,14 +72,14 @@ def run_models(filename, weights_output, acronym, embeddings=True, all_models=Tr
            ("logistic_regression", logistic_regression),
         ]
 
-        output_filename = f"{filename}_predictions.csv"
+        output_filename = f"predictions_{filename}.csv"
     
     else: 
         # This is just the chosen model. In this case random forest
         models = [
            ("svm", svm),
         ]
-        output_filename = f"{filename}_predictions_final.csv"
+        output_filename = f"final_predictions_{filename}.csv"
         
         
     # Initialize empty lists to store weights, predictions, and accuracies
@@ -175,7 +175,7 @@ def train_models(acronym, config_file, db_file, method="embeddings", build_matri
         else:
             csv_embeddings = f'results/{acronym}/repository_embeddings_{acronym}.csv'
         weights_output2 = f'results/{acronym}/weights_embeddings_{acronym}.csv'
-        print("Running models")
+        print(f"Running models with {method}")
         output_filename= run_models(csv_embeddings, weights_output2, acronym, embeddings=True, all_models=True, client=client)
     return output_filename
 

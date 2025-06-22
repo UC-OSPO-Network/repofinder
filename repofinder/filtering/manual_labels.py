@@ -56,10 +56,17 @@ def update_manual_labels(csv_file, db_file):
     conn.commit()
     conn.close()
 
+def delete_manual_labels(db_file):
+    
+    conn = sqlite3.connect(db_file)
+    cursor = conn.cursor()
+    
+    cursor.execute("UPDATE repositories SET manual_label = NULL")
 
-# Update manual labels when labeling happens
-acronym = 'UCSC'
-csv_file_labels = f'{acronym}_new_labels.csv'
-db_file = f'Data/db/repository_data_{acronym}_database.db'
+    conn.commit()
+    conn.close()
+    
 
-update_manual_labels(csv_file_labels, db_file)
+
+
+

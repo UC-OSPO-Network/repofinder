@@ -141,7 +141,7 @@ def compute_predictions_sbc(acronym, config_file, db_file):
             "total_score": round(total_score / 100, 2),
         }
         results.append(result) 
-    output_path = f"results/{acronym}/repository_sbc_{acronym}_predictions.csv"
+    output_path = f"results/{acronym}/predictions_sbc_{acronym}.csv"
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     df = pd.DataFrame(results)
     df.to_csv(output_path, index=False)
