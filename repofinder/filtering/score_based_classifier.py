@@ -9,6 +9,7 @@ Created on Thu Jan  9 07:22:34 2025
 import sqlite3
 import json
 import pandas as pd
+import os
 
 
 def compute_predictions_sbc(acronym, config_file, db_file):
@@ -139,9 +140,9 @@ def compute_predictions_sbc(acronym, config_file, db_file):
             "repository_score": round(repository_score / 100, 2),
             "total_score": round(total_score / 100, 2),
         }
-        results.append(result)
-    
+        results.append(result) 
     output_path = f"results/{acronym}/repository_sbc_{acronym}_predictions.csv"
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
     df = pd.DataFrame(results)
     df.to_csv(output_path, index=False)
     return output_path
