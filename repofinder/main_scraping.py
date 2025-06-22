@@ -53,31 +53,31 @@ def scrape(university_acronyms=["UCM"]):
         print('Repositories collected')
         
         # start_time = time.time()
-        # create_and_populate_database(repo_file, db_file)
-        # end_time = time.time()
-        # times.append(end_time - start_time)
-        # print('Database populated done')
+        create_and_populate_database(repo_file, db_file)
+        end_time = time.time()
+        times.append(end_time - start_time)
+        print('Database populated done')
         
-        # start_time = time.time()
-        # get_organization_data(repo_file, db_file, HEADERS)
-        # end_time = time.time()
-        # times.append(end_time - start_time)
-        # print('Organizations done')
+        start_time = time.time()
+        get_organization_data(repo_file, db_file, HEADERS)
+        end_time = time.time()
+        times.append(end_time - start_time)
+        print('Organizations done')
         
-        # start_time = time.time()
-        # get_features_data(repo_file, db_file, HEADERS, FEATURES)
-        # end_time = time.time()
-        # times.append(end_time - start_time)
-        # print('Extra features done')
+        start_time = time.time()
+        get_features_data(repo_file, db_file, HEADERS, FEATURES)
+        end_time = time.time()
+        times.append(end_time - start_time)
+        print('Extra features done')
         
-        # start_time = time.time()
-        # get_contributor_data(repo_file, db_file, HEADERS)
-        # end_time = time.time()
-        # times.append(end_time - start_time)
-        # print('Contributors done')
+        start_time = time.time()
+        get_contributor_data(repo_file, db_file, HEADERS)
+        end_time = time.time()
+        times.append(end_time - start_time)
+        print('Contributors done')
     
-        # # Print execution times
-        # print("Execution times (seconds):", times)
+        # Print execution times
+        print("Execution times (seconds):", times)
 
 if __name__ == "__main__":
     scrape()
