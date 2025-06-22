@@ -9,7 +9,7 @@ Created on Thu Dec 12 12:03:22 2024
 import pandas as pd
 import sqlite3
 import base64
-from scraping.repo_scraping_utils import github_api_request
+from repofinder.scraping.repo_scraping_utils import github_api_request
 
 
 def get_feature_content(full_name, headers, feature):

@@ -2,7 +2,7 @@
 import json
 import logging
 import os
-from scraping.repo_scraping_utils import search_repositories_with_queries, build_queries
+from repofinder.scraping.repo_scraping_utils import search_repositories_with_queries, build_queries
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)

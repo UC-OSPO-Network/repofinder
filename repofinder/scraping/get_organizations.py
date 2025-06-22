@@ -8,10 +8,7 @@ Created on Thu Dec 12 12:03:22 2024
 
 import pandas as pd
 import sqlite3
-import time
-import os
-from dotenv import load_dotenv
-from scraping.repo_scraping_utils import github_api_request
+from repofinder.scraping.repo_scraping_utils import github_api_request
 
 
 def get_organization_details(org_login, headers):

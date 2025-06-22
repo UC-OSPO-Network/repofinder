@@ -8,7 +8,7 @@ Created on Thu Dec 12 12:03:22 2024
 
 import pandas as pd
 import sqlite3
-from scraping.repo_scraping_utils import github_api_request, get_next_link
+from repofinder.scraping.repo_scraping_utils import github_api_request, get_next_link
 
 #TODO: Figure out how to get duplicates
 
