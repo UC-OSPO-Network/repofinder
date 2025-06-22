@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 
-def repo_finder(config, headers):
+def get_repositories(config, headers):
     """
     Searches for repositories based on query terms built from an environment file 
     and saves the results to a JSON file.

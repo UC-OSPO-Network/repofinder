@@ -39,14 +39,14 @@ There are already configuration files available for ten universities from the Un
 - UCSC (University of California, Santa Cruz)  
 - UCSF (University of California, San Francisco)
 
-For a simple test case, replace `university_acronyms = ['UCSD']` in `main.py` with the acronym of the university you would like to collect data from.
+For a simple test case, replace `university_acronyms = ['UCSD']` in `repofinder/main_scraping.py` with the acronym of the university you would like to collect data from.
 
 For any other university, create a configuration file inside the config folder and update the path accordingly.
 
 
 Run the main script:
 ```sh
-python main.py
+python repofinder/main_scraping.py
 ```
 This will execute the following steps:
 1. **Repository Finder:** Generates a JSON file with repositories based on a configuration file (~5 mins).
