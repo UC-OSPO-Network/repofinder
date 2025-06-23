@@ -17,39 +17,46 @@ import matplotlib as mpl
 # Set Lato as the default font globally
 mpl.rcParams['font.family'] = 'Lato'
 
-def plot_university_roc_curves(ax, file_path, models, label_map, test_set,
+def plot_university_roc_curves(acronym, ax, file_path, models, label_map, test_set,
                                ai_file=None, ai2_file=None, weights_file=None,
                                title_prefix=""):
     df = pd.read_csv(f"{file_path}")
     test_df = pd.read_csv(test_set, usecols=['html_url', 'manual_label'])
     models_local = copy.deepcopy(models)
 
-    # Extract acronym
-    match = re.search(r'(uc[^_]+)', file_path)
-    acronym = match.group(1).upper() if match else "Unknown"
-    acronym = acronym.split('/')[0]
-
     # Merge predictions
     def safe_merge(csv_file, col_in, col_out, model_key):
         nonlocal df
         if csv_file:
             try:
-                temp = pd.read_csv(csv_file, usecols=['html_url', col_in])
+                temp = pd.read_csv(csv_file, usecols=['html_url', col_in], lineterminator='\n')
                 temp = temp.rename(columns={col_in: col_out})
+                temp = temp[temp[col_out] != 'error']
+                temp[col_out] = temp[col_out].astype(float)  # Ensure float type
                 df = df.merge(temp, on='html_url', how='left')
                 models_local.append(model_key)
             except Exception as e:
                 print(f"[{acronym}] Error loading {model_key}: {e}")
 
+
+    # Merge predictions
     safe_merge(ai_file, 'gpt_belonging', 'Predictions with ai', 'ai')
     safe_merge(ai2_file, 'gpt_belonging', 'Predictions with ai2', 'ai2')
     safe_merge(weights_file, 'total_score', 'Predictions with weights', 'weights')
-
+    
+    # Load test set and preserve its manual_label
+    test_df = pd.read_csv(test_set, usecols=['html_url', 'manual_label'])
+    test_df = test_df.rename(columns={'manual_label': 'test_manual_label'})
+    
     # Merge with test set to filter only test samples
     df = df.merge(test_df, on='html_url', how='inner')
-    df = df[df['manual_label'].isin([0, 1])]
-    df['manual_label'] = df['manual_label'].astype(int)
+    
+    # Keep only the test set label
+    df = df[df['test_manual_label'].isin([0, 1])]
+    df['manual_label'] = df['test_manual_label'].astype(int)
+    df = df.drop(columns=['test_manual_label'])
 
+    
     # Plot each model
     y_true = df['manual_label']
     #with open(report_output_file, 'w') as report_file:
@@ -126,7 +133,8 @@ def roc_multi(acronyms, file_paths, models, ai_predictions_files,
 
         test_set = f"Data/test_data/test_set_{acronym}.csv"
         plot_university_roc_curves(
-            ax, file_path, models, label_map, test_set,
+            acronym, ax, file_path, models, 
+            label_map, test_set,
             ai_file=ai_file,
             ai2_file=ai2_file,
             weights_file=weights_file,
@@ -151,7 +159,7 @@ def build_paths_for(method, acronyms):
     sbc_files = []
 
     for acronym in acronyms:
-        file_path = f"results/{acronym}/predictions_repository_{method}_{acronym}.csv"
+        file_path = f"results/{acronym}/predictions_{method}_{acronym}.csv"
         ai_file_35 = f"results/{acronym}/predictions_ai_gpt-3.5-turbo_{acronym}.csv"
         ai_file_4o = f'results/{acronym}/predictions_ai_gpt-4o_{acronym}.csv'
         sbc_file = f"results/{acronym}/predictions_sbc_{acronym}.csv"
@@ -165,12 +173,12 @@ def build_paths_for(method, acronyms):
 
 def create_roc_curves(acronyms):
     models = [
-        "least_squares",
-        "random_forest", 
-        "neural_network", 
+        # "least_squares",
+        # "random_forest", 
+        # "neural_network", 
         "svm", 
-        "grid_search",
-        "logistic_regression"
+        # "grid_search",
+        # "logistic_regression"
     ]
     file_paths, ai_files_35, ai_files_4o, weights_files= build_paths_for("embeddings", acronyms)
     

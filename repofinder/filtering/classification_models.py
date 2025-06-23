@@ -20,7 +20,7 @@ np.random.seed(42)
 # Method 1: Least Square Regression ------------------------------------------
 
 
-def least_squares(A, M, all_data, acronym, embeddings):
+def least_squares(A, M, all_data, acronym, method="embeddings"):
     
     
     # Objective function to minimize the squared error
@@ -57,7 +57,7 @@ def least_squares(A, M, all_data, acronym, embeddings):
 
 # Method 2: Random Forest ----------------------------------------------------
 
-def random_forest(A, M, all_data, acronym, embeddings, test_size=0.2, random_state=42):
+def random_forest(A, M, all_data, acronym, method="embeddings", test_size=0.2, random_state=42):
     A_train, A_test, M_train, M_test = train_test_split(A, M, test_size=test_size, random_state=random_state)
     
     model = RandomForestClassifier(
@@ -80,10 +80,10 @@ def random_forest(A, M, all_data, acronym, embeddings, test_size=0.2, random_sta
 
 # Method 3: Neural Networks ---------------------------------------------------
 
-def neural_network(A, M, all_data, acronym, embeddings, test_size=0.2, plot_path="accuracy_vs_epoch", epochs=250):
+def neural_network(A, M, all_data, acronym, method="embeddings", test_size=0.2, plot_path="accuracy_vs_epoch", epochs=250):
     A_train, A_test, M_train, M_test = train_test_split(A, M, test_size=test_size, random_state=42)
     
-    if embeddings:
+    if method=="embeddings":
         epochs = 150
         learning_rate_init=0.001
         max_iter=100
@@ -113,7 +113,7 @@ def neural_network(A, M, all_data, acronym, embeddings, test_size=0.2, plot_path
 # Method 4: Support Vector Machines (SVM) ------------------------------------
 
 
-def svm(A, M, all_data, acronym, embeddings):
+def svm(A, M, all_data, acronym, method="embeddings"):
     A_train, A_test, M_train, M_test = train_test_split(A, M, test_size=0.2, random_state=42)
     
     #new
@@ -135,7 +135,7 @@ def svm(A, M, all_data, acronym, embeddings):
 
 # Method 5: Support Vector Machines Grid Search
 
-def grid_search(A,M, all_data, acronym, embeddings):
+def grid_search(A,M, all_data, acronym, method="embeddings"):
 
     # Split data into train & test sets
     A_train, A_test, M_train, M_test = train_test_split(A, M, test_size=0.2, random_state=42)
@@ -174,7 +174,7 @@ def grid_search(A,M, all_data, acronym, embeddings):
 
 # Method 6: Logistic Regression -----------------------------------------------
 
-def logistic_regression(A, M, all_data, acronym, embeddings):
+def logistic_regression(A, M, all_data, acronym, method="embeddings"):
     A_train, A_test, M_train, M_test = train_test_split(A, M, test_size=0.2, random_state=42)
     model = LogisticRegression()
     model.fit(A_train, M_train)

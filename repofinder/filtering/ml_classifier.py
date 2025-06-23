@@ -41,7 +41,7 @@ def prepare_data(filename):
     return matrix, labels, all_data
     
 
-def run_models(filename, weights_output, acronym, embeddings=True, all_models=True, client=None):
+def run_models(filename, weights_output, acronym, method, all_models=True, client=None):
     """
     Runs classification models on prepared data and saves prediction results.
     
@@ -72,14 +72,14 @@ def run_models(filename, weights_output, acronym, embeddings=True, all_models=Tr
            ("logistic_regression", logistic_regression),
         ]
 
-        output_filename = f"predictions_{filename}.csv"
+        output_filename = f"results/{acronym}/predictions_{method}_{acronym}.csv"
     
     else: 
         # This is just the chosen model. In this case random forest
         models = [
            ("svm", svm),
         ]
-        output_filename = f"final_predictions_{filename}.csv"
+        output_filename = f"results/{acronym}/final_predictions_{method}_{acronym}.csv"
         
         
     # Initialize empty lists to store weights, predictions, and accuracies
@@ -90,7 +90,7 @@ def run_models(filename, weights_output, acronym, embeddings=True, all_models=Tr
     # Iterate through the models, call each one, and store the results
     for model_name, model_func in models:
         start_time = time.time()
-        weight, pred, accuracy = model_func(A, M, all_data, acronym, embeddings)
+        weight, pred, accuracy = model_func(A, M, all_data, acronym, method)
         end_time = time.time()
         elapsed = end_time - start_time
         print(f"{acronym} - {model_name} Model time: {elapsed:.2f} seconds")
@@ -164,7 +164,7 @@ def train_models(acronym, config_file, db_file, method="embeddings", build_matri
             csv_matrix = f'results/{acronym}/repository_university_matrix_{acronym}.csv'
         weights_output1 = f'results/{acronym}/weights_matrix_{acronym}.csv'
         print("Running models")
-        output_filename = run_models(csv_matrix, weights_output1, acronym, embeddings=False, all_models=True)
+        output_filename = run_models(csv_matrix, weights_output1, acronym, method, all_models=True)
     
     # Embeddings 
     if method == "embeddings":
@@ -176,7 +176,7 @@ def train_models(acronym, config_file, db_file, method="embeddings", build_matri
             csv_embeddings = f'results/{acronym}/repository_embeddings_{acronym}.csv'
         weights_output2 = f'results/{acronym}/weights_embeddings_{acronym}.csv'
         print(f"Running models with {method}")
-        output_filename= run_models(csv_embeddings, weights_output2, acronym, embeddings=True, all_models=True, client=client)
+        output_filename= run_models(csv_embeddings, weights_output2, acronym, method, all_models=True, client=client)
     return output_filename
 
 
