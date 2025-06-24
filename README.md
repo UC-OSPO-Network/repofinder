@@ -1,14 +1,13 @@
 # Repository Finder
 
 ## Overview
-This tool identifies and analyzes open-source repositories affiliated with universities using GitHub metadata and contributor analysis. Running `main.py` will execute the full pipeline, fetching repository data, processing metadata, and storing it in a database.
+Repository Finder is a tool that identifies and analyzes open-source repositories affiliated with universities using GitHub metadata and contributor analysis. The pipeline is split into three modular scripts:
 
-## Features
-- **Repository Discovery:** Extracts repositories based on a configuration file.
-- **Database Population:** Creates and fills a database with repository information.
-- **Organization Analysis:** Gathers organization-related data.
-- **Feature Extraction:** Retrieves extra content from repositories.
-- **Contributor Analysis:** Collects contributor details and statistics.
+main_scraping.py: Fetches and stores raw repository, organization and contributor data.
+
+main_filtering.py: Filters repositories based on affiliation with a specific university.
+
+main_analysis.py: Analyzes and visualizes filtered repository data, including license, language distribution and community practices.
 
 ## Installation
 1. **Clone the repository:**
@@ -24,9 +23,16 @@ This tool identifies and analyzes open-source repositories affiliated with unive
    - Create a `.env` file in the root directory and add:
      ```
      GITHUB_TOKEN=your_personal_access_token
+     OPENAI_API_KEY=your_openai_token  # Optional: only needed for LLM-based models
      ```
 
-## Usage
+## Scraping 
+
+This step collects raw data from GitHub, including repositories, organizations, contributor activity, and extended metadata (e.g., README, license, templates). All data is stored in a structured SQLite database located in:
+```
+Data/db/repository_data_{ACRONYM}_database.db
+```
+
 There are already configuration files available for ten universities from the University of California System:
 - UCB (University of California, Berkeley)  
 - UCD (University of California, Davis)  
@@ -44,11 +50,13 @@ For a simple test case, replace `university_acronyms = ['UCSD']` in `repofinder/
 For any other university, create a configuration file inside the config folder and update the path accordingly.
 
 
-Run the main script:
+Run the scraping script:
 ```sh
 python repofinder/main_scraping.py
 ```
-This will execute the following steps:
+
+
+It will execute the following steps:
 1. **Repository Finder:** Generates a JSON file with repositories based on a configuration file (~5 mins).
 2. **Database Creation:** Reads the JSON file and creates a database (~1 secs).
 3. **Organization Data Collection:** Gathers organization metadata (~1 hour).
@@ -56,4 +64,60 @@ This will execute the following steps:
 5. **Contributor Data Collection:** Fetches contributor details (~4 hours).
 
 Execution times may vary based on the number of repositories and API rate limits.
+
+## Filtering
+This step filters repositories based on their affiliation with a university, using three complementary methods:
+
+1. Score-based classification, which applies a set of heuristic rules over repository and contributor metadata.
+2. Supervised machine learning models using embedding models.
+3. Large Language Model (LLM) classification using OpenAI models (e.g., GPT-4o and GPT-3.5).
+
+There are manual labels and test sets for UCSB, UCSC and UCSD so you can use all classification methods for these three universities.
+
+If you want to classify repositories for another university, provide a file named `{ACRONYM}_Random200.csv` with the columns `html_url` and `manual_label` in the following directory: 
+     ```
+  Data/manual_labels/{ACRONYM}_Random200.csv
+     ```
+Additionally, for ROC curve generation, you will need to provide a test set under:
+     ```
+  Data/test_data/test_set_{ACRONYM}.csv
+     ```
+
+Run the filtering script:
+```sh
+python repofinder/main_scraping.py
+```
+
+You can selectively comment out models in `main_filtering.py` to run only specific methods. This script generates prediction CSV files for each method (score-based, machine learning, and LLMs) in the `results/{ACRONYM}/` folder.
+
+## Analysis
+This step generates visual summaries and evaluation metrics based on the filtered repository data. It includes:
+
+1. Language distribution 
+2. License usage patterns
+3. Adoption of best-practice repository features (e.g., README, security policy, issue templates)
+
+
+Run the analysis script:
+```sh
+python repofinder/main_analysis.py
+```
+
+All plots are saved in the `plots/combined/` directory.
+
+## Citation 
+If you use this tool or dataset, please consider citing our paper:
+
+```
+@misc{gomez2025recipediscoveryframeworksystematic,
+      title={Recipe for Discovery: A Framework for Systematic Open Source Project Identification}, 
+      author={Juanita Gomez and Emily Lovell and Stephanie Lieggi and Alvaro A. Cardenas and James Davis},
+      year={2025},
+      eprint={2506.18359},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2506.18359}, 
+}
+```
+
 
