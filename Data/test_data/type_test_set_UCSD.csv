@@ -1,0 +1,1922 @@
+id,node_id,name,full_name,private,owner,html_url,project_type,description,fork,created_at,updated_at,pushed_at,homepage,size,stargazers_count,watchers_count,language,has_issues,has_projects,has_downloads,has_wiki,has_pages,has_discussions,forks_count,archived,disabled,open_issues_count,license,allow_forking,is_template,web_commit_signoff_required,visibility,forks,open_issues,watchers,default_branch,score,organization,readme,contributors,manual_label,prediction,release_downloads,code_of_conduct,contributing,security_policy,issue_templates,pull_request_template,subscribers_count,ai_prediction
+419817421,R_kgDOGQXnzQ,bimm143,k1tanaka/bimm143,0,k1tanaka,https://github.com/k1tanaka/bimm143,EDU,,0,2021-10-21 17:29:13+00:00,2021-12-13 17:55:14+00:00,2021-12-13 17:55:11+00:00,,23626,0,0,HTML,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,main,1,,"# bimm143
+Bioinformatics class at UC San Diego, Fall 2021
+",['k1tanaka'],,1,0,,,,,,1,0.9
+155287680,MDEwOlJlcG9zaXRvcnkxNTUyODc2ODA=,object-oriented-java-course,sjaymoon15/object-oriented-java-course,0,sjaymoon15,https://github.com/sjaymoon15/object-oriented-java-course,EDU,,0,2018-10-29 22:07:19+00:00,2018-11-11 02:11:35+00:00,2018-11-11 02:11:34+00:00,,11732,0,0,Java,1,1,1,1,0,0,0,0,0,0,other,1,0,0,public,0,0,0,master,1,,"unfolding_app_template and UC San Diego/Coursera MOOC starter code
+==================================================================
+
+This is a skeleton to use Unfolding in Eclipse as well as some starter
+code for the Object Oriented Programming in Java course offered by 
+UC San Diego through Coursera.
+
+A very basic Unfolding demo you'll find in the source folder in the default package. 
+For more examples visit http://unfoldingmaps.org, or download the template with
+examples.
+
+The module folders contain the starter code for the programming assignments
+associated with the MOOC.
+
+Get excited and make things!
+
+
+INSTALLATION
+
+Import this folder in Eclipse ('File' -> 'Import' -> 'Existing Projects into
+Workspace', Select this folder, 'Finish')
+
+
+MANUAL INSTALLATION
+
+If the import does not work follow the steps below.
+
+- Create new Java project
+- Copy+Paste all files into project
+- Add all lib/*.jars to build path
+- Set native library location for jogl.jar. Choose appropriate folder for your OS.
+- Add data/ as src
+
+
+TROUBLE SHOOTING
+
+Switch Java Compiler to 1.6 if you get VM problems. (Processing should work with Java 1.6, and 1.7)
+
+
+
+
+",['sjaymoon15'],,1,0,,,,,,1,0.9
+9753156,MDEwOlJlcG9zaXRvcnk5NzUzMTU2,puppet-module-tcpwrappers,UCSD-ANF/puppet-module-tcpwrappers,0,UCSD-ANF,https://github.com/UCSD-ANF/puppet-module-tcpwrappers,DEV,A Puppet module for comprehensively managing tcpwrappers,0,2013-04-29 16:57:19+00:00,2023-08-10 18:19:07+00:00,2023-08-10 20:14:41+00:00,,83,0,0,Ruby,0,1,1,1,0,0,8,0,0,0,,1,0,0,public,8,0,0,master,1,1,,"['decibelhertz', 'geoffdavis']",,1,0,,,,,,9,0.95
+197926081,MDEwOlJlcG9zaXRvcnkxOTc5MjYwODE=,android-2-week-3-navigation,ucsd-ext-android-rja/android-2-week-3-navigation,0,ucsd-ext-android-rja,https://github.com/ucsd-ext-android-rja/android-2-week-3-navigation,EDU,,0,2019-07-20 12:17:01+00:00,2019-07-20 17:18:00+00:00,2019-07-20 22:06:59+00:00,,157,0,0,Java,1,1,1,1,0,0,10,0,0,0,,1,0,0,public,10,0,0,master,1,1,,['rjaylwar'],,1,0,,,,,,1,0.7
+597724860,R_kgDOI6COvA,Unfolding-Maps,vince7ben23/Unfolding-Maps,0,vince7ben23,https://github.com/vince7ben23/Unfolding-Maps,EDU,Implement OOP in Java,0,2023-02-05 13:02:18+00:00,2023-04-11 05:07:37+00:00,2023-02-05 14:32:53+00:00,,11720,0,0,Java,1,1,1,1,0,0,0,0,0,0,other,1,0,0,public,0,0,0,master,1,,"unfolding_app_template and UC San Diego/Coursera MOOC starter code
+==================================================================
+
+This is a skeleton to use Unfolding in Eclipse as well as some starter
+code for the Object Oriented Programming in Java course offered by 
+UC San Diego through Coursera.
+
+A very basic Unfolding demo you'll find in the source folder in the default package. 
+For more examples visit http://unfoldingmaps.org, or download the template with
+examples.
+
+The module folders contain the starter code for the programming assignments
+associated with the MOOC.
+
+Get excited and make things!
+
+
+INSTALLATION
+
+Import this folder in Eclipse ('File' -> 'Import' -> 'Existing Projects into
+Workspace', Select this folder, 'Finish')
+
+
+MANUAL INSTALLATION
+
+If the import does not work follow the steps below.
+
+- Create new Java project
+- Copy+Paste all files into project
+- Add all lib/*.jars to build path
+- Set native library location for jogl.jar. Choose appropriate folder for your OS.
+- Add data/ as src
+
+
+TROUBLE SHOOTING
+
+Switch Java Compiler to 1.6 if you get VM problems. (Processing should work with Java 1.6, and 1.7)
+
+
+
+
+",['vince7ben23'],,1,0,,,,,,1,0.9
+890889462,R_kgDONRnk9g,MAE190_Projects,WinstonHChou/MAE190_Projects,0,WinstonHChou,https://github.com/WinstonHChou/MAE190_Projects,EDU,UC San Diego MAE 190 Design of Mechine Elements - Design Code Projects,0,2024-11-19 11:06:40+00:00,2024-11-21 18:20:09+00:00,2024-11-21 18:20:05+00:00,,3492,0,0,MATLAB,1,1,1,1,0,0,0,0,0,0,mit,1,0,0,public,0,0,0,main,1,,"# MAE190_Projects
+UC San Diego MAE 190 Design of Mechine Elements - Design Code Projects
+",['WinstonHChou'],,1,0,,,,,,1,0.8
+43617754,MDEwOlJlcG9zaXRvcnk0MzYxNzc1NA==,UCSDUnfoldingMaps,parthppanchal/UCSDUnfoldingMaps,0,parthppanchal,https://github.com/parthppanchal/UCSDUnfoldingMaps,EDU,"""Object Oriented Programming in Java"" course's programming assignment",0,2015-10-03 22:50:07+00:00,2016-06-25 12:37:21+00:00,2015-10-22 17:36:06+00:00,https://www.coursera.org/learn/object-oriented-java,11800,0,0,Java,1,1,1,1,0,0,0,0,0,0,other,1,0,0,public,0,0,0,master,1,,,['parthppanchal'],,1,0,,,,,,1,0.8
+401146276,MDEwOlJlcG9zaXRvcnk0MDExNDYyNzY=,java-earthquake,AYYYang/java-earthquake,0,AYYYang,https://github.com/AYYYang/java-earthquake,EDU,Coursera Java OOP brush up,0,2021-08-29 21:30:58+00:00,2021-08-31 23:56:45+00:00,2021-09-01 19:32:19+00:00,,11702,0,0,Java,1,1,1,1,0,0,0,0,0,0,other,1,0,0,public,0,0,0,main,1,,"unfolding_app_template and UC San Diego/Coursera MOOC starter code
+==================================================================
+
+This is a skeleton to use Unfolding in Eclipse as well as some starter
+code for the Object Oriented Programming in Java course offered by 
+UC San Diego through Coursera.
+
+A very basic Unfolding demo you'll find in the source folder in the default package. 
+For more examples visit http://unfoldingmaps.org, or download the template with
+examples.
+
+The module folders contain the starter code for the programming assignments
+associated with the MOOC.
+
+Get excited and make things!
+
+
+INSTALLATION
+
+Import this folder in Eclipse ('File' -> 'Import' -> 'Existing Projects into
+Workspace', Select this folder, 'Finish')
+
+
+MANUAL INSTALLATION
+
+If the import does not work follow the steps below.
+
+- Create new Java project
+- Copy+Paste all files into project
+- Add all lib/*.jars to build path
+- Set native library location for jogl.jar. Choose appropriate folder for your OS.
+- Add data/ as src
+
+
+TROUBLE SHOOTING
+
+Switch Java Compiler to 1.6 if you get VM problems. (Processing should work with Java 1.6, and 1.7)
+
+
+
+
+",['AYYYang'],,1,0,,,,,,1,0.95
+794373190,R_kgDOL1ksRg,GEMM_CPUAccel-CSE260,suraj-2306/GEMM_CPUAccel-CSE260,0,suraj-2306,https://github.com/suraj-2306/GEMM_CPUAccel-CSE260,EDU,,0,2024-05-01 02:19:24+00:00,2024-05-01 02:21:38+00:00,2024-05-01 02:21:30+00:00,,8602,0,0,C,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,main,1,,"[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/CfDgC9eg)
+# pa1-starter<br />
+pa1 assignment<br />
+Starter Code for the Matrix Multiplication assignment<br />
+Original code provided by Jim Demmel<br />
+http://www.cs.berkeley.edu/~knight/cs267/hw1.html<br />
+with some modifications by Scott B. Baden at UC San Diego<br />
+with some modifications by Bryan Chin at UC San Diego<br />
+
+## Usage
+
+Build the executables
+```bash
+make
+```
+Generate test data and run the performance tests (You might need to modify the permission)
+```bash
+./genDATA.sh
+```
+Display the test results
+```bash
+cat data.txt
+```
+Remove all files generated from compilation
+```bash
+make clean
+```","['yjl450', 'github-classroom[bot]', 'suraj-2306']",,1,0,,,,,,1,0.9
+135672283,MDEwOlJlcG9zaXRvcnkxMzU2NzIyODM=,UnfoldingMaps,thquyen11/UnfoldingMaps,0,thquyen11,https://github.com/thquyen11/UnfoldingMaps,EDU,Modify GUI project according to Coursera course https://www.coursera.org/learn/object-oriented-java/home/welcome,0,2018-06-01 05:39:22+00:00,2023-01-28 19:43:28+00:00,2018-06-03 04:54:51+00:00,,11656,0,0,Java,1,1,1,1,0,0,0,1,0,0,other,1,0,0,public,0,0,0,master,1,,"unfolding_app_template and UC San Diego/Coursera MOOC starter code
+==================================================================
+
+This is a skeleton to use Unfolding in Eclipse as well as some starter
+code for the Object Oriented Programming in Java course offered by 
+UC San Diego through Coursera.
+
+A very basic Unfolding demo you'll find in the source folder in the default package. 
+For more examples visit http://unfoldingmaps.org, or download the template with
+examples.
+
+The module folders contain the starter code for the programming assignments
+associated with the MOOC.
+
+Get excited and make things!
+
+
+INSTALLATION
+
+Import this folder in Eclipse ('File' -> 'Import' -> 'Existing Projects into
+Workspace', Select this folder, 'Finish')
+
+
+MANUAL INSTALLATION
+
+If the import does not work follow the steps below.
+
+- Create new Java project
+- Copy+Paste all files into project
+- Add all lib/*.jars to build path
+- Set native library location for jogl.jar. Choose appropriate folder for your OS.
+- Add data/ as src
+
+
+TROUBLE SHOOTING
+
+Switch Java Compiler to 1.6 if you get VM problems. (Processing should work with Java 1.6, and 1.7)
+
+
+
+
+",['thquyen11'],,1,0,,,,,,0,0.9
+603219916,R_kgDOI_RnzA,lab7,ucsd-cse15l-w23/lab7,0,ucsd-cse15l-w23,https://github.com/ucsd-cse15l-w23/lab7,EDU,,0,2023-02-17 21:51:45+00:00,2023-11-09 22:07:03+00:00,2023-10-16 18:32:03+00:00,,372,0,0,Java,1,1,1,1,0,0,1609,1,0,0,,1,0,0,public,1609,0,0,main,1,1,,"['enzohnnn', 'broiyn', 'jpolitz']",,1,0,,,,,,2,0.9
+336392274,MDEwOlJlcG9zaXRvcnkzMzYzOTIyNzQ=,C-VIEW,ucsd-ccbb/C-VIEW,0,ucsd-ccbb,https://github.com/ucsd-ccbb/C-VIEW,DEV,This software implements a high-throughput data processing pipeline to identify and charaterize SARS-CoV-2 variant sequences in specimens from COVID-19 positive hosts or environments.,0,2021-02-05 21:23:06+00:00,2025-01-13 04:02:43+00:00,2023-08-01 23:56:54+00:00,,16584,10,10,Python,1,1,1,1,0,0,2,0,0,22,mit,1,0,0,public,2,22,10,main,1,1,,"['AmandaBirmingham', 'kmfisch', 'niemasd', 'brinrosenthal', 'gkarthik']",,1,0,,,,,,7,0.95
+883563960,R_kgDONKoduA,qwer030413,qwer030413/qwer030413,0,qwer030413,https://github.com/qwer030413/qwer030413,OTHER,My personal repo,0,2024-11-05 07:28:51+00:00,2024-11-05 07:32:13+00:00,2024-11-05 07:32:09+00:00,,3,0,0,,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,main,1,,"## 🚀 About Me
+Junior at the University of California, San Diego majoring in computer science.
+
+<!--
+**qwer030413/qwer030413** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+
+Here are some ideas to get you started:
+
+- 🔭 I’m currently working on ...
+- 🌱 I’m currently learning ...
+- 👯 I’m looking to collaborate on ...
+- 🤔 I’m looking for help with ...
+- 💬 Ask me about ...
+- 📫 How to reach me: ...
+- 😄 Pronouns: ...
+- ⚡ Fun fact: ...
+-->
+",['qwer030413'],1,1,0,,,,,,1,0.6
+267428724,MDEwOlJlcG9zaXRvcnkyNjc0Mjg3MjQ=,Oncogenomics,scp010/Oncogenomics,0,scp010,https://github.com/scp010/Oncogenomics,DATA,,0,2020-05-27 21:20:34+00:00,2020-06-24 17:55:01+00:00,2020-06-24 17:50:50+00:00,,247,0,0,R,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,master,1,,"# Oncogenomics
+
+This oncogenomics folder contains various files related to cancer research data and how to analyze and organize data files. 
+
+Completed Projects:
+<br>
+-Moores Cancer Center non-PHI Shiny app for aggregating UC San Diego Biorepository Tableau data dumps, Foundation Medicine reports, clinical patient doemographics and diagnosis, displaying de-identified data enabling cancer researchers to quickly and accurately identify samples of interest. 
+<br>
+-Mapping of UC San Diego Cancer history notation to Memorial Sloan Kettering Cancer Center Oncotree notation.
+
+Projects in Progress:
+<br>
+-JSON and XML parsing and de-identification using Python and R to create data tables for a PHI Shiny app
+",['scp010'],,1,0,,,,,,1,0.8
+456096009,R_kgDOGy95CQ,MLP,weiyueli7/MLP,0,weiyueli7,https://github.com/weiyueli7/MLP,DEV,,0,2022-02-06 08:32:32+00:00,2024-02-17 03:42:06+00:00,2023-08-15 04:42:34+00:00,,21932,3,3,Jupyter Notebook,1,1,1,1,0,0,1,0,0,0,,1,0,0,public,1,0,3,main,1,,"
+# Optimization and Evaluation of Multi-layer Neural Networks: Exploring Regularization, Learning Rates, and Topologies
+
+A report is aviliable [here](report.pdf).
+
+## Description
+
+In this work, we implement a multi-layer neural network equipped with forward and backward propagation, various regularization techniques, and momentum-based optimization. Our objective was to classify Japanese Hiragana handwritten characters from the [KMNIST dataset](https://github.com/rois-codh/kmnist), employing softmax as the output layer. One-fold cross-validation was utilized to evaluate the model, coupled with the integration of regularization techniques. Our most efficient model leveraged ReLU activations and achieved an accuracy of **0.8688**. Subsequent architecture adjustments, including layer count and hidden unit modifications, yielded a test set accuracy of **0.8626**.
+
+## Getting Started
+
+### Dependencies
+
+* Python3
+* `Numpy`
+* `Matplotlib`
+* `tqdm`
+
+
+### Files
+* `config.yaml` is the file where you could set-up your desired configuration including the number of layers and number of hidden neurons in each layer, the type of non-linear activation function, the learning rate, the batch size, the number of epochs, if the model will early-stop, the patience for early-stop, the L2 penalty, if the model will use momentum, and the momentum $\\gamma$. Default values specified below.
+* `data.py` is the file where we have pre processed the data. We have implemented some helper methods for one-hot encoding, normalizing, shuffling the dataset, and so on.
+* `main.py` is the ONLY file you need to run to execute our model.
+* `nueralnet.py` is the file where were have implemented the structure of the nueral network including the classes Layer, Activation, and NueralNetwork where we have integrated three classes together.
+* `train.py` is the file that all training happened. It will also plot our data of training/validation accuracy/loss.
+
+### Executing program
+
+* Go to the correct directory.
+* In your terminal, run `python3 main.py` for default:
+    * layer_specs: [784, 128, 10]
+    * activation: ""tanh""
+    * learning_rate: 0.005
+    * batch_size: 128
+    * epochs: 100
+    * early_stop: False
+    * early_stop_epoch: 5
+    * L2_penalty: 0.0001
+    * momentum: True
+    * momentum_gamma: 0.9
+* You may adjust the default values by editing the `config.yaml`: 
+
+If run properly, you should be able to see the progress bar of training, as well as their associated results.
+
+
+## Help
+
+If the program takes too slow to execute. Please only run one part at a time and comment out the rest of the parts in `main.py`.
+
+
+## Authors
+
+Contributors names and contact info (alphabetical order):
+
+* Kong, Linghang
+    * l3kong@ucsd.edu
+* Li, Weiyue
+    * wel019@ucsd.edu
+* Li, Yi
+    * yil115@ucsd.edu 
+","['weiyueli7', 'jerryli1019']",,1,0,,,,,,1,0.9
+147393988,MDEwOlJlcG9zaXRvcnkxNDczOTM5ODg=,heap_c,aditikilambi/heap_c,0,aditikilambi,https://github.com/aditikilambi/heap_c,EDU,An implementation of the heap data structure in C. Created for CSE 12 at UC San Diego in March 2018.,0,2018-09-04 18:46:40+00:00,2018-09-04 18:50:34+00:00,2018-09-04 18:50:33+00:00,,1,0,0,C,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,master,1,,,['aditikilambi'],,1,0,,,,,,1,0.7
+221415629,MDEwOlJlcG9zaXRvcnkyMjE0MTU2Mjk=,ece_269_fa19_project,Anirudh-Swaminathan/ece_269_fa19_project,0,Anirudh-Swaminathan,https://github.com/Anirudh-Swaminathan/ece_269_fa19_project,EDU,A repository to house the code for my course project for ECE 269 - Linear Algebra - Fall 2019 taken at the University of California San Diego (UCSD),0,2019-11-13 09:00:04+00:00,2023-05-23 22:48:59+00:00,2019-12-03 22:44:32+00:00,,11578,0,0,Jupyter Notebook,1,1,1,1,0,0,0,0,0,0,apache-2.0,1,0,0,public,0,0,0,master,1,,"# ece_269_fa19_project
+A repository to house the code for my course project for ECE 269 - Linear Algebra - Fall 2019 taken at the University of California San Diego (UCSD)
+",['Anirudh-Swaminathan'],,1,0,,,,,,1,0.8
+225216209,MDEwOlJlcG9zaXRvcnkyMjUyMTYyMDk=,re-benchmarking,shihuang047/re-benchmarking,0,shihuang047,https://github.com/shihuang047/re-benchmarking,DEV,,0,2019-12-01 19:20:38+00:00,2024-12-02 08:50:39+00:00,2021-06-02 18:42:19+00:00,,55907,15,15,Jupyter Notebook,1,1,1,1,0,0,1,0,0,0,,1,0,0,public,1,0,15,master,1,,"# Challenges in benchmarking metagenomics profilers
+
+This repo contains the code to reproduce all of the analyses in the paper ""Challenges in benchmarking metagenomic profilers"" by Zheng, Huang et al. 2020.
+
+* The paper has been available at: https://www.nature.com/articles/s41592-021-01141-3
+* The raw data is available on figshare: https://figshare.com/projects/Pitfalls_and_Opportunities_in_Benchmarking_Metagenomic_Classifiers/79916
+
+***
+## The motivations
+Microbial identification and accurate abundance estimation are still challenging in the metagenomics analysis yet poorly understood and evaluated using appropriate metrics or ground truth data. 
+
+**Abundance estimation: sequence abundance VS taxonomic abundance** Microbial abundance in the metagenomics data can be considered either as the relative abundance of reads from each taxa (""sequence abundance"") or by inferring abundance of the number of individuals from each taxa by correcting read counts for genome size (""taxonomic abundance""). However, such correction for genome length into abundance estimation is usually missed in most state-of-the-art profilers. Even though it can be manually performed by reweighting the read counts after classification, [previous benchmarking studies](https://www.sciencedirect.com/science/article/pii/S0092867419307755) did not perform appropriate corrections and still used ""raw"" abundance profiles generated from benchmarked profilers for performance comparisons , resulting in highly misleading or even contradictory conclusions.
+
+## System requirements and installation guide
+All the scripts are programmed using R (3.6.3) or Python (3.6.10) and stroed in folder ""Manuscript"".
+For more details please refer to ""Readme.txt"" under each folder.
+RStudio in Windows is recommended to perform visualzation of main figures (please see ""Manuscript/Figures"").
+
+## Reference
+* Ye, S.H., Siddle, K.J., Park, D.J., and Sabeti, P.C. (2019). Benchmarking Metagenomics Tools for Taxonomic Classification. Cell 178, 779-794.
+* D., Foox, J., Ahsanuddin, S., et al. (2017). Comprehensive benchmarking and ensemble approaches for metagenomic classifiers. Genome Biology 18.
+* Segata, N., Waldron, L., Ballarini, A., Narasimhan, V., Jousson, O., and Huttenhower, C. (2012). Metagenomic microbial community profiling using unique clade-specific marker genes. Nat Methods 9, 811-+.
+* Mende, D.R., Waller, A.S., Sunagawa, S., Jarvelin, A.I., Chan, M.M., Arumugam, M., Raes, J., and Bork, P. (2012). Assessment of Metagenomic Assembly Using Simulated Next Generation Sequencing Data. Plos One 7.
+* Truong, D.T., Franzosa, E.A., Tickle, T.L., Scholz, M., Weingart, G., Pasolli, E., Tett, A., Huttenhower, C., and Segata, N. (2015). MetaPhlAn2 for enhanced metagenomic taxonomic profiling. Nat Methods 12, 902-903.
+* Wood, D.E., and Salzberg, S.L. (2014). Kraken: ultrafast metagenomic sequence classification using exact alignments. Genome Biology 15.
+
+***
+## Funding support
+Research reported in this publication was supported by grants R01AI141529, R01HD093761, UH3OD023268, U19AI095219, and U01HL089856 from National Institutes of Health. This work was also supported by IBM Research through the AI Horizons Network, UC San Diego AI for Healthy Living program in partnership with the UC San Diego Center for Microbiome Innovation.
+
+## License
+MIT License
+
+","['shihuang047', 'sunzheng0618']",,1,0,,,,,,2,0.75
+477503559,R_kgDOHHYgRw,Clothing-data-NLP-Analysis-and-Recommender,mame0521/Clothing-data-NLP-Analysis-and-Recommender,0,mame0521,https://github.com/mame0521/Clothing-data-NLP-Analysis-and-Recommender,EDU,A course project of Analyzing Unstructured Data  using NLP at UCSD,0,2022-04-04 00:40:46+00:00,2023-03-13 14:24:16+00:00,2023-03-13 14:22:44+00:00,,3488,0,0,Jupyter Notebook,1,1,1,1,0,0,2,0,0,0,,1,0,0,public,2,0,0,main,1,,,['mame0521'],,1,0,,,,,,1,0.7
+53532653,MDEwOlJlcG9zaXRvcnk1MzUzMjY1Mw==,coralnet,coralnet/coralnet,0,coralnet,https://github.com/coralnet/coralnet,WEB,Development of CoralNet.,0,2016-03-09 21:20:31+00:00,2025-03-06 22:54:57+00:00,2025-03-06 22:55:34+00:00,http://coralnet.ucsd.edu/,85036,57,57,Python,1,1,1,1,0,0,4,0,0,163,bsd-2-clause,1,0,0,public,4,163,57,main,1,1,,"['StephenChan', 'beijbom', 'DevangS', 'jsandvik', 'oscar-nutonomy', 'kriegman']",,1,0,,,,,,7,0.8
+88393060,MDEwOlJlcG9zaXRvcnk4ODM5MzA2MA==,COGS108_Repo,ZhaoshuoBi/COGS108_Repo,0,ZhaoshuoBi,https://github.com/ZhaoshuoBi/COGS108_Repo,EDU,UCSD_COGS108,0,2017-04-16 05:26:44+00:00,2017-04-16 05:26:44+00:00,2017-04-16 05:26:45+00:00,,0,0,0,,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,master,1,,,['ZhaoshuoBi'],,1,0,,,,,,0,0.8
+130239228,MDEwOlJlcG9zaXRvcnkxMzAyMzkyMjg=,CannonGame,trace7729/CannonGame,0,trace7729,https://github.com/trace7729/CannonGame,EDU,UCSD Extension: Android Programming,0,2018-04-19 15:51:20+00:00,2020-12-03 02:38:56+00:00,2020-02-15 02:51:09+00:00,https://extension.ucsd.edu/courses-and-programs/android-programming,422,0,0,Java,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,master,1,,,['trace7729'],,1,0,,,,,,0,0.7
+472080911,R_kgDOHCNiDw,syllabi,SheepTester/syllabi,0,SheepTester,https://github.com/SheepTester/syllabi,EDU,Course syllabi at UCSD,0,2022-03-20 19:25:02+00:00,2025-01-23 23:07:56+00:00,2025-01-14 22:27:16+00:00,,3926,0,0,,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,main,1,,,['SheepTester'],,1,0,,,,,,1,0.7
+490103098,R_kgDOHTZhOg,dsc90-sp22-hw06,fabriciodeuve/dsc90-sp22-hw06,0,fabriciodeuve,https://github.com/fabriciodeuve/dsc90-sp22-hw06,EDU,,0,2022-05-09 01:57:42+00:00,2022-05-09 03:16:36+00:00,2022-05-09 05:54:11+00:00,,3038,0,0,HTML,1,1,1,1,1,0,0,0,0,0,,1,0,0,public,0,0,0,main,1,,"# Homework 6 for History of Data Science, Spring 2022 @ UC San Diego
+
+Homework 6 for History of Data Science, Spring 2022 @ UC San Diego
+
+Miguel del Valle - mdelvalle@ucsd.edu
+
+#Question 1 
+<iframe src='snow-map.html' width=600 height=700 frameBorder=0></iframe>
+Map of cholera deaths in SoHo, London, where each circle shows the location  and number of deaths. Markers represent the location of pumps.
+
+#Question 2
+<iframe src='plotly-galton_fig.html' width=800 height=600 frameBorder=0></iframe>
+Representation of the relationshio between child-parents heights.
+
+#Question 3
+<iframe src='plotly-france_fig.html' width=800 height=600 frameBorder=0></iframe>
+Map of France by population and departments
+",['fabriciodeuve'],,1,0,,,,,,1,0.9
+266603153,MDEwOlJlcG9zaXRvcnkyNjY2MDMxNTM=,Social-Network-Analysis-using-Label-Propogation,StevenZ315/Social-Network-Analysis-using-Label-Propogation,0,StevenZ315,https://github.com/StevenZ315/Social-Network-Analysis-using-Label-Propogation,EDU,My Capstone project for OOP: Data Structures & Beyond Specialization offered by UC San Diego ---- Community identification using Label Propogation Algorithm,0,2020-05-24 18:42:38+00:00,2020-05-31 01:03:20+00:00,2020-05-31 01:03:18+00:00,,14941,0,0,Java,1,1,1,1,0,0,0,0,0,0,other,1,0,0,public,0,0,0,master,1,,"# Social-Network-Analysis-using-Label-Propogation
+My Capstone project for OOP: Data Structures &amp; Beyond Specialization offered by UC San Diego ---- Community identification using Label Propogation Algorithm
+
+This course is offered at <a href=""https://www.coursera.org"">Coursera</a> and is part of the <a href=""https://www.coursera.org/specializations/java-object-oriented"">Object Oriented Java Programming: Data Structure and Beyond Specializaiton</a>.
+
+Here's my <a href = ""https://www.coursera.org/account/accomplishments/specialization/5G87PQ3HJFXA"">certificate</a> on completing the course.
+
+## Questions
+- Develop the label propagation algorithm to generate one feasible solution for community detection.
+- Aggregate based on one set of feasible solutions to generate the community structure containing the most useful information.
+- Optimize the algorithm to find overlapping communities in networks.
+
+## Data Structures
+Main Data Structure: The network has been laid out as a classic graph using an adjacency list. Each individual in the graph is a vertex and an edge between vertices represents a friendship.
+An additional HashMap is used to store the vertex-label pair information.
+
+## Algorithm Description and Complexity Analysis:
+```
+1. Generate the graph from input data. --- O(V+E)
+2. Initialize different labels for all vertices. --- O(V)
+3. For each iteration: --- O(N) (N: number of iterations)
+Update the label for each vertex based on neighbor vertices. --- O(V+E)
+Return if nothing to update.
+4. Generate multiple graphs based on the above algorithm O(N*(V+E)) and combine the labels for same node in diifferent results to generate the aggregated graph. --- O(V+E).
+```
+
+The estimated running time is O(N*(V+E)), and it has been proven in the reference paper that irrespective of N, 95% of the nodes or more are classified correctly by the end of iteration 5. Thus this is a near-linear algorithm with estimation of O(V+E).
+
+## Limitations and Risks
+There is a random factor in label propagation process, thus the result for each run is different. It's hard to validate the correctness of the result. However, with aggregation, the final result is proven to be relatively stable with five graphs aggregated.
+
+## Testing and Validation
+```
+Dataset used: data/football.txt
+Total communities detected: 14
+Total runtime: 0 seconds
+------------------------------------------------
+Dataset used: data/facebook_1000.txt
+Total communities detected: 187
+Total runtime: 0 seconds
+------------------------------------------------
+Dataset used: data/facebook_2000.txt
+Total communities detected: 259
+Total runtime: 0 seconds
+------------------------------------------------
+Dataset used: data/facebook_ucsd.txt
+Total communities detected: 25
+Total runtime: 11 seconds
+------------------------------------------------
+```
+",['StevenZ315'],,1,0,,,,,,1,0.9
+133868375,MDEwOlJlcG9zaXRvcnkxMzM4NjgzNzU=,Algorithms-and-Data-Structures,munirjojoverge/Algorithms-and-Data-Structures,0,munirjojoverge,https://github.com/munirjojoverge/Algorithms-and-Data-Structures,EDU,"6 Courses from the University of California, San Diego National Research University Higher School of Economics",0,2018-05-17 21:05:51+00:00,2023-12-17 02:06:32+00:00,2018-05-17 21:29:15+00:00,,2408,1,1,C++,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,1,master,1,,"# Algorithms-and-Data-Structures
+6 Courses from the University of California, San Diego National Research University Higher School of Economics
+
+This specialization is a mix of theory and practice: you will learn algorithmic techniques for solving various computational problems and will implement about 100 algorithmic coding problems in a programming language of your choice. No other online course in Algorithms even comes close to offering you a wealth of programming challenges that you may face at your next job interview. To prepare you, we invested over 3000 hours into designing our challenges as an alternative to multiple choice questions that you usually find in MOOCs. Sorry, we do not believe in multiple choice questions when it comes to learning algorithms...or anything else in computer science! For each algorithm you develop and implement, we designed multiple tests to check its correctness and running time — you will have to debug your programs without even knowing what these tests are! It may sound difficult, but we believe it is the only way to truly understand how the algorithms work and to master the art of programming. The specialization contains two real-world projects: Big Networks and Genome Assembly. You will analyze both road networks and social networks and will learn how to compute the shortest route between New York and San Francisco (1000 times faster than the standard shortest path algorithms!) Afterwards, you will learn how to assemble genomes from millions of short fragments of DNA and how assembly algorithms fuel recent developments in personalized medicine.
+",['munirjojoverge'],,1,0,,,,,,1,0.8
+99187707,MDEwOlJlcG9zaXRvcnk5OTE4NzcwNw==,Algorithms-on-Graphs,goodmanseth/Algorithms-on-Graphs,0,goodmanseth,https://github.com/goodmanseth/Algorithms-on-Graphs,EDU,"This repo contains the projects from the Coursera Algorithms of Graphs class, taught by the University of California, San Diego.",0,2017-08-03 03:42:37+00:00,2017-08-03 03:42:53+00:00,2017-08-03 03:42:51+00:00,,2026,0,0,C++,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,master,1,,"# Algorithms on Graphs
+
+This repository contains projects completed for the Coursera course on graphs, taught by the University of California, San Diego.
+",['goodmanseth'],,1,0,,,,,,0,0.8
+627644965,R_kgDOJWkaJQ,COGS108_repo,hanhtdinh/COGS108_repo,0,hanhtdinh,https://github.com/hanhtdinh/COGS108_repo,EDU,,0,2023-04-13 22:43:06+00:00,2023-04-13 22:43:06+00:00,2023-04-13 22:45:00+00:00,,1,0,0,,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,main,1,,"# COGS108_repo
+Coursework assignments for COGS 108 at UC San Diego with Professor Fleischer 
+",['hanhtdinh'],,1,0,,,,,,1,0.9
+601829839,R_kgDOI98xzw,list-examples-grader,ucsd-cse15l-w23/list-examples-grader,0,ucsd-cse15l-w23,https://github.com/ucsd-cse15l-w23/list-examples-grader,EDU,,0,2023-02-14 23:02:24+00:00,2023-11-09 22:07:03+00:00,2023-03-02 23:29:07+00:00,,368,0,0,Java,1,1,1,1,0,0,413,1,0,7,,1,0,0,public,413,7,0,main,1,1,,"['ashybot', 'jpolitz']",,1,0,,,,,,2,0.95
+501797498,R_kgDOHejSeg,UnfoldingMaps,shoja96/UnfoldingMaps,0,shoja96,https://github.com/shoja96/UnfoldingMaps,EDU,This project comes from Coursera java course offered by UC San Diego University,0,2022-06-09 20:21:02+00:00,2022-06-09 20:23:42+00:00,2022-06-09 20:23:38+00:00,,14567,0,0,Java,1,1,1,1,0,0,0,0,0,0,other,1,0,0,public,0,0,0,main,1,,"unfolding_app_template and UC San Diego/Coursera MOOC starter code
+==================================================================
+
+This is a skeleton to use Unfolding in Eclipse as well as some starter
+code for the Object Oriented Programming in Java course offered by 
+UC San Diego through Coursera.
+
+A very basic Unfolding demo you'll find in the source folder in the default package. 
+For more examples visit http://unfoldingmaps.org, or download the template with
+examples.
+
+The module folders contain the starter code for the programming assignments
+associated with the MOOC.
+
+Get excited and make things!
+
+
+INSTALLATION
+
+Import this folder in Eclipse ('File' -> 'Import' -> 'Existing Projects into
+Workspace', Select this folder, 'Finish')
+
+
+MANUAL INSTALLATION
+
+If the import does not work follow the steps below.
+
+- Create new Java project
+- Copy+Paste all files into project
+- Add all lib/*.jars to build path
+- Set native library location for jogl.jar. Choose appropriate folder for your OS.
+- Add data/ as src
+
+
+TROUBLE SHOOTING
+
+Switch Java Compiler to 1.6 if you get VM problems. (Processing should work with Java 1.6, and 1.7)
+
+
+
+
+",[],,1,0,,,,,,1,0.9
+46377059,MDEwOlJlcG9zaXRvcnk0NjM3NzA1OQ==,bigdata-ucsd,MahalingamShanmugam/bigdata-ucsd,0,MahalingamShanmugam,https://github.com/MahalingamShanmugam/bigdata-ucsd,EDU,[COURSERA] Repository with exercises and snippets for the Big Data specialization from the University of California - San Diego at @ Coursera.,0,2015-11-17 21:37:57+00:00,2017-10-21 16:40:34+00:00,2015-11-18 21:07:57+00:00,,5,0,0,Python,0,1,1,1,0,0,9,0,0,0,mit,1,0,0,public,9,0,0,master,1,,"## Big data Specialization - University of California, San Diego
+<i>@ TODO - Description</i>
+
+### Sumary
+* Introduction to Big Data
+* Hadoop Platform and Application Framework
+  1. [Big Data Hadoop Stack](####)
+  2. [Hadoop based Applications and Services](####)
+  3. [Hadoop Distributed File System (HDFS)](####)
+  4. [Map/Reduce](####)
+  5. [Introduction to Apache Spark](####)
+* Introduction to Big Data Analytics
+
+### Brief concepts
+<i>@ TODO </i>
+
+### Acknowledgment
+<i>@ TODO</i>
+",['MahalingamShanmugam'],,1,0,,,,,,1,0.8
+197313551,MDEwOlJlcG9zaXRvcnkxOTczMTM1NTE=,Coursera-UCSD-Algorithms-DataStructures-Courses,geminirashmi31/Coursera-UCSD-Algorithms-DataStructures-Courses,0,geminirashmi31,https://github.com/geminirashmi31/Coursera-UCSD-Algorithms-DataStructures-Courses,EDU,Algorithms & Data Structures Courses problems from University of California San Diego on Coursera,0,2019-07-17 04:14:01+00:00,2019-07-17 05:35:46+00:00,2019-07-17 05:35:44+00:00,,463,0,0,C#,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,master,1,,,['geminirashmi31'],,1,0,,,,,,0,0.7
+111661141,MDEwOlJlcG9zaXRvcnkxMTE2NjExNDE=,Coursera_Data_Structures_and_Algorithms,huynguyen120390/Coursera_Data_Structures_and_Algorithms,0,huynguyen120390,https://github.com/huynguyen120390/Coursera_Data_Structures_and_Algorithms,EDU,"Assignments and Projects in the Coursera course on Data Structures and Algorithms by UC,San Diego ",0,2017-11-22 09:09:28+00:00,2017-11-22 09:09:28+00:00,2017-11-22 09:13:07+00:00,,2,0,0,,1,1,1,1,0,0,0,0,0,0,mit,1,0,0,public,0,0,0,master,1,,"# Coursera_Data_Structures_and_Algorithms
+The repository is about Solutions of the Assignments and Projects in the Coursera course on Data Structures and Algorithms by UC,San Diego . Code, runtime, results, related researches are included.
+",['huynguyen120390'],,1,0,,,,,,1,0.7
+782966584,R_kgDOLqsfOA,dsa_san_diego,itskrutz/dsa_san_diego,0,itskrutz,https://github.com/itskrutz/dsa_san_diego,EDU,Coursera course on dsa uc san diego,0,2024-04-06 15:00:09+00:00,2024-04-06 15:02:44+00:00,2024-04-10 12:05:01+00:00,,69,0,0,C++,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,main,1,,"# dsa_san_diego
+Coursera course on dsa uc san diego
+",['itskrutz'],,1,0,,,,,,2,0.8
+141949632,MDEwOlJlcG9zaXRvcnkxNDE5NDk2MzI=,Algorithms-and-Data-Structures,joelrivas/Algorithms-and-Data-Structures,0,joelrivas,https://github.com/joelrivas/Algorithms-and-Data-Structures,EDU,It'a repository for all the projects faced in the Algorithms and Data Structures MicroMaster in edx.org teached by UC San Diego.,0,2018-07-23 02:11:31+00:00,2018-08-01 15:51:24+00:00,2018-07-23 06:16:57+00:00,,2,0,0,Python,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,master,1,,"# Algorithms-and-Data-Structures
+
+It'a repository for all the projects faced in the Algorithms and Data Structures MicroMaster in edx.org teached by UC San Diego. <https://www.edx.org/es/micromasters/ucsandiegox-algorithms-and-data-structures>
+
+Each folder is a different course.
+
+What will be learned:
+* Understand essential algorithmic techniques and apply them to solve algorithmic problems
+* Implement programs that work in less than one second even on massive datasets
+* Test and debug your code even without knowing the input on which it fails
+* Formulate real life computational problems as rigorous algorithmic problems
+* Prove correctness of an algorithm and analyze its running time
+",['joelrivas'],,1,0,,,,,,0,0.9
+217602905,MDEwOlJlcG9zaXRvcnkyMTc2MDI5MDU=,HiC_scripts,epigen-UCSD/HiC_scripts,0,epigen-UCSD,https://github.com/epigen-UCSD/HiC_scripts,DEV,HiC processing scripts used in the center.,0,2019-10-25 19:36:03+00:00,2024-09-05 08:50:21+00:00,2020-12-10 08:04:35+00:00,,440,3,3,Jupyter Notebook,1,1,1,1,0,0,4,0,0,0,,1,0,0,public,4,0,3,master,1,1,,['biomystery'],,1,0,,,,,,3,0.9
+129079832,MDEwOlJlcG9zaXRvcnkxMjkwNzk4MzI=,algorithmic-toolbox,shivasurya/algorithmic-toolbox,0,shivasurya,https://github.com/shivasurya/algorithmic-toolbox,EDU,"My workouts on  Algorithmic Toolbox Course by University of California, San Diego - Coursera",0,2018-04-11 10:57:45+00:00,2023-03-04 05:11:27+00:00,2018-04-11 11:37:29+00:00,,1,1,1,C++,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,1,master,1,,"# Algorithmic Toolbox
+My workouts on Algorithmic Toolbox Course by University of California, San Diego - Coursera
+",['shivasurya'],,1,0,,,,,,1,0.7
+260370394,MDEwOlJlcG9zaXRvcnkyNjAzNzAzOTQ=,UCSDUnfoldingMaps,hammcin/UCSDUnfoldingMaps,0,hammcin,https://github.com/hammcin/UCSDUnfoldingMaps,EDU,,0,2020-05-01 03:21:08+00:00,2020-05-06 01:37:23+00:00,2020-05-06 01:37:21+00:00,,12292,0,0,Java,1,1,1,1,0,0,0,0,0,0,other,1,0,0,public,0,0,0,master,1,,,['hammcin'],,1,0,,,,,,1,0.6
+248910306,MDEwOlJlcG9zaXRvcnkyNDg5MTAzMDY=,ECE175A,guandi1995/ECE175A,0,guandi1995,https://github.com/guandi1995/ECE175A,EDU,UCSD ECE175A Winter2020,0,2020-03-21 05:03:59+00:00,2021-07-27 13:13:28+00:00,2020-03-21 06:26:58+00:00,,8211,0,0,MATLAB,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,master,1,,,['guandi1995'],,1,0,,,,,,1,0.7
+105581938,MDEwOlJlcG9zaXRvcnkxMDU1ODE5Mzg=,UCSDUnfoldingMaps,biyunwu/UCSDUnfoldingMaps,0,biyunwu,https://github.com/biyunwu/UCSDUnfoldingMaps,EDU,"My course project of ""Object Oriented Programming in Java"" offered by UCSD on Coursera",0,2017-10-02 20:32:12+00:00,2020-09-11 05:47:28+00:00,2017-10-02 21:09:05+00:00,https://www.coursera.org/learn/object-oriented-java/home/welcome,11805,0,0,Java,1,1,1,1,0,0,0,0,0,0,other,1,0,0,public,0,0,0,master,1,,,['biyunwu'],,1,0,,,,,,0,0.8
+480138247,R_kgDOHJ5UBw,FinancialDataSentimentAnalysis,alanwmy00/FinancialDataSentimentAnalysis,0,alanwmy00,https://github.com/alanwmy00/FinancialDataSentimentAnalysis,EDU,2022 UCSD DataHacks Advanced Track First Place Project,0,2022-04-10 20:57:23+00:00,2022-09-30 23:57:01+00:00,2022-09-09 22:38:39+00:00,,1503,0,0,Jupyter Notebook,1,1,1,1,0,0,3,0,0,0,,1,0,0,public,3,0,0,main,1,,,"['alanwmy00', 'immmjack']",,1,0,,,,,,1,0.7
+102910437,MDEwOlJlcG9zaXRvcnkxMDI5MTA0Mzc=,Huffmans-algorithm,daniel-huang-1230/Huffmans-algorithm,0,daniel-huang-1230,https://github.com/daniel-huang-1230/Huffmans-algorithm,EDU,Data structure project from 2017 winter at UC San Diego. Course: CSE 100 Advanced Data Structure,0,2017-09-08 22:44:06+00:00,2021-07-22 20:36:29+00:00,2017-09-08 22:58:59+00:00,,745,0,0,C++,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,master,1,,"# Huffmans-algorithm
+Data structure project from 2017 winter at UC San Diego. Course: CSE 100 Advanced Data Structure
+
+# Project Overview
+
+This is my third personal assignment in the course **Advanced Data Structure** ( CSE 100 ) from **UC San Diego**
+
+
+What I learned:
+
+1.Implement **Huffman's algorithm** using efficient supporting data structures to support **encoding and decoding** of files
+
+2.Justify why your algorithm runs correctly on test examples using ASCII 
+
+3.Extend the basic I/O functionality of C++ to include **bitwise operations**
+
+4.**Refactor code** that you have written to make it more readable or to otherwise improve the design
+
+**NOTE**: We were allowed to either team up with other students or try to complete the project alone. I chose to go **solo**.
+
+# Language
+ The program is written in **C++**
+ 
+# Instructions below are copied from the original [assignment page](https://sites.google.com/a/eng.ucsd.edu/cse-100-winter-2017/assignments/assignment-3)
+
+
+Set Up
+
+As done in earlier assignments, follow the instructions provided in this PPT or video to get started with the assignment. 
+Provided files:  
+HCNode.h, HCTree.h, Makefile, refcompress, refuncompress, .gitignore.
+ NOTES (IMPORTANT): 
+You should NOT push the input test files (they are large). 
+We have provided a .gitignore file that won't allow you to add these files to your repo.
+If there is some specific file you want to add that is not allowed by the .gitignore file, simply open the .gitignore file in a text editor and add a new line at the end with the syntax ""!fileName"" where fileName is the name of the file you want to add.
+Please do not use any other executable names than the ones in your Makefile. Our grading scripts depend on your executables being named ""compress"" and ""uncompress"" exactly. 
+
+
+Checkpoint Instructions 
+Goal: To implement Huffman's Algorithm, using ASCII I/O to write and read the encoded files.
+
+
+1. Implement HCNode and HCTree
+
+The HCNode and HCTree implementations will help you create Huffman tree/code for the input files. For now, they will support encoding and decoding with ASCII '1's and '0's only.  
+There are suggested methods in the HCTree.h header file that you might find useful specifically for this checkpoint, but that you should NOT use for the final submission. 
+
+Implementation Checklist:
+
+Implement the HCTree.h methods in a new file HCTree.cpp. You can modify both files in any way you want. 
+Implement the HCNode.h methods (overloaded operator) in a new file HCNode.cpp. You can modify both files in any way you want. 
+Because you are not required to implement or use BitInputStream and BitOutputStream for the checkpoint, you will either need to remove all references to them from the provided files (by commenting them out) and edit the Makefile, or create ""dummy"" versions of these classes (with both header and implementation files) to get the code to compile.
+Add HCTree.cpp and HCNode.cpp (and all other files you create that are required for the submission) into your repo
+ Note: When implementing Huffman's algorithm, you should use multiple data structures (e.g., a priority queue, etc). You should also use good object-oriented design. For example, since a Huffman code tree will be used by both your compress and uncompress programs,  it makes sense to encapsulate its functionality inside a single class accessible by both programs. With a good design, the main methods in the compress and uncompress programs will be quite simple; they will create objects of other classes and call their methods to do the necessary work.
+
+
+
+2. Implement Compression
+
+Create compress.cpp (from scratch!!) to compress small files in plain ASCII. The compress.cpp should generate a program named compress that can be invoked from the command line as follows
+
+> ./compress infile outfile 
+
+./compress will:
+1. Read the contents of the file named (infile).  
+2. Construct a Huffman code for the contents of that file
+3. Use that code to construct a compressed file named  (outfile). 
+
+The challenge of this assignment is to translate the following high-level algorithm into real code:
+ Implement The Following Control Flow in compress.cpp :
+
+Open the input file for reading. (infile is guaranteed to have only ASCII text and to be very small (<1KB))
+Read bytes from the file. Count the number of occurrences of each byte value. Close the file.
+Use the byte counts to construct a Huffman coding tree. Each unique byte with a non-zero count will be a leaf node in the Huffman tree.
+Open the output file for writing.
+Write enough information (a ""file header"") to the output file to enable the coding tree to be reconstructed when the file is read by your uncompress program. You should write the header as plain (ASCII) text for the checkpoint. See ""the file header demystified"" and ""designing your header"" for more details.
+Open the input file for reading, again.
+Using the Huffman coding tree, translate each byte from the input file into its code, and append these codes as a sequence of bits to the output file, after the header.  For the checkpoint this will be done with plain ASCII characters '1' and '0'. (Note: you have just written your entire outfile in ASCII characters. Thus, your ""compressed"" outfile will actually be larger than the original!  The point here is purely to get the algorithm working.)
+Close the input and output files.
+Test your solution. For more details, see the ""Testing"" section in the PA below 
+
+Note: Your Makefile must create the executables ""compress"" and ""uncompress"" with those exact names from the ""make all"" command. The Makefile given to you already does this, so just make sure you don't change this part of the file.
+
+The ""file header"" demystified 
+
+Both the compress and uncompress programs need to construct  the Huffman Tree before they can successfully encode and decode information, respectively. The compress program has access to the original file, so it can build the tree by first deciphering the symbol counts. However, the uncompress program only has access to the compressed input file and not the original file, so it has to use some other information to build the tree. The information needed for the uncompress program to build the Huffman tree is stored in the header of the compressed file. So the header information should be sufficient in reconstructing the tree. Note that the ""file header"" is not a .h file but rather the top portion of the compressed file. 
+
+Designing your header: A straightforward, non-optimized method that you MUST USE for the CHECKPOINT
+
+Probably the easiest way to do it is to save the frequency counts of the bytes in the original uncompressed file as a sequence of 256 integers at the beginning of the compressed file.  For your checkpoint you MUST write this frequency-based header as 256 lines where each line contains a single int written as plain text.  E.g.:
+
+0
+0
+0
+23
+145
+0
+0
+... 
+Where 0's represent characters with no occurrences in the file (e.g. above the ASCII values 0, 1 and 2 do not occur in the file), and any non-zero number represents the number of times the ASCII value occurs in the file.
+
+
+
+3. Implement Uncompress
+
+Create uncompress.cpp (from scratch!!) that will use your above implementations to support decompress for small files. The uncompres.cpp should generate a program named uncompress that can be invoked from the command line as follows
+
+> ./uncompress infile outfile 
+
+./uncompress will:
+1. Read the contents of the file named by its first command line argument, which should be a file that has been created by the compress program
+2. Use the contents of that file to reconstruct the original, uncompressed version, which is written to a file named by the second command line argument. The uncompressed file must be exactly identical to the original file. 
+
+Implement The Following Control Flow in uncompress.cpp :
+Open the input file for reading.
+Read the file header at the beginning of the input file, and reconstruct the Huffman coding tree. 
+Open the output file for writing.
+Using the Huffman coding tree, decode the bits from the input file into the appropriate sequence of bytes, writing them to the output file.
+Close the input and output files.
+Test your solution. For more details, see the ""Testing"" section in the PA below 
+
+4. Writeup
+
+Verify your compression in Checkpoint.pdf. One easy way to verify your compression is to manually compress some simple strings in the following way: 
+
+Implementation Checklist:
+Run your compressor using the provided input files: checkpoint1.txt and checkpoint2.txt.
+Record the encoded output in Checkpoint.pdf
+Use the same input to manually construct a Huffman coding tree. Draw the Huffman coding tree, describe how you build the tree and how you find the code word for each byte in Checkpoint.pdf.
+Manually encode the strings and compare with your compressor output. If your output is wrong, explain why your hand-coded text is different from your compressor output and how you fixed it. If you never encountered this situation, mention it in your writeup.
+We expect the writeup to be 1-3 pages
+
+
+Final Submission
+
+1. Extend your functionality to use Bitwise I/O to actually compress the files
+
+You will now implement a full Huffman Compression program along with bitwise I/O.  
+
+Implementation Checklist:
+Implement Bitwise I/O (See below for details)
+Implement BitInputStream
+Implement BitOutputStream 
+You must handle input files that will be MUCH larger than 1KB (up to 1GB so a particular byte value may occur up to 1 billion times in the file) See ""Efficient header design"" for more details.
+You must handle input files that are not restricted to text files (binary files, images, videos etc.) 
+To receive any credit, your compressed files must be at least as small as the compressed files produced by the reference solution (within ~25% of the compression obtained by the reference), and your programs must properly compress and uncompress the files exactly.
+Compressing and uncompressing the files should be done within a timeout of 180 seconds for files smaller than 30mb.
+For bigger files (100-300mb) your method should be able to compress and uncompress within twice the time it takes for reference solution. 
+You will gain 2 points for a correct implementation of compress that creates a smaller compressed file than the reference implementation when run on two particular files, including PA3/input_files/warandpeace.txt (and one others we won't tell you about in advance). 
+You will gain 1 point if you are able to compress huge files (like 1GB). If you used a different algorithm/method for compressing huge files mention that in your writeup (Checkpoint.pdf). 
+Bitwise I/O
+
+If you encode your files using ASCII representations of 0 and 1, you don't get any compression at all because you are using 1 byte to store the '0' or '1'.  Once you've got your Huffman tree working, you'll modify your code so that you can write data to a file one bit ""at a time"". All disk I/O operations (and all memory read and write operations, for that matter) deal with a byte as the smallest unit of storage. But in this assignment (as you saw in the checkpoint), it would be convenient to have an API to the filesystem that permits writing and reading one bit at a time. Define classes BitInputStream and BitOutputStream (with separate interface header and implementation files) to provide that interface.
+
+To implement bitwise file I/O, you'll want to make use of the existing C++ IOstream library classes ifstream and ofstream that 'know how to' read and write files. However, these classes do not support bit-level reading or writing. So, use inheritance or composition to add the desired bitwise functionality. Refer to the lecture notes for more information.
+
+Efficient header design
+
+The reference solution header is not very efficient.  It uses 4-byte ints to store the frequencies of each character, using 4*256 bytes for the entire header no matter what the statistics of the input file are. 
+
+In order to earn full credit for your final submission, you must BEAT our reference solution by coming up with a more efficient way to represent this header.  
+
+There are several possible solutions, but a good approach is to represent the structure of the tree itself in the header.  With some cleverness, it is possible to optimize the header size to about 10*M bits, where M is the number of distinct byte values that actually appear in the input file. However, we strongly encourage you to implement the naive (1024-byte) approach first, and do not attempt to reduce the size of the header until you’ve gotten your compress and uncompress to work correctly for the provided inputs.
+ 
+ 
+2. Code Refactoring 
+
+
+Your final task for this assignment has nothing to do with Huffman coding.  You will refactor code that you have written on a previous assignment to make it better.
+
+You will take your DictionaryTrie implementation (in DictionaryTrie.cpp) and try to improve its design by a non-trivial refactor. For example you could refactor predictCompletions or insert or find or any other method that you feel has been designed incorrectly. You could also refactor the whole class. We are not expecting you to improve your code in terms of space or time complexity. Instead we want you to focus on the design of this code. If you feel that your there is no flaw in your design of DictionaryTrie implementation, then you must justify the effectiveness of your design in the writeup.  However, even well-written code can usually be improved, so be very wary of thinking that your code needs no improvements.
+
+You will be graded on (1) your final design, (2) how much you improved on the original design, and (3) how well we are able to get this information out of your write up.
+
+Its not about how much you have refactored. Its all about how well you have refactored your code. 
+
+Implementation Checklist:
+
+Rewrite/redesign your selected code to improve its style.  You should include as much as needs to be redesigned from the code you selected (e.g. this could be multiple methods, the classes themselves, etc).
+Describe your improvements and how they improve your code in a PDF file named Refactor.pdf.  We expect this description to be formatted so we can easily understand what you did and why, and to be about 1-2 pages.
+Place Refactor.pdf and DictionaryTrie.cpp (containing the refactored code) in the folder named refactoredCode. You will have to create this directory manually. Make sure you explicitly add these files to the repo and commit them.  You should include your DictionaryTrie.cpp code even if you believe that no changes were necessary.
+
+
+
+# Author
+
+[@Daniel](https://www.linkedin.com/in/daniel-huang-443546115/)
+",['daniel-huang-1230'],,1,0,,,,,,1,0.9
+165311922,MDEwOlJlcG9zaXRvcnkxNjUzMTE5MjI=,uc-severity-multiomics,knightlab-analyses/uc-severity-multiomics,0,knightlab-analyses,https://github.com/knightlab-analyses/uc-severity-multiomics,DATA,,0,2019-01-11 21:24:25+00:00,2023-07-25 14:17:35+00:00,2023-07-25 14:17:31+00:00,,1650,4,4,Jupyter Notebook,1,1,1,1,0,0,5,0,0,3,bsd-3-clause,1,0,0,public,5,3,4,master,1,1,,"['rhmills', 'ElDeveloper']",,1,0,,,,,,4,0.9
+716310837,R_kgDOKrIJNQ,ucsdpracticum,abhierra2/ucsdpracticum,0,abhierra2,https://github.com/abhierra2/ucsdpracticum,DEV,,0,2023-11-08 21:45:33+00:00,2025-03-03 22:26:19+00:00,2025-03-03 22:26:16+00:00,,72892,0,0,Jupyter Notebook,1,1,1,1,0,0,4,0,0,0,,1,0,0,public,4,0,0,main,1,,,"['abhierra2', 'ChenJieFei']",,1,0,,,,,,1,0.6
+698519155,R_kgDOKaKOcw,rohiniray24-github.io,rohiniray24/rohiniray24-github.io,0,rohiniray24,https://github.com/rohiniray24/rohiniray24-github.io,OTHER,,0,2023-09-30 06:40:37+00:00,2023-09-30 06:40:38+00:00,2023-09-30 06:59:28+00:00,,1,0,0,,1,1,1,1,1,0,0,0,0,0,,1,0,0,public,0,0,0,main,1,,"
+  # <p align=""center"">  **Rohini Ray** 
+  ## <p align=""center"">  PhD Candidate in Economics 
+  ## <p align=""center""> University of California, San Diego 
+",['rohiniray24'],,1,0,,,,,,1,0.8
+167456777,MDEwOlJlcG9zaXRvcnkxNjc0NTY3Nzc=,ECE140_Examples,UCSD-Product-Engineering/ECE140_Examples,0,UCSD-Product-Engineering,https://github.com/UCSD-Product-Engineering/ECE140_Examples,EDU,Examples from ECE 140 A & B Lectures,0,2019-01-25 00:04:44+00:00,2019-04-29 23:48:15+00:00,2019-04-29 23:48:13+00:00,,11,0,0,Python,1,1,1,1,0,0,7,0,0,0,,1,0,0,public,7,0,0,master,1,1,,['ramujin'],,1,0,,,,,,4,0.9
+31485990,MDEwOlJlcG9zaXRvcnkzMTQ4NTk5MA==,aerial_lidar,UCSD-E4E/aerial_lidar,0,UCSD-E4E,https://github.com/UCSD-E4E/aerial_lidar,DEV,,0,2015-03-01 03:48:21+00:00,2024-12-31 08:46:24+00:00,2015-08-27 21:03:33+00:00,,162029,19,19,CMake,1,1,1,1,0,0,13,1,0,0,mit,1,0,0,public,13,0,19,master,1,1,,"['rayzheng', 'ericklo']",,1,0,,,,,,12,0.95
+150999090,MDEwOlJlcG9zaXRvcnkxNTA5OTkwOTA=,Big-Data,Vectoryzed/Big-Data,0,Vectoryzed,https://github.com/Vectoryzed/Big-Data,EDU,"Projects from Big Data specialization hosted by University of California, San Diego.",0,2018-09-30 19:26:48+00:00,2018-12-13 13:22:02+00:00,2018-12-13 13:22:01+00:00,,5220,0,0,Jupyter Notebook,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,master,1,,"Projects from Big Data specialization hosted by University of Michigan.
+
+# Big Data specialization (University of Michigan)
+
+Drive better business decisions with an overview of how big data is organized, analyzed, and interpreted. Apply your insights to real-world problems and questions.
+*********
+
+Do you need to understand big data and how it will impact your business? This Specialization is for you. You will gain an understanding of what insights big data can provide through hands-on experience with the tools and systems used by big data scientists and engineers. Previous programming experience is not required! You will be guided through the basics of using Hadoop with MapReduce, Spark, Pig and Hive. By following along with provided code, you will experience how one can perform predictive modeling and leverage graph analytics to model problems. This specialization will prepare you to ask the right questions about data, communicate effectively with data scientists, and do basic exploration of large, complex datasets. In the final Capstone Project, developed in partnership with data software company Splunk, you’ll apply the skills you learned to do basic analyses of big data.
+
+_______________________________________________________________________________
+
+# 1 - Introduction to Big Data
+Interested in increasing your knowledge of the Big Data landscape?  This course is for those new to data science and interested in understanding why the Big Data Era has come to be.  It is for those who want to become conversant with the terminology and the core concepts behind big data problems, applications, and systems.  It is for those who want to start thinking about how Big Data might be useful in their business or career.  It provides an introduction to one of the most common frameworks, Hadoop, that has made big data analysis easier and more accessible -- increasing the potential for data to transform our world!
+
+<b>Main topics:</b>
+- Introduction
+- Big Data: Why and Where
+- Characteristics of Big Data and Dimensions of Scalability
+- Data Science: Getting Value out of Big Data
+- Foundations for Big Data Systems and Programming
+- Systems: Getting Started with Hadoop
+
+_______________________________________________________________________
+
+# 2 - Big Data Modeling and Management Systems
+Once you’ve identified a big data issue to analyze, how do you collect, store and organize your data using Big Data solutions?  In this course, you will experience various data genres and management tools appropriate for each.  You will be able to describe the reasons behind the evolving plethora of new big data platforms from the perspective of big data management systems and analytical tools.  Through guided hands-on tutorials, you will become familiar with techniques using real-time and semi-structured data examples.  Systems and tools discussed include: AsterixDB, HP Vertica, Impala, Neo4j, Redis, SparkSQL. This course provides techniques to extract value from existing untapped data sources and discovering new data sources.
+
+<b>Main topics:</b>
+- Introduction to Big Data Modeling and Management
+- Big Data Modeling
+- Working With Data Models
+- Big Data Management: The ""M"" in DBMS
+- Designing a Big Data Management System for an Online Game
+
+_______________________________________________________________________________
+
+# 3 - Big Data Integration and Processing
+
+<b>Main topics:</b>
+- Introduction to Big Data Integration and Processing
+- Retrieving Big Data
+- Processing Big Data
+- Big Data Analytics using Spark
+- Putting MongoDB and Spark to Work
+
+_______________________________________________________________________________
+
+# 4 - Machine Learning With Big Data
+Want to make sense of the volumes of data you have collected?  Need to incorporate data-driven decisions into your process?  This course provides an overview of machine learning techniques to explore, analyze, and leverage data.  You will be introduced to tools and algorithms you can use to create machine learning models that learn from data, and to scale those models up to big data problems.
+
+<b>Main topics:</b>
+- Introduction to Machine Learning with Big Data
+- Data Exploration
+- Data Preparation
+- Classification
+- Evaluation of Machine Learning Models
+- Regression, Cluster Analysis, and Association Analysis
+
+_______________________________________________________________________________
+
+# 5 - Graph Analytics for Big Data
+Want to understand your data network structure and how it changes under different conditions? Curious to know how to identify closely interacting clusters within a graph? Have you heard of the fast-growing area of graph analytics and want to learn more? This course gives you a broad overview of the field of graph analytics so you can learn new ways to model, store, retrieve and analyze graph-structured data.
+<b>Main topics:</b>
+- Introduction to Graphs
+- Graph Analytics
+- Graph Analytics Techniquess
+- Computing Platforms for Graph Analytics
+
+
+_______________________________________________________________________________
+_______________________________________________________________________________
+
+Note that all the material into this repository is protected by Coursera Honor code:
+
+<i>Plagiarism is when you copy words, ideas, or any other materials from another source without giving credit. Plagiarism is unacceptable in any academic environment, and is a serious violation of Coursera's Honor Code.</i>
+
+Please, if you are enrolled to this specialization on Coursera, do not use any code from this repository for your projects assignments, as doing this would be considered and flagged as plagiarism. 
+Thanks for your understanding.
+",['Vectoryzed'],,1,0,,,,,,0,0.9
+130616729,MDEwOlJlcG9zaXRvcnkxMzA2MTY3Mjk=,FridgeMate-mobile,htoo97/FridgeMate-mobile,0,htoo97,https://github.com/htoo97/FridgeMate-mobile,DEV,,0,2018-04-22 23:36:07+00:00,2019-07-04 03:36:44+00:00,2018-11-01 07:28:03+00:00,,76498,3,3,Java,1,1,1,1,0,0,1,0,0,0,,1,0,0,public,1,0,3,master,1,,"# FridgeMate
+### Powered By C.O.O.L. (Chill Our Old Leftovers) - CSE 110 Spring 2018, UC San Diego
+FridgeMate is the essential companion app to the most common utility found in every modern household. It helps the user keep on top of items in the fridge and plan out meals to avoid waste. It enables easily managing a shared fridge by streamlining the food sharing experience without worrying about crossing boundaries. It can also suggest the clueless user recipes of what to do with the ingredients in the fridge. With these features, FridgeMate would enrich the household experience and help prevent the food wastage problem.
+
+[Video Artifact on Youtube](https://www.youtube.com/watch?v=sVyp0JFh-9U)
+
+Existing Users for the App (you can use them to log in):
+```
+User 1   : 2845929791@qq.com (clean account)
+Password : ucsdbest
+
+User 2   : fridgematesocool@gmail.com (with pre-populated data)
+Password : nicefridge
+
+User 3   : freshfoodcool@gmail.com
+Password : nicefridge
+```
+
+## Installation:
+Download on [Play Store](https://play.google.com/store/apps/details?id=com.fridgemate.yangliu.fridgemate). Compatible with Android phones with version 5.0 or above.
+
+Requirements:
+```
+System  : Android 5.0+, connected to WiFi, Google Services Framework installed
+RAM     : >= 1 GB
+Size    : 40MB
+Version : Release 2.1
+```
+
+## Troubleshooting
+* If any unexpected behavior occurs, try refreshing the app by swipe down to refresh.
+* If the issue persists, quit and relaunch the app.
+* For persistent crashes, please submit post an Issue with precice description. Possible bugs will be fixed asap.
+
+
+## Technical Points contact
+
+General Questions
+```
+fridgematehelp@gmail.com
+```
+
+Quick Add, OCR Receipt Recognition:
+```
+Bingjie (Helen) Zhou
+(858) 247-8903
+```
+
+Fridge Families, General Firebase:
+```
+Coleen Wu
+(626) 466-7370
+```
+
+Recipe Suggestion:
+```
+Cameron Gropp
+(661) 803-5530
+```
+","['yoiyang', 'helenzhou0523', 'Coleena', 'Frank-LSY', 'htoo97', 'cgropp']",,1,0,"# Contributor Covenant Code of Conduct
+
+## Our Pledge
+
+In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.
+
+## Our Standards
+
+Examples of behavior that contributes to creating a positive environment include:
+
+* Using welcoming and inclusive language
+* Being respectful of differing viewpoints and experiences
+* Gracefully accepting constructive criticism
+* Focusing on what is best for the community
+* Showing empathy towards other community members
+
+Examples of unacceptable behavior by participants include:
+
+* The use of sexualized language or imagery and unwelcome sexual attention or advances
+* Trolling, insulting/derogatory comments, and personal or political attacks
+* Public or private harassment
+* Publishing others' private information, such as a physical or electronic address, without explicit permission
+* Other conduct which could reasonably be considered inappropriate in a professional setting
+
+## Our Responsibilities
+
+Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
+
+Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
+
+## Scope
+
+This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by project maintainers.
+
+## Enforcement
+
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at mikerliuyang@gmail.com. The project team will review and investigate all complaints, and will respond in a way that it deems appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
+
+Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project's leadership.
+
+## Attribution
+
+This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4, available at [http://contributor-covenant.org/version/1/4][version]
+
+[homepage]: http://contributor-covenant.org
+[version]: http://contributor-covenant.org/version/1/4/
+",,,,,3,0.9
+72515570,MDEwOlJlcG9zaXRvcnk3MjUxNTU3MA==,EarthQuake-GUI,AbhishekTaur/EarthQuake-GUI,0,AbhishekTaur,https://github.com/AbhishekTaur/EarthQuake-GUI,EDU,,0,2016-11-01 07:57:13+00:00,2019-06-10 22:09:52+00:00,2016-11-05 11:16:14+00:00,,11681,0,0,Java,1,1,1,1,1,0,0,0,0,0,other,1,0,0,public,0,0,0,master,1,,"unfolding_app_template and UC San Diego/Coursera MOOC starter code
+==================================================================
+
+This is a skeleton to use Unfolding in Eclipse as well as some starter
+code for the Object Oriented Programming in Java course offered by 
+UC San Diego through Coursera.
+
+A very basic Unfolding demo you'll find in the source folder in the default package. 
+For more examples visit http://unfoldingmaps.org, or download the template with
+examples.
+
+The module folders contain the starter code for the programming assignments
+associated with the MOOC.
+
+Get excited and make things!
+
+
+INSTALLATION
+
+Import this folder in Eclipse ('File' -> 'Import' -> 'Existing Projects into
+Workspace', Select this folder, 'Finish')
+
+
+MANUAL INSTALLATION
+
+If the import does not work follow the steps below.
+
+- Create new Java project
+- Copy+Paste all files into project
+- Add all lib/*.jars to build path
+- Set native library location for jogl.jar. Choose appropriate folder for your OS.
+- Add data/ as src
+
+
+TROUBLE SHOOTING
+
+Switch Java Compiler to 1.6 if you get VM problems. (Processing should work with Java 1.6, and 1.7)
+
+
+
+
+",['AbhishekTaur'],,1,0,,,,,,1,0.9
+385316745,MDEwOlJlcG9zaXRvcnkzODUzMTY3NDU=,Algorithmic-Toolbox,VenierGiacomo/Algorithmic-Toolbox,0,VenierGiacomo,https://github.com/VenierGiacomo/Algorithmic-Toolbox,EDU,University of California San Diego's Algorithmic Toolbox - All exercises,0,2021-07-12 16:43:51+00:00,2021-07-12 16:47:47+00:00,2021-07-12 16:47:44+00:00,,11,0,0,Python,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,main,1,,"# University of California San Diego's Algorithmic Toolbox
+### This repository contains all the solutions to [University of California San Diego's Algorithmic Toolbox](https://www.coursera.org/learn/algorithmic-toolbox) course. 
+
+
+### About this course
+
+##### The course covers basic algorithmic techniques and ideas for computational problems arising frequently in practical applications: sorting and searching, divide and conquer, greedy algorithms, dynamic programming. We will learn a lot of theory: how to sort data and how it helps for searching; how to break a large problem into pieces and solve them recursively; when it makes sense to proceed greedily; how dynamic programming is used in genomic studies. You will practice solving computational problems, designing new algorithms, and implementing solutions efficiently (so that they run in less than a second).
+",['VenierGiacomo'],,1,0,,,,,,1,0.9
+242455616,MDEwOlJlcG9zaXRvcnkyNDI0NTU2MTY=,QUICK-docs,merzlab/QUICK-docs,0,merzlab,https://github.com/merzlab/QUICK-docs,DOCS,Sphinx based documentation for QUICK QM package,0,2020-02-23 04:23:13+00:00,2024-06-24 16:25:57+00:00,2024-06-24 16:25:54+00:00,,3458,0,0,,1,1,1,1,0,0,9,0,0,2,mpl-2.0,1,0,0,public,9,2,0,master,1,,"# QUICK-docs
+
+This is a sphinx based documentation for QUICK QM package (https://github.com/merzlab/QUICK) developed by Götz lab at University of California San Diego and Merz lab at Michigan State University. 
+A compiled version of this documentation is accessible through: https://quick-docs.readthedocs.io/en/latest/. 
+","['Madu86', 'agoetz', 'merzlab', 'ohearnk', 'Saatvik-Aggarwal']",,1,0,,,,,,3,0.8
+838052245,R_kgDOMfOplQ,TTSM-Workshop-2024-Expressive-Piano-Performance-Generation-MIDI,Jovie-Liu/TTSM-Workshop-2024-Expressive-Piano-Performance-Generation-MIDI,0,Jovie-Liu,https://github.com/Jovie-Liu/TTSM-Workshop-2024-Expressive-Piano-Performance-Generation-MIDI,EDU,Course Materials for TTSM Workshop 2024: Expressive Symbolic Music Data Processing and Generation,0,2024-08-04 19:52:00+00:00,2024-08-05 21:45:15+00:00,2024-08-05 18:20:59+00:00,https://ttsm.link,5760,2,2,Jupyter Notebook,1,1,1,1,0,0,1,0,0,0,,1,0,0,public,1,0,2,main,1,,"# TTSM_Workshop_2024_Expressive_Piano_Performance_Generation_MIDI
+### Course Materials for TTSM Workshop 2024: Expressive Symbolic Music Data Processing and Generation
+
+Aug 3-7, 2024
+
+[Technology & Thought in Sonic Media (TTSM)](https://ttsm.link/) - is a series of FREE live online workshops by Ph.D. candidates on topics of Music Technology and Artificial Intelligence. Academic knowledge is represented in a short and effective format. This Summer tutors from the Music Department of the University of California San Diego (UCSD) share insides and skills related to their research. Music Generation, Data Representation, Neural Networks AI, etc.. can be the tags for this year's TTSM Summer School.
+
+This 2-day workshop is provided by Jingwei Liu, based on her writing [Expressive MIDI-format Piano Performance Generation](https://arxiv.org/abs/2408.00900#). The recordings of the entire workshop are uploaded to [MUS 7 YouTube Channel](https://www.youtube.com/playlist?list=PLWSd-mlbNCAXXSg5u2jkwQE0DrB_ZX5mU), which is a course taught by Jingwei Liu at UC San Diego Summer 2024. This repository includes all tutorial files used in this workshop.
+",['Jovie-Liu'],,1,0,,,,,,1,0.95
+150244017,MDEwOlJlcG9zaXRvcnkxNTAyNDQwMTc=,Data-Structures-and-Algorithms-Specialization,amogchandrashekar/Data-Structures-and-Algorithms-Specialization,0,amogchandrashekar,https://github.com/amogchandrashekar/Data-Structures-and-Algorithms-Specialization,EDU,,0,2018-09-25 09:58:04+00:00,2022-12-25 09:29:14+00:00,2020-05-24 13:44:02+00:00,,8076,4,4,Python,1,1,1,1,0,0,2,0,0,0,,1,0,0,public,2,0,4,master,1,,"# Data-Structures-and-Algorithms-Specialization
+This specialisation is a mix of theory and practice, and is created by UC San Diego. I will be posting the python codes of all the programming assignments and the algorithms that are taught in the class.
+
+I am learning algorithmic techniques for solving various computational problems and will implement about 100 algorithmic coding problems in python. The creaters have invested over 3000 hours into designing challenges as an alternative to multiple choice questions that you usually find in MOOCs.
+
+For each algorithm we have to develop and implement, they have designed multiple tests to check its correctness and running time — we will have to debug our programs without even knowing what these tests are! I believe this is the best way to truly understand how the algorithms work and to master the art of programming.
+
+The URL for the course : https://www.coursera.org/specializations/data-structures-algorithms
+
+Link to Algorithmic Toolbox course certificate ( Grade : 95% ) : https://www.coursera.org/account/accomplishments/certificate/2KMF5GW3ADLK
+
+",['amogchandrashekar'],,1,0,,,,,,1,0.8
+23142243,MDEwOlJlcG9zaXRvcnkyMzE0MjI0Mw==,HilbertTransform,danamics/HilbertTransform,0,danamics,https://github.com/danamics/HilbertTransform,DEV,"MATLAB code for decomposing a whisking bout into phase, amplitude, and offset using the Hilbert Transform.",0,2014-08-20 08:55:25+00:00,2024-11-05 04:02:55+00:00,2014-08-20 08:58:40+00:00,,148,6,6,Matlab,1,1,1,1,0,0,2,0,0,0,,1,0,0,public,2,0,6,master,1,,"HilbertTransform
+================
+
+MATLAB code for decomposing a whisking bout into phase, amplitude, and offset using the Hilbert Transform.
+
+Consult the script.m file for an example of usage.
+
+Send support questions to daniel.n.hill@gmail.com.
+
+This software was developed in the <a href='http://physics.ucsd.edu/neurophysics'> Neurophysics Lab <a> at UCSD.  Please cite:
+
+Primary motor cortex reports efferent control of vibrissa motion on multiple timescales
+DN Hill, JC Curtis, JD Moore, D Kleinfeld - Neuron, 2011
+",['danamics'],,1,0,,,,,,3,0.95
+55335266,MDEwOlJlcG9zaXRvcnk1NTMzNTI2Ng==,showcase,ucsdcses/showcase,0,ucsdcses,https://github.com/ucsdcses/showcase,EDU,Showcase of open source projects by UCSD students,0,2016-04-03 07:39:19+00:00,2022-05-24 10:27:13+00:00,2016-04-06 20:48:36+00:00,,1752,3,3,CSS,1,1,1,1,1,0,0,0,0,0,,1,0,0,public,0,0,3,master,1,1,,"['maxwell-bland', 'joelseq']",,1,0,,,,,,1,0.8
+227949543,MDEwOlJlcG9zaXRvcnkyMjc5NDk1NDM=,analyze-parking-data,ghd7262/analyze-parking-data,0,ghd7262,https://github.com/ghd7262/analyze-parking-data,DATA,Analysis of the parking data at UC San Diego,0,2019-12-14 01:31:15+00:00,2020-02-10 21:19:41+00:00,2020-02-07 02:42:38+00:00,,18003,1,1,Jupyter Notebook,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,1,master,1,,"# Analyze parking data at UC San Diego
+This project aims to analyze the parking data at UC San Diego from 2016 to 2019. The data is from a parking survey taken by UC San Diego's Transportation Services.
+
+## Objective
+The purpose of this project is to provide as much analyzed information of the parking data at UC San Diego to help solve the parking issue at UC San Diego.
+
+### Methods Used
+- Data Visualization
+- Machine Learning: Logistic Regression / Linear Regression
+
+### Technologies
+- Python
+- Numpy, Pandas
+- Matplotlib, Seaborn, Geopandas, Contextily
+- Sklearn
+
+## Project Description
+Parking has been a historical issue for UCSD, with similar complaints from students from 2006 to 2019 in response to the ever-decreasing amount of S spots on campus. Our main goal for this project was to provide information on hourly availability in each lot to make it easier for everybody on campus to find parking at UCSD. Using data from UCSD’s Transportation and Parking Services, we developed a map of parking availability (excluding motorcycle parking) to identify the lots with the most open spaces for each permit type. 
+",['ghd7262'],,1,0,,,,,,1,0.85
+768899374,R_kgDOLdR5Lg,nms001.github.io,nms001/nms001.github.io,0,nms001,https://github.com/nms001/nms001.github.io,OTHER,Professional website,0,2024-03-07 23:56:34+00:00,2024-03-08 00:25:45+00:00,2024-03-08 00:53:29+00:00,,3536,0,0,HTML,1,1,1,1,1,0,0,0,0,0,,1,0,0,public,0,0,0,main,1,,"# Ph.D. candidate
+
+## Education
+UC San Diego Ph.D., Political Science
+UC San Diego M.A., Political Science
+",['nms001'],,1,0,,,,,,1,0.8
+631872870,R_kgDOJamdZg,algorithmicToolbox-UCSD,marnamrs/algorithmicToolbox-UCSD,0,marnamrs,https://github.com/marnamrs/algorithmicToolbox-UCSD,EDU,algorithmic practice,0,2023-04-24 08:38:07+00:00,2023-04-24 09:47:05+00:00,2023-04-24 10:12:28+00:00,,5,0,0,Java,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,main,1,,"# UCSD Algorithmic Toolbox: Assignments
+
+This repository contains solutions to the programming assignments for the Algorithmic Toolbox course offered by University of California San Diego as part of part of the [Data Structures and Algorithms Specialization](https://www.coursera.org/specializations/data-structures-algorithms).
+",['marnamrs'],,1,0,,,,,,1,0.9
+567286374,R_kgDOIdAaZg,OCT_retinal,forkwntkd/OCT_retinal,0,forkwntkd,https://github.com/forkwntkd/OCT_retinal,DATA,OCT_retinal,0,2022-11-17 13:24:41+00:00,2022-11-18 00:02:29+00:00,2022-11-18 00:02:25+00:00,,4160,0,0,Jupyter Notebook,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,main,1,,"# Retinal OCT Images (optical coherence tomography) <br>
+Kaggle - University of California San Diego<br>
+link : https://www.kaggle.com/datasets/paultimothymooney/kermany2018
+",['forkwntkd'],,1,0,,,,,,1,0.7
+258116883,MDEwOlJlcG9zaXRvcnkyNTgxMTY4ODM=,Data-Structures,jsrathi17/Data-Structures,0,jsrathi17,https://github.com/jsrathi17/Data-Structures,EDU,Programming Assignments for course Data Structures in Coursera - Offered By University of California San Diego National Research University Higher School of Economics,0,2020-04-23 06:38:48+00:00,2022-01-15 19:46:48+00:00,2020-05-01 16:26:54+00:00,,3505,0,0,Python,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,master,1,,"# Data-Structures
+Programming Assignments for course Data Structures in Coursera - Offered By University of California San Diego National Research University Higher School of Economics
+
+Find the course [here](https://www.coursera.org/learn/data-structures?specialization=data-structures-algorithms)
+
+## 1. Week 1 -  Arrays and Linked List
+
+1. [Check Brackets in Code](https://github.com/jsrathi17/Data-Structures/blob/master/1_brackets_in_code/check_brackets.py)
+2. [Tree Height in Code](https://github.com/jsrathi17/Data-Structures/tree/master/2_tree_height)
+",['jsrathi17'],,1,0,,,,,,1,0.8
+10365242,MDEwOlJlcG9zaXRvcnkxMDM2NTI0Mg==,Matlab-Colony-Analyzer-Toolkit,brazilbean/Matlab-Colony-Analyzer-Toolkit,0,brazilbean,https://github.com/brazilbean/Matlab-Colony-Analyzer-Toolkit,EDU,A toolkit written in Matlab for quantifying microbial colonies grown on agar plates in a systematic grid.,0,2013-05-29 17:31:04+00:00,2022-03-31 08:31:54+00:00,2014-07-08 19:48:38+00:00,,33550,1,1,Matlab,1,1,1,1,0,0,2,0,0,0,bsd-2-clause,1,0,0,public,2,0,1,master,1,,"Matlab-Colony-Analyzer-Toolkit
+==============================
+
+A toolkit written in Matlab for quantifying microbial colonies grown on agar plates in a systematic grid.
+
+This toolkit requires the Matlab Statistics Toolbox. 
+
+I recommend going over the turoials in the tutorials/ directory before starting your analysis. 
+
+Also, as this toolkit may still be under development, please email me so I can add you to the toolkit watch-list. When I make important changes I email this list so everyone knows to update the toolkit. Updating is easy, just call update_matlab_colony_analyzer_toolkit() from the Matlab command line.  
+
+If you have questions or find bugs, please email me: gbean@ucsd.edu
+
+Good luck!
+",['brazilbean'],,1,0,,,,,,1,0.8
+125507783,MDEwOlJlcG9zaXRvcnkxMjU1MDc3ODM=,DMPC_for_platoons,soc-ucsd/DMPC_for_platoons,0,soc-ucsd,https://github.com/soc-ucsd/DMPC_for_platoons,DEV,,0,2018-03-16 11:31:47+00:00,2025-03-04 09:19:55+00:00,2019-08-18 01:42:06+00:00,,13,57,57,MATLAB,1,1,1,1,0,0,20,0,0,2,,1,0,0,public,20,2,57,master,1,1,,['zhengy09'],,1,0,,,,,,2,0.95
+189900411,MDEwOlJlcG9zaXRvcnkxODk5MDA0MTE=,Data-Structures,jayswamicodes/Data-Structures,0,jayswamicodes,https://github.com/jayswamicodes/Data-Structures,EDU,by University of California San Diego & National Research University Higher School of Economics (Coursera),0,2019-06-02 22:13:13+00:00,2021-05-26 19:32:34+00:00,2019-06-07 06:59:08+00:00,,1511,1,1,C++,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,1,master,1,,"# Data-Structures
+by University of California San Diego &amp; National Research University Higher School of Economics (Coursera)
+",['jayswamicodes'],,1,0,,,,,,0,0.9
+915088385,R_kgDONoskAQ,ECE5,zkortam/ECE5,0,zkortam,https://github.com/zkortam/ECE5,EDU,"Code for ECE 5 - Introduction to Engineering at the University of California, San Diego",0,2025-01-11 00:03:32+00:00,2025-01-25 05:50:51+00:00,2025-01-25 05:50:48+00:00,,12,0,0,C++,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,main,1,,"# ECE5
+Code for ECE 5 - Introduction to Engineering at the University of California, San Diego
+",['zkortam'],,1,0,,,,,,1,0.9
+455098424,R_kgDOGyBAOA,Visualization-of-depicting-earthquakes-on-map,junayed112/Visualization-of-depicting-earthquakes-on-map,0,junayed112,https://github.com/junayed112/Visualization-of-depicting-earthquakes-on-map,EDU,,0,2022-02-03 09:15:01+00:00,2022-02-17 13:30:04+00:00,2022-02-17 13:29:59+00:00,,12087,0,0,Java,1,1,1,1,0,0,0,0,0,0,other,1,0,0,public,0,0,0,main,1,,"unfolding_app_template and UC San Diego/Coursera MOOC starter code
+==================================================================
+
+This is a skeleton to use Unfolding in Eclipse as well as some starter
+code for the Object Oriented Programming in Java course offered by 
+UC San Diego through Coursera.
+
+A very basic Unfolding demo you'll find in the source folder in the default package. 
+For more examples visit http://unfoldingmaps.org, or download the template with
+examples.
+
+The module folders contain the starter code for the programming assignments
+associated with the MOOC.
+
+Get excited and make things!
+
+
+INSTALLATION
+
+Import this folder in Eclipse ('File' -> 'Import' -> 'Existing Projects into
+Workspace', Select this folder, 'Finish')
+
+
+MANUAL INSTALLATION
+
+If the import does not work follow the steps below.
+
+- Create new Java project
+- Copy+Paste all files into project
+- Add all lib/*.jars to build path
+- Set native library location for jogl.jar. Choose appropriate folder for your OS.
+- Add data/ as src
+
+
+TROUBLE SHOOTING
+
+Switch Java Compiler to 1.6 if you get VM problems. (Processing should work with Java 1.6, and 1.7)
+
+
+
+
+",['junayed112'],,1,0,,,,,,1,0.9
+179787066,MDEwOlJlcG9zaXRvcnkxNzk3ODcwNjY=,adaHuber,XiaoouPan/adaHuber,0,XiaoouPan,https://github.com/XiaoouPan/adaHuber,DEV,Tuning-Free Huber Regression,0,2019-04-06 04:07:59+00:00,2024-11-30 06:40:46+00:00,2022-03-12 06:12:41+00:00,,9453,14,14,C++,1,1,1,1,1,0,7,0,0,0,,1,0,0,public,7,0,14,master,1,,,['XiaoouPan'],,1,0,,,,,,3,0.7
+123957606,MDEwOlJlcG9zaXRvcnkxMjM5NTc2MDY=,assignment-4,UCSD-ECE17/assignment-4,0,UCSD-ECE17,https://github.com/UCSD-ECE17/assignment-4,EDU,,0,2018-03-05 17:58:48+00:00,2018-03-18 05:43:50+00:00,2018-03-18 06:37:41+00:00,,555,0,0,C++,1,1,1,1,0,0,3,0,0,0,,1,0,0,public,3,0,0,master,1,1,,['KidEinstein'],,1,0,,,,,,2,0.9
+130644662,MDEwOlJlcG9zaXRvcnkxMzA2NDQ2NjI=,membership-client,ucsddesignco/membership-client,0,ucsddesignco,https://github.com/ucsddesignco/membership-client,DEV,Clientside for the Design at UCSD Membership app,0,2018-04-23 05:31:28+00:00,2018-04-23 06:58:32+00:00,2018-04-23 06:31:41+00:00,https://checkin.designatucsd.org/,1305,2,2,JavaScript,1,1,1,1,1,0,0,0,0,0,,1,0,0,public,0,0,2,master,1,1,,['joelseq'],,1,0,,,,,,4,0.6
+672689853,R_kgDOKBhuvQ,hkn-portal,HKN-UCSD/hkn-portal,0,HKN-UCSD,https://github.com/HKN-UCSD/hkn-portal,DEV,"A member portal used by IEEE-HKN honor society members at the University of California, San Diego.",0,2023-07-30 23:36:12+00:00,2025-03-05 21:54:03+00:00,2025-03-05 23:10:24+00:00,https://portal.hknucsd.com,28347,4,4,Svelte,1,1,1,0,0,0,1,0,0,15,,1,0,0,public,1,15,4,master,1,1,"# New HKN Portal
+
+<img width=""1418"" alt=""Screenshot 2024-06-10 at 3 47 12 PM"" src=""https://github.com/HKN-UCSD/hkn-portal/assets/103216376/b6867960-b386-46cb-9998-5f851c948376"">
+
+## Set up instructions for local development
+
+### Mac/Linux
+- Clone the repository
+- (Recommended) Create a virtualenv ([Instructions](https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/))
+  - Try to name the virtualenv venv as that name has been added in gitignore
+  - Activate the virtualenv (Note - Make sure to always activate the virtualenv before working with new terminals)
+- Run `pip install -r requirements.txt` to install all of the required libraries
+- Run the following commands to set up the database
+  - Run `python manage.py makemigrations api` to create new migrations
+  - Run `python manage.py migrate` to set up the database
+  - Run `python manage.py set_up_database` to create necessary objects in the database
+- Run ` python manage.py runserver` to start the django server
+- Open a new terminal and activate the virtualenv
+- Run `cd frontend && npm install`
+  - Debug any issues that may come up regarding npm or node versions
+- Run `npm run dev` to start the development server
+
+You should now be set up to develop locally. Go to localhost:8000 on a browser and you should see the portal hosted locally. Changes should automatically show on the server and there's no need to re-run the server unless you install new packages.
+
+If changes are made that affect the database, run:
+- Run `python manage.py makemigrations` to generate new migration files
+- Run `python manage.py migrate` to update the database
+
+In deployment:
+- `ssh -i ""key_pair_1.pem"" ubuntu@52.9.199.73` to access the remote server
+- `cd hkn-portal` to enter repository directory
+- `git pull` to grab latest repository
+- `cd frontend` & `npm run build` to create build rollup
+- `cd ..` & `source venv/bin/activate` & `python manage.py collectstatic` to collect static files
+- If changes to database structure: `python manage.py makemigrations` & `python manage.py migrate`
+- `sudo service apache2 restart` to restart server with changes
+
+Custom `python manage.py` commands:
+- `setUpDatabase` creates a necessary groups and objects needed
+- `createsuperuser` creates a superuser
+- `generate_inductees` generates a json file containing emails of inductees
+- `induct file.json` induct inductees (change their role to members)
+  - JSON file format is [{""email"": ""example@domain.com""}]
+- `promote_officer file.json` promotes members to officers
+  - JSON file format is [{""email"": ""example@domain.com"", ""position"": ""position""}]
+- `newinductionclass` creates a new induction class object & related event for points rollover
+- `inducteeform` generates a new url for inductee forms based on current induction class
+- `clearoutreachhours file.json` removes all outreach hours for given users
+  - JSON file format is [{""email"": ""example@domain.com""}]
+","['ryanyychen', 'ryan-s-lee', 'andrewzpu', 'MeghajV', 'greyluo', 'KengLL', 'hkn-devteam', 'imgbot[bot]', 'jyeh2', 'niannianwang']",,1,0,,,,,,1,0.95
+764574702,R_kgDOLZJ77g,hao-ai-lab.github.io,hao-ai-lab/hao-ai-lab.github.io,0,hao-ai-lab,https://github.com/hao-ai-lab/hao-ai-lab.github.io,WEB,,0,2024-02-28 10:26:42+00:00,2025-02-22 09:37:30+00:00,2025-02-22 09:37:27+00:00,https://hao-ai-lab.github.io/,277320,1,1,HTML,1,1,1,0,1,0,8,0,0,1,,1,0,0,public,8,1,1,main,1,1,,"['snyhlxde1', 'GindaChen', 'sfc-gh-hazhang', 'zhisbug', 'Viol2000', 'jzhang38', 'JF-D', 'sfc-gh-lhu']",,1,0,,,,,,3,0.9
+123744765,MDEwOlJlcG9zaXRvcnkxMjM3NDQ3NjU=,Doodlz,trace7729/Doodlz,0,trace7729,https://github.com/trace7729/Doodlz,EDU,UCSD Extension: Android Programming,0,2018-03-04 00:58:01+00:00,2020-12-03 02:36:14+00:00,2020-02-21 14:53:25+00:00,https://extension.ucsd.edu/courses-and-programs/android-programming,381,0,0,Java,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,master,1,,,['trace7729'],,1,0,,,,,,0,0.8
+101523582,MDEwOlJlcG9zaXRvcnkxMDE1MjM1ODI=,ucsdfoodbank.github.io,UCSDFoodbank/ucsdfoodbank.github.io,0,UCSDFoodbank,https://github.com/UCSDFoodbank/ucsdfoodbank.github.io,WEB,,0,2017-08-27 01:48:51+00:00,2017-08-29 19:08:00+00:00,2017-11-08 00:40:16+00:00,,7710,0,0,HTML,1,1,1,1,1,0,2,0,0,4,,1,0,0,public,2,4,0,master,1,,,"['UCSDFoodbank', 'emyng95', 'sjramoss']",,1,0,,,,,,0,0.6
+212016333,MDEwOlJlcG9zaXRvcnkyMTIwMTYzMzM=,DSE201-Data-Management-Systems,ringhilterra/DSE201-Data-Management-Systems,0,ringhilterra,https://github.com/ringhilterra/DSE201-Data-Management-Systems,EDU,"Completed work for DSE 201 - Data Management Systems Class,  Masters of Data Science and Engineering UC San Diego (UCSD)",0,2019-10-01 05:03:41+00:00,2019-10-01 05:13:42+00:00,2019-10-01 05:13:40+00:00,,3716,0,0,TSQL,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,master,1,,"# DSE201 - Data Management Systems
+
+Work for Winter Quarter 2018 UCSD Masters of Data Science and Engineering Program. Data Management Systems class for Data, DSE 201.
+
+The course provided an introduction to the management of structured data beginning with an introduction to database models including relational, hierarchical, and network approaches. It also covered topics in database system implementation including query languages and system architectures; parallel, column-oriented, and array-based database systems; advanced SQL features including user-defined functions (UDFs), triggers, indexes, statistical functions; and support for spatial data.
+
+Postgres was used for all homeworks and the final. 'analyze' and 'explain' were also used in multiple homeworks to test query optimization and performance.
+",['ringhilterra'],,1,0,,,,,,1,0.9
+883440311,R_kgDONKg6tw,Vlasov_Hermite_recurrence_study,opaliss/Vlasov_Hermite_recurrence_study,0,opaliss,https://github.com/opaliss/Vlasov_Hermite_recurrence_study,DEV,A comparison of techniques to handle filamentation and suppress recurrence,0,2024-11-05 01:02:20+00:00,2025-02-14 20:22:07+00:00,2025-02-14 20:22:04+00:00,,20403,0,0,Jupyter Notebook,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,main,1,,,['opaliss'],,1,0,,,,,,1,0.8
+78480061,MDEwOlJlcG9zaXRvcnk3ODQ4MDA2MQ==,thesis,gridaphobe/thesis,0,gridaphobe,https://github.com/gridaphobe/thesis,EDU,,0,2017-01-09 23:50:31+00:00,2017-01-09 23:52:43+00:00,2017-08-03 00:41:28+00:00,,3547,0,0,TeX,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,master,1,,"ucsddissertation
+================
+
+LaTeX class file for writing dissertations at UC San Diego",['gridaphobe'],,1,0,,,,,,2,0.8
+912382061,R_kgDONmHYbQ,CSS-Logo,Amethystium-321E1/CSS-Logo,0,Amethystium-321E1,https://github.com/Amethystium-321E1/CSS-Logo,EDU,Logo design for Computational Social Science at UC San Diego,0,2025-01-05 12:25:47+00:00,2025-02-18 23:07:01+00:00,2025-02-18 23:06:58+00:00,,12726,1,1,,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,1,main,1,,,['Amethystium-321E1'],,1,0,,,,,,1,0.8
+257685107,MDEwOlJlcG9zaXRvcnkyNTc2ODUxMDc=,cse252c_hw1,eric-yyjau/cse252c_hw1,0,eric-yyjau,https://github.com/eric-yyjau/cse252c_hw1,EDU,# hw1,0,2020-04-21 18:44:06+00:00,2022-07-29 10:37:04+00:00,2021-10-12 22:53:42+00:00,,21455,2,2,C++,1,1,1,1,0,0,3,0,0,1,,1,0,0,public,3,1,2,master,1,,,"['Jerrypiglet', 'jlowenz', 'eric-yyjau', 'lzqsd', 'leeclemnet', 'valentinp', 'manukc']",,1,0,,,,,,3,0.8
+292092129,MDEwOlJlcG9zaXRvcnkyOTIwOTIxMjk=,atomics,LSDOlab/atomics,0,LSDOlab,https://github.com/LSDOlab/atomics,DEV,,0,2020-09-01 19:43:33+00:00,2023-06-17 01:59:30+00:00,2022-07-23 01:39:12+00:00,https://lsdolab.github.io/atomics/,24199,14,14,Python,1,1,1,1,1,0,10,0,0,0,,1,0,0,public,10,0,14,master,1,1,,"['jiy352', 'hwangjt', 'dependabot[bot]']",,1,0,,,,,,3,0.8
+301842904,MDEwOlJlcG9zaXRvcnkzMDE4NDI5MDQ=,University-of-California-San-Diego-MicroMasters-in-DataScience,eaamankwah/University-of-California-San-Diego-MicroMasters-in-DataScience,0,eaamankwah,https://github.com/eaamankwah/University-of-California-San-Diego-MicroMasters-in-DataScience,EDU,,0,2020-10-06 20:10:54+00:00,2020-12-23 15:22:39+00:00,2020-10-07 16:07:36+00:00,,31166,1,1,Jupyter Notebook,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,1,main,1,,"# University-of-California-San-Diego-MicroMasters-in-DataScience
+
+# Overview
+[MicroMasters® Program in Data Science](https://www.edx.org/micromasters/uc-san-diegox-data-science) is a graduate level program for data science taught by four professors from the University of California, San Diego, California [edX platform](https://www.edx.org).
+
+This course cover:
+- How to load and clean real-world data
+- How to make reliable statistical inferences from noisy data
+- How to use machine learning to learn models for data
+- How to visualize complex data and
+- How to use Apache Spark to analyze data that does not fit within the memory of a single computer
+
+## Content
+
+**Week: 1 - 10**
+
+Python for Data Science
+
+**Week: 1 - 10**
+
+Probability and Statistics in Data Science using Python
+
+**Week: 1 - 10**
+
+Machine Learning Fundamentals
+
+**Week: 1 - 10**
+
+Big Data Analytics Using Spark
+
+
+## Certificate of Completion
+You can see the [MicroMasters Certificate](https://github.com/eaamankwah/Certificates/blob/main/UCSanDeigoX_DataScience-MicroMasters.pdf)
+",['eaamankwah'],,1,0,,,,,,1,0.7
+188766989,MDEwOlJlcG9zaXRvcnkxODg3NjY5ODk=,Visual-Inertial-SLAM,AGMahmoud/Visual-Inertial-SLAM,0,AGMahmoud,https://github.com/AGMahmoud/Visual-Inertial-SLAM,EDU,Visual Intertial SLAM,0,2019-05-27 03:47:26+00:00,2022-05-04 10:50:13+00:00,2019-03-25 06:28:46+00:00,,39798,2,2,Python,0,1,1,1,0,0,2,0,0,0,,1,0,0,public,2,0,2,master,1,,"# ECE 276A Project #3 - Visual-Inertial SLAM via EKF
+
+Pengluo Wang,
+
+University of California, San Diego, 2019
+
+### Overview
+
+Implement visual-inertial simultaneous localization and mapping (SLAM) using Extended Kalman filter. Synchronized measurements from a high-quality IMU and a stereo camera have been provided. The data is obtained from [KITTI dataset Raw data](http://www.cvlibs.net/datasets/kitti/raw_data.php?type=residential) and data pre-processing has been completed. The data includes:
+
+* **IMU Measurements**: linear velocity ![](https://latex.codecogs.com/svg.latex?v_t&space;\\in&space;\\mathbb{R}^3) and angular velocity ![](https://latex.codecogs.com/svg.latex?\\omega_t&space;\\in&space;\\mathbb{R}^3) measured in the body frame of the IMU 
+
+* **Stereo Camera Images**: pixel coordinates  ![](https://latex.codecogs.com/svg.latex?z_t&space;\\in&space;\\mathbb{R}^{4\\times&space;M}) of detected visual features with precomputed correspondences between the left and the right camera frames.
+
+* **Time Stamps**: time stamps ![](https://latex.codecogs.com/svg.latex?\\tau) in UNIX standard seconds-since-the-epoch.
+
+* **Intrinsic Calibration**: stereo baseline ![](https://latex.codecogs.com/svg.latex?b) and camera calibration matrix ![](https://latex.codecogs.com/svg.latex?\\mathbf{K}):
+
+  <img src=""https://latex.codecogs.com/svg.latex?\\mathbf{K}=\\begin{bmatrix}&space;fs_u&0&c_u\\\\0&fs_v&c_v\\\\0&0&1\\end{bmatrix}"" title=""\\mathbf{K}=\\begin{bmatrix} fs_u&0&c_u\\\\0&fs_v&c_v\\\\0&0&1\\end{bmatrix}"" />
+
+* **Extrinsic Calibration**: the transformation ![](https://latex.codecogs.com/svg.latex?_CT_I&space;\\in&space;SE(3)) from the IMU to left camera frame.
+
+### Requirements
+
+- Python 3.7
+
+### Installation
+
+If you're using Conda for python environment management:
+
+```
+conda create -n vi_slam_env python==3.7
+conda activate vi_slam_env
+pip install -U pip
+pip install -r requirements.txt
+```
+
+### Demo
+
+Run
+
+```
+python main.py -d 0020
+```
+
+### Results
+
+Dataset 0020:
+
+<img src=""results/0020_unf_c.png""/>
+
+Dataset 0027:
+
+<img src=""results/0027_unf_c.png""/>
+
+Dataset 0042:
+
+<img src=""results/0042_unf_c.png""/>",[],,1,0,,,,,,1,0.9
+714392941,R_kgDOKpTFbQ,UCSDDataStructuresAndAlgorithms,IsaiahPaget/UCSDDataStructuresAndAlgorithms,0,IsaiahPaget,https://github.com/IsaiahPaget/UCSDDataStructuresAndAlgorithms,EDU,,0,2023-11-04 19:18:13+00:00,2023-11-05 18:41:04+00:00,2024-03-03 18:21:58+00:00,,80,0,0,Python,1,1,1,1,0,0,0,0,0,0,gpl-3.0,1,0,0,public,0,0,0,main,1,,"# UC San Diego DataStructuresAndAlgorithms
+",['IsaiahPaget'],,1,0,,,,,,1,0.6
+139021324,MDEwOlJlcG9zaXRvcnkxMzkwMjEzMjQ=,Suicides-Data-Analysis-DSE200X,liadkeller/Suicides-Data-Analysis-DSE200X,0,liadkeller,https://github.com/liadkeller/Suicides-Data-Analysis-DSE200X,EDU,"Jupyter Notebook visualizes a database contains suicide rates data across the world, written in Python.",0,2018-06-28 13:22:47+00:00,2018-06-28 14:22:38+00:00,2018-06-28 14:22:37+00:00,,357,0,0,Jupyter Notebook,1,1,1,1,0,0,6,0,0,0,,1,0,0,public,6,0,0,master,1,,"# Suicides-Data-Analysis-DSE200X
+
+A Jupyter Notebook analyzes and visualizes a database contains data about suicide rates across the world with distinction between males and females.
+
+The data was taken from the '[Global suicide data](https://www.kaggle.com/sathutr/global-suicide-data)' in *[Kaggle](https://www.kaggle.com)*. The files that were used are SDGSUICIDE.csv, Male-Female-Ratio-of-Suicide-Rates.csv, suicide-rates-by-country.csv.
+
+The notebook is written in Python as a final project for the self-enroll edX course ""[Python for Data Science](https://www.edx.org/course/python-data-science-uc-san-diegox-dse200x)"" (DSE200x) made by the University of California San Diego.
+
+## Usage
+To open the notebook in *GitHub*, open the notebook file (**Analysis of Suicide Rates by Country and Sex.ipynb**) and hover the little minus at the top left corner, then click on 'external view available with nbviewer' to open the notebook properly. You can also read the notebook in *kaggle*.
+
+**Link to the notebook in kaggle:** https://www.kaggle.com/liadkeller/analysis-of-suicide-rates-by-country-and-sex
+",['liadkeller'],,1,0,,,,,,0,0.8
+147309839,MDEwOlJlcG9zaXRvcnkxNDczMDk4Mzk=,DSE220x,ZohebAbai/DSE220x,0,ZohebAbai,https://github.com/ZohebAbai/DSE220x,EDU,UCSanDiegoX: DSE220x : Machine Learning Fundamentals Course,0,2018-09-04 08:01:27+00:00,2023-01-28 09:07:16+00:00,2018-10-11 18:29:17+00:00,https://courses.edx.org/courses/course-v1:UCSanDiegoX+DS220x+1T2018/course/,18552,15,15,Jupyter Notebook,1,1,1,1,0,0,25,1,0,0,,1,0,0,public,25,0,15,master,1,,"# UCSanDiegoX: DSE220x : Machine Learning Fundamentals 
+
+### Course Instructor: Sanjoy Dasgupta, Professor of Computer Science and Engineering, UC San Diego
+
+## Learning Objectives
+This course is an intensive introduction to the most widely-used machine learning methods. 
+* The first goal is to provide a basic intuitive understanding of these techniques: what they are good for, how they work, how they relate to one another, and their strengths and weaknesses. 
+* The second goal is to provide a hands-on feel for these methods through experiments with suitable data sets, using Jupyter notebooks. 
+* The third goal is to understand machine learning methods at a deeper level by delving into their mathematical underpinnings. This is crucial to being able to adapt and modify existing methods and to creatively combining them.
+
+## Topics Covered
+* Taxonomy of prediction problems
+* Basics of Linear Algebra and Probability
+* Nearest neighbor methods and families of distance functions
+* Generalization: what it means; overfitting; selecting parameters using cross-validation
+* Generative modeling for classification, especially using the multivariate Gaussian
+* Linear regression and its variants
+* Logistic regression
+* Optimization: deriving stochastic gradient descent algorithms and testing convexity
+* Linear classification using the support vector machine
+* Nonlinear modeling using basis expansion and kernel methods
+* Decision trees, boosting, and random forests
+* Methods for flat and hierarchical clustering
+* Principal component analysis
+* Autoencoders, distributed representations, and deep learning
+
+## Opinion/Comments
+#### I audited for this course and pledged to complete it. I finished every Engagement, Quiz, Problem Set and Programming Assignment. I believe this is one of the best online course on fundamentals of ML as it maintains a right balance between theory and programming.
+
+#### I have provided my Assignments here (as an evidence of finishing and maintaining a repository for the course), which I completed during a month's time with whatever knowledge I gathered during the course without any help. They are definitely not the efficient ones but correct for sure. Iff you fork it, found an efficient solution, don't forget to send a pull request. 
+
+#### Thanks for passing by!
+",['ZohebAbai'],1,1,0,,,,,,0,0.95
+29636807,MDEwOlJlcG9zaXRvcnkyOTYzNjgwNw==,ExtraSensoryAndroid,cal-ucsd/ExtraSensoryAndroid,0,cal-ucsd,https://github.com/cal-ucsd/ExtraSensoryAndroid,DEV,Mobile Android app for data collection in the wild: sensor measurements and self-reported labels describing the user's behavioral context.,0,2015-01-22 01:08:15+00:00,2024-10-06 22:18:56+00:00,2018-05-16 00:43:01+00:00,http://extrasensory.ucsd.edu/ExtraSensoryApp,3446,27,27,Java,1,1,1,1,0,0,14,0,0,3,mit,1,0,0,public,14,3,27,master,1,1,,"['yvaizman', 'jenylu']",,1,0,,,,,,4,0.95
+938954130,R_kgDON_dNkg,bimm143_github,sunglien/bimm143_github,0,sunglien,https://github.com/sunglien/bimm143_github,EDU,My classwork from W25 BIMM 143,0,2025-02-25 18:59:32+00:00,2025-02-26 01:40:12+00:00,2025-02-26 01:40:09+00:00,,26775,0,0,HTML,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,main,1,,"# bimm143_github
+My classwork from W25 [BIMM143](https://bioboot.github.io/bimm143_W25/) at UC San Diego
+
+
+
+
+",['sunglien'],,1,0,,,,,,1,0.8
+151890316,MDEwOlJlcG9zaXRvcnkxNTE4OTAzMTY=,uchealthhack2018-ucsd-health-alexa-skill,superwoodle/uchealthhack2018-ucsd-health-alexa-skill,0,superwoodle,https://github.com/superwoodle/uchealthhack2018-ucsd-health-alexa-skill,DEV,"The ""ucsd health"" Alexa Skill is an easy way to ""Save your spot"" at near by UC San Diego Health urgent care clinics. ",0,2018-10-06 23:32:21+00:00,2023-01-28 13:49:11+00:00,2018-10-06 23:32:48+00:00,,168,0,0,JavaScript,1,1,1,1,0,0,0,1,0,0,apache-2.0,1,0,0,public,0,0,0,master,1,,"# UCHealthHack 2018 ""ucsd health"" Alexa Skill
+
+The ""ucsd health"" Alexa Skill is an easy way to ""Save your spot"" at near by UC San Diego Health urgent care clinics. 
+
+https://health.ucsd.edu/specialties/emergency-services/Pages/urgent-care.aspx
+https://www.clockwisemd.com/hospitals/2499/appointments/new
+
+Based on the ""Build An Alexa Fact Skill""",['chriswoodle'],,1,0,,,,,,1,0.7
+563469554,R_kgDOIZXc8g,list-examples-grader,ucsd-cse15l-f22/list-examples-grader,0,ucsd-cse15l-f22,https://github.com/ucsd-cse15l-f22/list-examples-grader,EDU,,0,2022-11-08 17:18:40+00:00,2023-11-09 22:06:11+00:00,2023-05-31 22:34:17+00:00,,372,0,0,Java,1,1,1,1,0,0,390,1,0,0,,1,0,0,public,390,0,0,main,1,1,,"['jpolitz', 'pandrew99']",,1,0,,,,,,2,0.9
+229355047,MDEwOlJlcG9zaXRvcnkyMjkzNTUwNDc=,shredder-v2-self-supervised,mireshghallah/shredder-v2-self-supervised,0,mireshghallah,https://github.com/mireshghallah/shredder-v2-self-supervised,EDU,,0,2019-12-21 00:19:13+00:00,2025-02-04 04:19:40+00:00,2020-03-02 16:14:08+00:00,,10573,7,7,Python,1,1,1,1,0,0,4,0,0,0,,1,0,0,public,4,0,7,master,1,,"# Shredder-v2-self-supervised
+
+
+Code to Shredder: Learning Noise Distributions to Protect Inference Privacy, version2, using self-supervision. By FatemehSadat Mireshghallah (fmireshg@eng.ucsd.edu), in PyTorch.
+
+The paper pdf is available at: https://arxiv.org/pdf/1905.11814v2.pdf, note that it is version2 of the work, not the one that has appeared in ASPLOS20 (https://asplos-conference.org/home/programs/).
+
+This work appeared in the Thirty-fourth Annual Conference on Neural Information Processing Systems (NeurIPS19), Privacy in Machin Learning Workshop (https://priml-workshop.github.io/priml2019/).
+
+In this repository you can find the code to shredder, and also the .npy files created through sampling, so you do not need to run everything from scratch, you can use the pre-existing ones.
+
+# step by step guide:
+1. To do noise training, and save trained samples, run ""train-LeNet-param-controlled-self-super-std20-ep27.py"". This is a script that generates two .npy files with multiplicative and additive noise tensors. Since this is a one time thing and takes a while, we have provided this named ""self-super-std20-nonsen-27ep-noise-2.npy"" and ""self-super-std20-nonsen-27ep-weight-2.npy"" which are the additive and multiplicative noises, respectively.
+
+Note1: The noise tensors are initialized using laplace distribution, and the training is monitored using SNR (we have used SNR as a proxy for mutual information, during training, the lower the SNR, the lower the mutual information and the higher the privacy).
+
+Note2: The noise added here is very aggressive, which means it has an extremely low SNR (0.0002), so it takes for the network a while to adjust. You can test smaller noise (by changing the initialization scale from 20 to 3 for example), and have a faster convergence. Also, during the first epochs, the network is trying to create the clustered representations, so you do not see any improvement in the accuracy. 
+
+
+2. To run the sampling and test-time inference, and also save the representations needed fo calculating the mutual information, run ""mutual_info_std20_self_lenet_nonsen.py"". The results of this step are also provided, with the names: ""noisy-activation-mutual_info-self-memory-uniform-std20-ep27.npy , original-activation-mutual_info-self-memory-uniform-std20-ep27.npy, original-image-mutual_info-self-memory-uniform-std20-ep27.npy ,original-labels-mutual_info-self-memory-uniform-std20-ep27.npy""
+
+
+3. To see the Mutual Info, you should first have the ITE toolbox cloned (https://bitbucket.org/szzoli/ite-in-python/src/default/). Then, run notebook ""mutual_info_ITE--self-super-memory-std20-experimental.ipynb"".
+
+
+Please do not hesitate to contact me in case of any issues
+
+# Citation
+If you used the code or the material in the paper, please cite us suing:
+
+
+@article{DBLP:journals/corr/abs-1905-11814,
+  author    = {Fatemehsadat Mireshghallah and
+               Mohammadkazem Taram and
+               Prakash Ramrakhyani and
+               Dean M. Tullsen and
+               Hadi Esmaeilzadeh},
+  title     = {Shredder: Learning Noise to Protect Privacy with Partial {DNN} Inference
+               on the Edge},
+  journal   = {CoRR},
+  volume    = {abs/1905.11814},
+  year      = {2019},
+  url       = {http://arxiv.org/abs/1905.11814},
+  archivePrefix = {arXiv},
+  eprint    = {1905.11814},
+  timestamp = {Mon, 03 Jun 2019 13:42:33 +0200},
+  biburl    = {https://dblp.org/rec/bib/journals/corr/abs-1905-11814},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+# License
+
+This software is Copyright © 2019 The Regents of the University of California. All Rights Reserved. Permission to copy, modify, and distribute this software and its documentation for educational, research and non-profit purposes, without fee, and without a written agreement is hereby granted, provided that the above copyright notice, this paragraph and the following three paragraphs appear in all copies. Permission to make commercial use of this software may be obtained by contacting:
+
+Office of Innovation and Commercialization
+
+9500 Gilman Drive, Mail Code 0910
+
+University of California
+
+La Jolla, CA 92093-0910
+
+(858) 534-5815
+
+invent@ucsd.edu
+
+This software program and documentation are copyrighted by The Regents of the University of California. The software program and documentation are supplied “as is”, without any accompanying services from The Regents. The Regents does not warrant that the operation of the program will be uninterrupted or error-free. The end-user understands that the program was developed for research purposes and is advised not to rely exclusively on the program for any reason.
+
+IN NO EVENT SHALL THE UNIVERSITY OF CALIFORNIA BE LIABLE TO ANY PARTY FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, INCLUDING LOST PROFITS, ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF THE UNIVERSITY OF CALIFORNIA HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. THE UNIVERSITY OF CALIFORNIA SPECIFICALLY DISCLAIMS ANY WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE SOFTWARE PROVIDED HEREUNDER IS ON AN “AS IS” BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATIONS TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
+",['mireshghallah'],,1,0,,,,,,2,0.95
+278982716,MDEwOlJlcG9zaXRvcnkyNzg5ODI3MTY=,bioinformatics_specialization,nilbsongalindo/bioinformatics_specialization,0,nilbsongalindo,https://github.com/nilbsongalindo/bioinformatics_specialization,EDU,This repository contains activities from the bioinformatics specialization offered by University of California San Diego on Coursera.,0,2020-07-12 03:18:33+00:00,2024-05-15 19:55:18+00:00,2020-08-14 02:14:08+00:00,,2143,1,1,Jupyter Notebook,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,1,master,1,,"## Bionformatics Specialization
+This repository contains activities from the bioinformatics specialization offered by University of California San Diego on Coursera.
+This specialization consists of six courses and one last project for conclusion. The purpose behind this repository is contain every important aspects of each one of the course sections for future consultations and to serve as a possible guide for those who may be interested in bioinformatics. The figures and some of the texts parts were taken from the course's pratical sections. Any doubt or suggestions, please, let me know.
+
+* Finding Hidden Messages in DNA (Bioinformatics I)
+  * [Finding ori region -> K-mers and The Clump Finding Problem.](https://github.com/nilbsongalindo/bioinformatics_specialization/blob/master/Fiding%20Hidden%20Messages%20in%20DNA.ipynb)
+  * [Another approach to find ori -> Deamination, Minimum Skew Problem, Hamming distance problem (with mismatches), Frequent Words with Mismatches and Reverse Complements Problem.](https://github.com/nilbsongalindo/bioinformatics_specialization/blob/master/Fiding%20Hidden%20Messages%20in%20DNA%20part%202.ipynb)
+  * [Hunting for regulatory motifs -> Scoring motifs, find a median string,Profile-most Probable k-mer Problem](https://github.com/nilbsongalindo/bioinformatics_specialization/blob/master/Which%20DNA%20Patterns%20Play%20the%20Role%20of%20Molecular%20Clocks%3F.ipynb)
+  * [Rolling dice to find motifs -> Randomized motif search](https://github.com/nilbsongalindo/bioinformatics_specialization/blob/master/How%20Rolling%20Dice%20Helps%20Us%20Find%20Regulatory%20Motifs.ipynb)
+
+",['nilbsongalindo'],,1,0,,,,,,1,0.8
+13654541,MDEwOlJlcG9zaXRvcnkxMzY1NDU0MQ==,Decorator,sukmanchui/Decorator,0,sukmanchui,https://github.com/sukmanchui/Decorator,OTHER,UC San Diego templates to help jumpstart your web development.,0,2013-10-17 16:26:38+00:00,2014-04-23 21:09:47+00:00,2013-10-18 00:17:22+00:00,,513,0,0,JavaScript,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,patch-2,1,,,"['sukmanchui', 'a6wu']",,1,0,,,,,,1,0.6
+123265865,MDEwOlJlcG9zaXRvcnkxMjMyNjU4NjU=,liblsl,sccn/liblsl,0,sccn,https://github.com/sccn/liblsl,DEV,C++ lsl library for multi-modal time-synched data transmission over the local network,0,2018-02-28 09:59:54+00:00,2025-03-01 06:42:53+00:00,2024-05-25 06:10:10+00:00,,16985,127,127,C++,1,1,1,1,0,0,76,0,0,54,other,1,0,0,public,76,54,127,master,1,1,,"['tstenner', 'cboulay', 'mgrivich', 'chkothe', 'tobiasherzke', 'dmedine', 'chausner', 'gisogrimm', 'xloem', 'arthurbiancarelli', 'BorisMansencal', 'pmaanen', 'jfrey-xx', 'jchen-dawnscene', 'kyucrane', 'noah-roberts', 'samuelpowell', 'morningf', 'mesca', 'phfix']",,1,80686,,,,,,12,0.9
+281740992,MDEwOlJlcG9zaXRvcnkyODE3NDA5OTI=,UCSD_DS,kkannappan4/UCSD_DS,0,kkannappan4,https://github.com/kkannappan4/UCSD_DS,EDU,Coursework for my master's in Data Science & Engineering at UC San Diego,0,2020-07-22 17:25:39+00:00,2020-07-22 17:27:51+00:00,2020-07-22 17:27:37+00:00,,203547,0,0,Jupyter Notebook,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,master,1,,"# UCSD_Data_Science
+Coursework for my Master's in Data Science &amp; Engineering
+
+Courses in Statistics, Machine Learning, Spark, Data Engineering and Data Visualization with d3.
+",[],,1,0,,,,,,0,0.8
+122643041,MDEwOlJlcG9zaXRvcnkxMjI2NDMwNDE=,minAone,annamiller/minAone,0,annamiller,https://github.com/annamiller/minAone,DEV,,0,2018-02-23 16:08:27+00:00,2018-02-23 16:09:19+00:00,2018-02-23 18:31:45+00:00,,82638,0,0,Python,1,1,1,1,0,0,1,0,0,0,,1,0,0,public,1,0,0,master,1,,"minAone
+=======
+
+This is a package originally created by Jingxin Ye, working at the University of California San Diego. 
+
+Original package can be found: https://github.com/yejingxin/minAone
+
+","['annamiller', 'niragkadakia', 'yejingxin']",,1,0,,,,,,0,0.8
+236090191,MDEwOlJlcG9zaXRvcnkyMzYwOTAxOTE=,UCSDUnfoldingMaps,roongtarohit/UCSDUnfoldingMaps,0,roongtarohit,https://github.com/roongtarohit/UCSDUnfoldingMaps,EDU,Coursera - Object Oriented Programming in Java by University of California San Diego,0,2020-01-24 21:55:56+00:00,2020-01-24 22:48:36+00:00,2020-01-24 22:48:34+00:00,,11696,0,0,Java,1,1,1,1,0,0,0,0,0,0,other,1,0,0,public,0,0,0,master,1,,"unfolding_app_template and UC San Diego/Coursera MOOC starter code
+==================================================================
+
+This is a skeleton to use Unfolding in Eclipse as well as some starter
+code for the Object Oriented Programming in Java course offered by 
+UC San Diego through Coursera.
+
+A very basic Unfolding demo you'll find in the source folder in the default package. 
+For more examples visit http://unfoldingmaps.org, or download the template with
+examples.
+
+The module folders contain the starter code for the programming assignments
+associated with the MOOC.
+
+Get excited and make things!
+
+
+INSTALLATION
+
+Import this folder in Eclipse ('File' -> 'Import' -> 'Existing Projects into
+Workspace', Select this folder, 'Finish')
+
+
+MANUAL INSTALLATION
+
+If the import does not work follow the steps below.
+
+- Create new Java project
+- Copy+Paste all files into project
+- Add all lib/*.jars to build path
+- Set native library location for jogl.jar. Choose appropriate folder for your OS.
+- Add data/ as src
+
+
+TROUBLE SHOOTING
+
+Switch Java Compiler to 1.6 if you get VM problems. (Processing should work with Java 1.6, and 1.7)
+
+
+
+
+",['roongtarohit'],,1,0,,,,,,1,0.95
+939695515,R_kgDOOAKdmw,marija-vukic,marija-vukic/marija-vukic,0,marija-vukic,https://github.com/marija-vukic/marija-vukic,OTHER,,0,2025-02-27 00:30:35+00:00,2025-02-27 01:34:14+00:00,2025-02-27 01:34:11+00:00,,2,0,0,,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,main,1,,"## Hi there 👋
+
+I'm **Marija Vukic**, a Croatian-American, first-generation college student majoring in Data Science with a minor in Applied Mathematics at UC San Diego!
+
+- 🔭 **Interests**: Data Science, Data Analytics, Data Engineering, Machine Learning, Quantitative Research
+- 🌱 **Current Endeavor**: Building UC San Diego's SFIC Quantitative Technologies division, exploring the intersections of finance and technology.
+- 💻 **Some Skills**: Python, SQL, Machine Learning, Data Visualization
+- 📫 **Contact**: [Email](mailto:mvukic@ucsd.edu): mvukic@ucsd.edu | [LinkedIn](https://www.linkedin.com/in/marija-vukic/)
+- 😄 **Pronouns**: She/Her
+- ⚡ **Fun Fact**: Performed at a Lakers vs. Clippers halftime show!",['marija-vukic'],,1,0,,,,,,1,0.8
+123752599,MDEwOlJlcG9zaXRvcnkxMjM3NTI1OTk=,UCSDGraphs,Enno-H/UCSDGraphs,0,Enno-H,https://github.com/Enno-H/UCSDGraphs,EDU,"Repository for the course ""advanced-data-structures"" by University of California, San Diego for completing module assignments. The course can be accessed here https://www.coursera.org/learn/advanced-data-structures/",0,2018-03-04 03:17:32+00:00,2018-05-03 01:44:34+00:00,2018-04-05 02:11:44+00:00,,491,0,0,Java,1,1,1,1,0,0,0,0,0,0,other,1,0,0,public,0,0,0,master,1,,"/-------------------------------------------------------------------------
+/ Starter Code and GUI Application for Course 3 in the
+/ Java Programming: Object Oriented Design of 
+/ Data Structures Specialization:
+/
+/ Advanced Data Structures in Java
+/ https://www.coursera.org/learn/advanced-data-structures
+/
+/ Authored by UCSD MOOC Team:
+/ Mia Minnes, Christine Alvarado, Leo Porter, Alec Brickner
+/ and Adam Setters
+/
+/ Date: 12/16/2015
+/-------------------------------------------------------------------------
+
+---------------------------------------------------------[ DESCRIPTION ]--
+
+The files provided are skeleton code, as well as grading previews and 
+testing files to be used in completing the course programming 
+assignments. Additionally, you are provided a runnable JavaFX program 
+which will help to test and demonstrate your implementations.
+
+-------------------------------------------------------[ FILES BY WEEK ]--
+
+Below are the files introduced in each week and used in each week
+of the course. See file for description...
+
+Week 1 : Introduction to the course and graphs
+==============================================
+basicgraph.Graph.java
+basicgraph.GraphAdjList.java
+basicgraph.GraphAdjMatrix.java
+
+Week 2 : Class design and simple graph search
+==================================================
+roadgraph.MapGraph.java
+week2example.Maze.java
+week2example.MazeLoader.java
+week2example.MazeNode.java
+
+Utility files
+=============
+geography.GeographicPoint.java
+geography.RoadSegment.java
+util.GraphLoader.java
+
+---------------------------------------------------------------[ SETUP ]-- 
+
+Importing Project into eclipse:
+	1. Create a new Java Project in your workspace
+	2. Import the starter files:
+	  File -> Import -> Select ""File System"" -> Next -> Browse and set 
+	  root directory to folder contents of zip were extracted to -> Finish
+
+Feel free to use another IDE or manually compile and run your programs.
+If you need help, google is your friend.
+",[],,1,0,,,,,,0,0.95
+718954137,R_kgDOKtpemQ,Significant-relations-with-ratings-of-recipes,josephguzman03/Significant-relations-with-ratings-of-recipes,0,josephguzman03,https://github.com/josephguzman03/Significant-relations-with-ratings-of-recipes,EDU,This is a DSC80 project at UC San Diego. Which focus on finding a relationship between the caloric value and its average rating.,0,2023-11-15 06:07:22+00:00,2023-12-12 03:18:06+00:00,2023-11-18 07:57:35+00:00,https://josephguzman03.github.io/Significant-relations-with-ratings-of-recipes/,855,0,0,HTML,1,1,1,1,1,0,0,0,0,0,,1,0,0,public,0,0,0,main,1,,"# Significant Relations With Ratings of Recipes
+
+Welcome to our Data Science 80 (DSC80) project at UC San Diego, where we delve into the captivating realm of culinary exploration. Our project centers around unraveling the intricate relationship between the caloric content of recipes and their corresponding average ratings. This research unfolds across four distinct sections: *Introduction*, *Cleaning and Exploratory Data Analysis (EDA)*, *Assessment of Missingness*, and *Hypothesis Testing*.
+
+In a world where culinary experiences intertwine with daily life, understanding the dynamics of the food we consume becomes paramount. Our curiosity was piqued when we pondered the possibility of a connection between the caloric value of recipes and the subjective measure of their enjoyment—the average rating. It dawned on us that recipes, as a tangible source of consumption, might share similarities with platforms like Yelp reviews and food blogs, where qualitative assessments often intertwine with quantitative elements.
+
+Food is not merely a means of sustenance; it is a cultural, social, and sensory experience. By exploring the correlation between caloric value and ratings, we aim to uncover patterns that extend beyond the plate. This analysis may provide insights into dietary preferences, nutritional awareness, and the complex interplay between flavor and health.
+
+Our journey begins with a meticulous exploration of the dataset, unraveling its nuances to form a cohesive narrative. As we navigate through the stages of data cleaning, EDA, assessment of missingness, and hypothesis testing, we aim to unearth compelling findings that resonate with both food enthusiasts and data aficionados alike.
+
+Writen by Aryan Shah & Joseph Guzman
+
+---
+
+## Introduction
+
+Our project centers around a comprehensive exploration of the `recipe` dataset, a diverse repository encompassing user-provided recipes along with associated metadata, including the date of publishing, nutritional value, and average ratings. Amidst the myriad of possibilities, our quest for a meaningful question led us to unravel a profound aspect not only concerning the dataset but also shedding light on the intricacies of human behavior in the realm of culinary choices.
+
+In our pursuit of a question, we meticulously examined the dataset, aiming to pose an inquiry that could unravel deeper insights into the dynamics of recipe selection. The question that emerged as the focal point of our investigation is:
+
+**Does the specified caloric content of a recipe influence its average ratings?**
+
+This inquiry delves into the nexus between the nutritional aspect of a recipe, as quantified by its caloric value, and the subjective assessment of its appeal measured by average ratings. As we navigate through this exploration, we aim to decipher whether the nutritional profile of a recipe plays a discernible role in shaping the overall perception and appreciation of the culinary creation.
+
+Initially comprising 83,782 rows and 13 columns, our dataset underwent meticulous data cleansing to refine its essence. The distilled dataset now features 8 key columns, each contributing unique facets to our analysis:
+- `name` (`int64`): The distinctive name assigned to each recipe.
+- `id` (`int64`) : A unique identifier tagging each recipe for reference.
+- `minutes` (`int64`) : The time required for the execution of the recipe.
+- `contributor_id` (`int64`): A personal identifier linking each recipe to its contributor.
+- `n_steps` (`int64`) : The number of steps involved in the recipe's execution.
+- `n_ingredients` (`int64`) : The count of ingredients essential for the recipe.
+- `average_rating` (`float64`): The average rating garnered by the recipe on a scale ranging from 0 to 5.
+- `calories` (`float64`) : The caloric content per serving of the recipe.
+
+As we embark on this analytical journey, these refined attributes serve as the foundation for unraveling the intricate relationship between caloric value and average ratings, providing a nuanced understanding of the interplay between nutritional components and culinary acclaim.
+
+---
+
+## Cleaning and EDA
+
+**Data Cleaning**
+
+To enhance the clarity and efficiency of our dataframe, we initiated a strategic refinement process aimed at excluding columns unrelated to the specific focus of our project. This not only streamlined our interaction with the dataframe but also contributed to a noticeable improvement in its processing speed, consequently optimizing our time utilization.
+
+The removed columns encompassed elements deemed irrelevant to our analytical endeavors, such as:
+
+- `description` : Providing a brief overview of the recipe, potentially aiding users in preparation.
+- `steps` : Outlining the procedural details for crafting the recipe.
+- `submitted` : Indicating the date of recipe publication.
+- `tags` : Gives a slogan under which the recipe comes under
+- `ingredients` : Enumerating the necessary components for completing the recipe.
+
+Evidently, as articulated in the following description, none of the excised columns bore any relevance to the core objective of our *project*, as they failed to exhibit any correlation with the caloric content of the recipes.
+
+Having successfully pruned the dataframe, our attention turned to the creation of a new column, namely `first_nutrition`. This column extracted the initial value from the `nutrition` column for each respective row. With this addition, the `nutrition` column became redundant, prompting its removal.
+
+Subsequent to the introduction of the `first_nutrition` column, a meticulous quality check ensued. This involved the elimination of duplicates to prevent inaccuracies in data interpretation. However, prior to this step, consideration was given to the `average_rating` column to ensure the inclusion of its influence on the mean of all ratings per recipe. Additionally, any instances marked as **NaN** were replaced with 0 to prevent any inadvertent exclusion of values from our analysis. This comprehensive approach ensures the integrity and reliability of our dataset as we delve into the intricate relationship between caloric content and recipe ratings.
+
+```py
+# First we had to combined both the csv files into one dataset. 
+recipes = pd.read_csv('food_data/RAW_recipes.csv')
+interactions = pd.read_csv('food_data/RAW_interactions.csv')
+
+merged = pd.merge(recipes, interactions, left_on='id', right_on='recipe_id', how='left')
+
+merged['rating'].replace(0, np.nan, inplace=True) 
+average_rating_per_recipe = merged.groupby('id')['rating'].mean()
+recipes = pd.merge(recipes, average_rating_per_recipe, left_on='id', right_index=True, how='left')
+recipes.rename(columns={'rating': 'average_rating'}, inplace=True)
+
+# recipes is a dataset that has both recipes and interactions
+recipes
+
+# Now we had to clean and appropiate our data with the necessary items for our research. 
+recipes_cleaned = recipes.drop(columns=['description','steps','submitted','tags','ingredients'])
+recipes_cleaned['calories'] = recipes_cleaned['nutrition'].apply(lambda x: x.split(',')[0][1:]).astype(float)
+recipes_cleaned = recipes_cleaned.drop(columns = ['nutrition'])
+average_rating_mean = recipes_cleaned['average_rating'].mean()
+recipes_cleaned['average_rating'].fillna(average_rating_mean, inplace=True)
+recipes_cleaned = recipes_cleaned.drop_duplicates()
+recipes_cleaned['name'].fillna(np.nan, inplace=True)
+
+# Finally, recipes_cleaned is the final output of data.
+recipes_cleaned.head()
+```
+
+| name                                 |     id |   minutes |   contributor_id |   n_steps |   n_ingredients |   average_rating |   first_nutrition |
+|:-------------------------------------|-------:|----------:|-----------------:|----------:|----------------:|-----------------:|------------------:|
+| 1 brownies in the world    best ever | 333281 |        40 |           985201 |        10 |               9 |                4 |             138.4 |
+| 1 in canada chocolate chip cookies   | 453467 |        45 |          1848091 |        12 |              11 |                5 |             595.1 |
+| 412 broccoli casserole               | 306168 |        40 |            50969 |         6 |               9 |                5 |             194.8 |
+| millionaire pound cake               | 286009 |       120 |           461724 |         7 |               7 |                5 |             878.3 |
+| 2000 meatloaf                        | 475785 |        90 |          2202916 |        17 |              13 |                5 |             267   |
+
+
+**Exploratory Data Analysis (EDA)**
+
+**Univariate Analysis**
+
+For the univariate analysis, we opted for a multifaceted approach, conducting the examination through three distinct forms. Each graph is accompanied by a descriptive analysis, elucidating its relevance to our research and the insights it contributes. The choice of utilizing bar graphs was deliberate, as this visualization method provided a nuanced perspective, enhancing our comprehension of the distributional dynamics inherent in the dataset. This deliberate selection of graphical representation aimed to unravel and articulate the intricate relationships embedded within the data, contributing to a more comprehensive understanding of our research objectives.
+
+
+<iframe src=""assets/UA_Distribution_of_Caloric_Values_in_Recipes.html
+"" width=800 height=600 frameBorder=0></iframe>
+
+
+Initiating our exploration, we investigated the distribution of caloric values in recipes, revealing a predominant concentration of lower caloric values. Despite a seemingly sparse dataset with a bin size of 100, discernible correlations emerged, hinting at an underlying relationship and prompting further exploration into the nuanced dynamics of caloric values within our dataset.
+
+
+<iframe src=""assets/UA_new_Distribution_of_Recipe_Ratings.html"" width=800 height=600 frameBorder=0></iframe>
+
+
+Continuing our exploration, we begain to examine the distribution of recipe ratings, revealing a substantial majority with higher ratings. This intriguing observation prompts further investigation into the factors contributing to the prevalent trend of elevated ratings within our dataset.
+
+<iframe src=""assets/UANew_Distribution_of Number_of_Ingredients_in_Recipes.html"" width=800 height=600 frameBorder=0></iframe>
+
+
+Concluding our univariate analysis, we observed a bell-shaped trend in the distribution of the number of ingredients, with the peak indicating the average number per recipe. This distinctive pattern invites further scrutiny, prompting exploration into the significance and implications of this central tendency within our dataset.
+
+
+**Bivariate Analysis**
+
+Transitioning into our bivariate analysis, our objective was to unveil potential correlations between caloric value, the number of ingredients, and their collective impact on average ratings. To effectively depict the intricate relationships within these variables, we opted for the use of scatter plots. This graphical approach affords us the ability to visually articulate the dimensional interplay between our chosen parameters, facilitating a nuanced exploration of their mutual influence on recipe ratings.
+
+<iframe src=""assets/BA_Correlation_between_Average_Rating_and_Caloric_Value.html"" width=800 height=600 frameBorder=0></iframe>
+
+Initially, our observation of the scatter plots revealed a sparse distribution of data points across the axes. Particularly notable is the prevalence of points in the lower left quadrants, indicating a distinct count pattern where lower caloric values align with higher average ratings. 
+
+<iframe src=""assets/BA_Correlation_between_Average_Rating_and_Number_of_Ingredients.html"" width=800 height=600 frameBorder=0></iframe>
+
+Additionally, upon closer examination of the data, a significant cluster becomes apparent, particularly in scenarios where the average rating is higher and the number of ingredients is lower. Although the distribution appears spanning across both axes, a subtle underlying trend is discernible.
+
+
+**Interesting Aggregates**
+
+Concluding our analysis, during the aggregation of our dataset, we directed our attention to exploring the relationship between `n_ingredients` and `first_nutrition` with `average_rating` to delve deeper into the realm of numeric data. This strategic focus aims to unravel additional layers of insights embedded within the dataset, offering a more comprehensive understanding of the numerical dynamics at play.
+
+```py
+agg_by_ingredients = recipes_cleaned.groupby('n_ingredients')['average_rating'].agg(['mean', 'count']).reset_index()
+agg_by_ingredients.head()
+```
+
+|   n_ingredients |    mean |   count |
+|----------------:|--------:|--------:|
+|               1 | 4.84467 |      14 |
+|               2 | 4.69042 |     747 |
+|               3 | 4.66106 |    2342 |
+|               4 | 4.63369 |    4481 |
+|               5 | 4.64668 |    6580 |
+|               6 | 4.63288 |    7524 |
+|               7 | 4.62411 |    8515 |
+|               8 | 4.61193 |    8923 |
+|               9 | 4.60693 |    8628 |
+|              10 | 4.61073 |    8033 |
+|              11 | 4.62284 |    6965 |
+|              12 | 4.61701 |    5722 |
+|              13 | 4.63165 |    4491 |
+|              14 | 4.61667 |    3234 |
+|              15 | 4.63043 |    2398 |
+|              16 | 4.62502 |    1691 |
+|              17 | 4.63233 |    1143 |
+|              18 | 4.68577 |     777 |
+|              19 | 4.61218 |     510 |
+|              20 | 4.60867 |     381 |
+|              21 | 4.65744 |     220 |
+|              22 | 4.69002 |     143 |
+|              23 | 4.7646  |      99 |
+|              24 | 4.60523 |      74 |
+|              25 | 4.69579 |      43 |
+|              26 | 4.75468 |      29 |
+|              27 | 4.60973 |      23 |
+|              28 | 4.84625 |      18 |
+|              29 | 4.96571 |      10 |
+|              30 | 4.84795 |      12 |
+|              31 | 5       |       8 |
+|              32 | 5       |       2 |
+|              33 | 5       |       1 |
+|              37 | 5       |       1 |
+
+The presented dataframe illustrates the distribution of the number of ingredients in relation to the mean rating, offering insights into the aggregation of means across the board. It reveals a consistent pattern in mean values, even as the number of recipes varies, echoing the stability observed in the scatter plot.
+
+
+```py
+agg_by_calories = recipes_cleaned.groupby('first_nutrition')['average_rating'].agg(['mean', 'count']).reset_index()
+agg_by_calories.head()
+```
+
+|   first_nutrition |    mean |   count |
+|------------------:|--------:|--------:|
+|               0   | 4.47022 |      26 |
+|               0.1 | 4.56319 |       7 |
+|               0.2 | 5       |       4 |
+|               0.3 | 4.47273 |      11 |
+|               0.4 | 4.6875  |       8 |
+
+
+The presented dataframe provides valuable insights into the distribution of calories relative to the mean rating. This analysis serves as a pivotal tool for understanding the popularity and reception of different recipe types based on their caloric levels. It enables us to discern patterns in the usage and ratings of recipes, shedding light on whether higher calorie meals are more favorably received or if there is a preference for lower calorie options.
+
+
+---
+
+## Assessment of Missingness
+
+**NMAR Analysis**
+
+In the course of our NMAR Analysis, we were attuned to the potential impact of missing data within columns on the outcomes of other columns. Upon scrutinizing our datasets, we identified `average_ratings` as a column susceptible to NMAR, as it was one of only two columns with possible null values, the other being `name`. After a meticulous examination, we chose `average_ratings` to be NMAR. Additionally, our Univariate and Bivariate Analysis highlighted a clustering of points within the scatterplots, reinforcing our belief that the `average_ratings` column exhibited a correlation with its dependencies.
+
+**Missing Depedency**
+
+To initiate our analysis, we embarked on a comparison between null and non-null values within the `first_nutrition` distributions for ratings. This necessitated the segregation of our data into distinct datasets, as mentioned previously, to facilitate the replacement of null values for average ratings in preparation for our analysis. Opting to categorize our caloric values, we aimed to enhance the clarity of the comparison and glean insights into the nuanced relationship between calories and ratings.
+
+```py
+def group(calorie):
+    if calorie <= 100:
+        return 'Too Low'
+    if 100 < calorie <= 300:
+        return 'Low'
+    elif 300 < calorie <= 800:
+        return 'Healthy'
+    elif 800 < calorie <= 1200:
+        return 'High'
+    else:
+        return 'Excessive'
+```
+Now we cleaned up our dataset again, without filling in `np.nan`. 
+
+```py
+missing_rating = recipes.drop(columns=['description','steps','submitted','tags','ingredients'])
+missing_rating['first_nutrition'] = missing_rating['nutrition'].apply(lambda x: x.split(',')[0][1:]).astype(float)
+missing_rating = missing_rating.drop(columns = ['nutrition'])
+missing_rating['tracker'] = missing_rating['first_nutrition'].apply(group)
+missing_rating['missing_rating'] = pd.isna(missing_rating['average_rating'])
+missing_rating.head()
+```
+
+| name                                 |     id |   minutes |   contributor_id |   n_steps |   n_ingredients |   average_rating |   first_nutrition | tracker   | missing_rating   |
+|:-------------------------------------|-------:|----------:|-----------------:|----------:|----------------:|-----------------:|------------------:|:----------|:-----------------|
+| 1 brownies in the world    best ever | 333281 |        40 |           985201 |        10 |               9 |                4 |             138.4 | Low       | False            |
+| 1 in canada chocolate chip cookies   | 453467 |        45 |          1848091 |        12 |              11 |                5 |             595.1 | Healthy   | False            |
+| 412 broccoli casserole               | 306168 |        40 |            50969 |         6 |               9 |                5 |             194.8 | Low       | False            |
+| millionaire pound cake               | 286009 |       120 |           461724 |         7 |               7 |                5 |             878.3 | High      | False            |
+| 2000 meatloaf                        | 475785 |        90 |          2202916 |        17 |              13 |                5 |             267   | Low       | False            |
+
+Then, we opted to create a pivot table of the missing calorical values for each respective `tracker`. 
+
+
+| tracker   |     False |      True |
+|:----------|----------:|----------:|
+| Excessive | 0.0403213 | 0.0670755 |
+| Healthy   | 0.413204  | 0.415102  |
+| High      | 0.0538849 | 0.0678421 |
+| Low       | 0.377207  | 0.340744  |
+| Too Low   | 0.115383  | 0.109237  |
+ 
+
+ Down below is a visual example of the table above as a bar histogram. 
+
+
+<iframe src=""assets/Missing_Values.html"" width=800 height=600 frameBorder=0></iframe>
+
+
+```py
+observed_tvd = calorie_dist.diff(axis=1).iloc[:, -1].abs().sum()/ 2
+ ```
+
+
+The observeed TVD is 0.0426.
+
+
+<iframe src=""assets/Empirical_Distribution_of_the_TVD.html"" width=800 height=600 frameBorder=0></iframe>
+
+
+Upon gathering our permutations, we reject the null hypothesis, positing that the distribution of `tracker` when `ratings` is missing originates from the same distribution as when `ratings` is not missing. This rejection enables us to affirm that the missingness in the `ratings` column is **dependent** on `tracker`.
+
+
+---
+
+## Hypothesis Testing
+
+Arriving to our last section of our analysis, we are yet to unravel the answer to our overarching question: Does the specified caloric content of a recipe affect its average ratings?
+
+For the purposes of our analysis, we categorize recipes with a rating higher than or equal to 4.0 as high-rating.
+
+*`Null Hypothesis (**H0**)`:*
+In the population, the distribution of caloric values in recipes with less than 4 stars is the same as those with greater than or equal to 4 stars.
+
+*`Alternative Hypothesis (**H1**)`:*
+In the population, recipes with a rating higher than 4 stars exhibit a lower caloric value, on average, than recipes with a rating lower than 4 stars.
+
+
+*`Permutation Testing`:*
+To find the p-value and make a determination on whether to reject or accept the null hypothesis, we employed the *Absolute Mean test statistic*, deemed most suitable for this scenario. We explored various significance levels ranging from 0.01 to 0.1 and ultimately settled on a significance level (α) of 0.05. This choice allows us to discern potential trends between the caloric value of a recipe and its rating.
+
+```py
+recipies_Hyp = recipes_cleaned[['average_rating','first_nutrition']].copy()
+recipies_Hyp['high_rating'] = recipies_Hyp['average_rating'] >= 4.0
+recipies_Hyp['high_rating'] = recipies_Hyp['high_rating'].astype(bool)
+recipies_Hyp.head()
+```
+
+|   average_rating |   first_nutrition | high_rating   |
+|-----------------:|------------------:|:--------------|
+|                4 |             138.4 | True          |
+|                5 |             595.1 | True          |
+|                5 |             194.8 | True          |
+|                5 |             878.3 | True          |
+|                5 |             267   | True          |
+
+
+We decided to generate an additional dataframe that incorporates a `high_rating` column, a `boolean` indicator detecting whether the `average_rating` column is a **NaN** or not.
+
+
+```py
+recipies_Hyp.groupby('high_rating')['first_nutrition'].agg(['mean', 'count'])
+```
+
+
+| high_rating   |    mean |   count |
+|:--------------|--------:|--------:|
+| False         | 444.612 |    5350 |
+| True          | 428.925 |   78432 |
+
+An aggregated table indicating the mean and count for null and non-null `high_rating` values. 
+
+<iframe src=""assets/comparison.html"" width=800 height=600 frameBorder=0></iframe>
+
+Above, the diagram depicts a visual comparison of the probability and the shuffled permutation. Given that this, we can identify patterns within the data.
+
+We then executed a permutation with `n_repetitions = 1000` employing our testing statistic, thereby generating a multitude of instances to measure variations in the mean.
+
+
+```py
+observed_difference = recipies_Hyp.groupby('high_rating')['first_nutrition'].mean().diff().iloc[-1]
+```
+
+The observed_difference is -15.6866. This is then stated over at our empirical distribution over our simulation. 
+
+<iframe src=""assets/empirical_distribution.html"" width=800 height=600 frameBorder=0></iframe>
+
+
+As a result, we obtained a p-value of 0.077, which was greater than our significant level, in which we failed to reject the Null Hypothesis. This aligns with our understanding from the missingness assessments, indicating that with proper data, we could derive more accurate insights. This test reveals a relationship between the caloric value of a recipe and its average rating. In conclusion, this analysis within our findings represents more of a trend than a conclusive relationship (also stated within our EDA). 
+
+It's important to highlight that while statistical significance is observed, its practical implications should be considered in the context of the study and its inherent limitations.
+---
+",['josephguzman03'],,1,0,,,,,,1,0.9
+264648516,MDEwOlJlcG9zaXRvcnkyNjQ2NDg1MTY=,Algorithmic-Toolbox,bhavya-singh/Algorithmic-Toolbox,0,bhavya-singh,https://github.com/bhavya-singh/Algorithmic-Toolbox,EDU,Course 1/6 in the Data Structures and Algorithms Specialization by University of California San Diego & National Research University Higher School of Economics,0,2020-05-17 11:26:02+00:00,2020-05-17 12:08:21+00:00,2020-05-17 12:08:18+00:00,,9,0,0,Python,1,1,1,1,0,0,0,0,0,0,,1,0,0,public,0,0,0,master,1,,"# Algorithmic-Toolbox
+>Course 1/6 in the Data Structures and Algorithms Specialization  
+by University of California San Diego &amp; National Research University Higher School of Economics
+
+- An intermediate level graded course on Coursera.
+- 6 weeks of committment
+
+#### Course Description:
+
+The course covers basic algorithmic techniques and ideas for computational problems arising frequently in practical applications:
+- sorting and searching
+- divide and conquer
+- greedy algorithms
+- dynamic programming
+
+&
+
+A lot of theory: 
+- how to sort data and how it helps for searching
+- how to break a large problem into pieces and solve them recursively
+- when it makes sense to proceed greedily
+- how dynamic programming is used in genomic studies
+
+",['bhavya-singh'],,1,0,,,,,,1,0.8
+184349808,MDEwOlJlcG9zaXRvcnkxODQzNDk4MDg=,thenextbestbook,kfrankc/thenextbestbook,0,kfrankc,https://github.com/kfrankc/thenextbestbook,EDU,📚Books Recommendation Website for DATA 515A - Spring 2019,0,2019-05-01 00:31:29+00:00,2021-11-12 11:18:03+00:00,2022-12-08 03:02:25+00:00,,62725,2,2,JavaScript,1,1,1,1,0,0,3,0,0,6,,1,0,0,public,3,6,2,master,1,,"# thenextbestbook
+
+[![Build Status](https://travis-ci.org/kfrankc/thenextbestbook.svg?branch=master)](https://travis-ci.org/kfrankc/thenextbestbook)
+
+[![Coverage Status](https://coveralls.io/repos/github/kfrankc/thenextbestbook/badge.svg?branch=master)](https://coveralls.io/github/kfrankc/thenextbestbook?branch=master)
+
+DATA 515A Project - Spring 2019
+
+Finding new books to read isn’t always easy. Looking at the size of libraries and some bookstores, it’s hardly surprising that there’s a lot of bad stuff circulating as well. Until recently, we limited ourselves to word of mouth and the tedious business of reading the back of every book on the shelves.
+
+This project aims to build a recommendation engine to help you find your next best book.
+
+## Links to the dataset
+
+Amazon Dataset: http://jmcauley.ucsd.edu/data/amazon/index.html <sup>[1]</sup>
+
+Goodreads Dataset: https://sites.google.com/eng.ucsd.edu/ucsdbookgraph/home
+
+### Link to [Project Wiki](https://github.com/kfrankc/thenextbestbook/wiki)
+
+#### References
+[1]
+R. He, J. McAuley. Modeling the visual evolution of fashion trends with one-class collaborative filtering. WWW, 2016 
+J. McAuley, C. Targett, J. Shi, A. van den Hengel. Image-based recommendations on styles and substitutes. SIGIR, 2015
+","['tharunsikhinam', 'nmnshrma', 'karanuday', 'iamlost127', 'apoorva-sh', 'kfrankc']",,1,0,,,,,,4,0.6
