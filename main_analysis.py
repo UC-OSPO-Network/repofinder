@@ -40,7 +40,7 @@ def plot_analysis(all_data_dict):
     """
     os.makedirs('plots/combined', exist_ok=True)
 
-    thresholds = {"UCSB": 0.3, "UCSC": 0.3, "UCSD": 0.6}
+    thresholds = {"UCSB": 0.3, "UCSC": 0.6, "UCSD": 0.3}
 
     # LANGUAGE DISTRIBUTION
     fig, axes = plt.subplots(1, 3, figsize=(18, 6))
