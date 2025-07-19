@@ -105,19 +105,4 @@ python repofinder/main_analysis.py
 
 All plots are saved in the `plots/combined/` directory.
 
-## Citation 
-If you use this tool or dataset, please consider citing our paper:
-
-```
-@misc{gomez2025recipediscoveryframeworksystematic,
-      title={Recipe for Discovery: A Framework for Systematic Open Source Project Identification}, 
-      author={Juanita Gomez and Emily Lovell and Stephanie Lieggi and Alvaro A. Cardenas and James Davis},
-      year={2025},
-      eprint={2506.18359},
-      archivePrefix={arXiv},
-      primaryClass={cs.SE},
-      url={https://arxiv.org/abs/2506.18359}, 
-}
-```
-
 
