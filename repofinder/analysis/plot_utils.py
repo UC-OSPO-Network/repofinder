@@ -65,6 +65,7 @@ def filter_data(data, threshold):
     data['ai_prediction'] = data['ai_prediction'].astype(float)
     return data[data['ai_prediction'] > threshold].reset_index(drop=True)
 
+
 def build_shared_color_map(all_data_dict, column, threshold=0.02):
     """
     Build a shared color map for a specified column across multiple DataFrames.
@@ -107,9 +108,13 @@ def build_shared_color_map(all_data_dict, column, threshold=0.02):
 
     # Sort and finalize label list
     unique_labels = sorted(label for label in major_labels if pd.notnull(label))
-    unique_labels.append("Other")
+
+    if threshold > 0:
+        unique_labels.append("Other")
     if column == "license":
         unique_labels.append("None")
     # Generate color map
-    cmap = matplotlib.colormaps.get_cmap('tab10').resampled(len(unique_labels))
+    cmap = matplotlib.colormaps.get_cmap('tab20').resampled(len(unique_labels))
     return dict(zip(unique_labels, [cmap(i) for i in range(len(unique_labels))]))
+
+
