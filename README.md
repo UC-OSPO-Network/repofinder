@@ -80,6 +80,7 @@ If you want to classify repositories for another university, provide a file name
      ```
   Data/manual_labels/{ACRONYM}_Random200.csv
      ```
+
 Additionally, for ROC curve generation, you will need to provide a test set under:
      ```
   Data/test_data/test_set_{ACRONYM}.csv
@@ -89,6 +90,7 @@ For the type classification pipeline, we only use language models so no manual l
      ```
   Data/test_data/type_test_set_{ACRONYM}.csv
      ```
+
 Project type test sets are provided for UCSB, UCSC and UCSD. 
 
 Run the filtering script:
