@@ -7,3 +7,4 @@ openai>=1.75.0
 scipy>=1.15.2
 scikit-learn>=1.6.1
 imbalanced-learn>=0.13.0
+seaborn>=0.13.2 
