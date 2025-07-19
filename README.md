@@ -1,13 +1,15 @@
 # Repository Finder
 
 ## Overview
-Repository Finder is a tool that identifies and analyzes open-source repositories affiliated with universities using GitHub metadata and contributor analysis. The pipeline is split into three modular scripts:
+Repository Finder is a tool that identifies and analyzes open-source repositories affiliated with universities using GitHub metadata and contributor analysis. The pipeline is split into four modular scripts:
 
-main_scraping.py: Fetches and stores raw repository, organization and contributor data.
+- **main_scraping.py**: Fetches and stores raw repository, organization, and contributor data.
 
-main_filtering.py: Filters repositories based on affiliation with a specific university.
+- **main_filtering.py**: Filters repositories based on affiliation with a specific university.
 
-main_analysis.py: Analyzes and visualizes filtered repository data, including license, language distribution and community practices.
+- **main_analysis.py**: Analyzes and visualizes filtered repository data, including license usage, language distribution, and community practices.
+
+- **main_analysis_combined.py**: Analyzes and visualizes aggregated repository data by type. We use this script to analyze the data of the 10 University of California campuses.
 
 ## Installation
 1. **Clone the repository:**
@@ -66,7 +68,7 @@ It will execute the following steps:
 Execution times may vary based on the number of repositories and API rate limits.
 
 ## Filtering
-This step filters repositories based on their affiliation with a university, using three complementary methods:
+This step filters repositories in two stages: (1) identifying whether a repository is affiliated with a university and (2) classifying the type of project (DEV, EDU, DATA, DOCS, WEB, OTHER). Both tasks are handled in the `main_filtering.py` script.
 
 1. Score-based classification, which applies a set of heuristic rules over repository and contributor metadata.
 2. Supervised machine learning models using embedding models.
@@ -83,15 +85,22 @@ Additionally, for ROC curve generation, you will need to provide a test set unde
   Data/test_data/test_set_{ACRONYM}.csv
      ```
 
+For the type classification pipeline, we only use language models so no manual labels are required. However, to compute the accuracy of the classification, you will need to provide a test set under:
+
+     ```
+  Data/test_data/type_test_set_{ACRONYM}.csv
+     ```
+Project type test sets are provided for UCSB, UCSC and UCSD. 
+
 Run the filtering script:
 ```sh
-python repofinder/main_scraping.py
+python repofinder/main_filtering.py
 ```
 
 You can selectively comment out models in `main_filtering.py` to run only specific methods. This script generates prediction CSV files for each method (score-based, machine learning, and LLMs) in the `results/{ACRONYM}/` folder.
 
 ## Analysis
-This step generates visual summaries and evaluation metrics based on the filtered repository data. It includes:
+This step generates visual summaries and evaluation metrics based on the filtered repository data per university. It includes:
 
 1. Language distribution 
 2. License usage patterns
@@ -104,5 +113,33 @@ python repofinder/main_analysis.py
 ```
 
 All plots are saved in the `plots/combined/` directory.
+
+## Combined Type Analysis
+This step generates visual summaries and evaluation metrics using filtered aggregated repository data. The script focuses on analyzing project characteristics by type and popularity.
+
+It includes:
+
+1. **Language distribution by project type**
+2. **License usage patterns by project type**
+3. **Adoption of best-practice repository features** (e.g., README, license, citation, issue templates)
+4. **Project type distribution** across all affiliated repositories
+5. **Feature heatmap by star buckets for DEV projects** — shows the presence of best practices in projects grouped by their GitHub star count
+6. **Scatterplot of feature presence by stars** — visualizes how feature usage varies across individual projects based on their popularity
+
+Run the combined analysis script:
+```sh
+python repofinder/main_analysis_combined.py
+```
+
+All plots are saved in the `plots/combined/` directory.
+git sjgrccg
+
+
+
+
+
+
+
+
 
 
