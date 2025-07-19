@@ -86,7 +86,6 @@ Additionally, for ROC curve generation, you will need to provide a test set unde
      ```
 
 For the type classification pipeline, we only use language models so no manual labels are required. However, to compute the accuracy of the classification, you will need to provide a test set under:
-
      ```
   Data/test_data/type_test_set_{ACRONYM}.csv
      ```
@@ -132,7 +131,6 @@ python repofinder/main_analysis_combined.py
 ```
 
 All plots are saved in the `plots/combined/` directory.
-git sjgrccg
 
 
 
