@@ -15,8 +15,7 @@ load_dotenv(DOTENV)
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 HEADERS = {
     'Authorization': f'token {GITHUB_TOKEN}',
-    'Accept': 'application/vnd.github.v3+json',
-    'User-Agent': 'Juanis2112'
+    'Accept': 'application/vnd.github.v3+json'
 }
 
 FEATURES = [
@@ -30,7 +29,7 @@ FEATURES = [
     "subscribers_count",
 ]
 
-def scrape(university_acronyms=["UCM"]):
+def scrape(university_acronyms=["UCSD"]):
     for acronym in university_acronyms:
     
         config_file= f"config/config_{acronym}.json"
