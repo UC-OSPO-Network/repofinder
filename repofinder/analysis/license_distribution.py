@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Jun 23 10:01:54 2025
 
-@author: juanitagomez
-"""
 import matplotlib.pyplot as plt
 
 def plot_license_distribution(filtered_data, acronym, ax=None, color_map=None, title_prefix=None):

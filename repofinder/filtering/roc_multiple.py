@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Jun  2 14:20:46 2025
-
-@author: juanitagomez
-"""
 
 import pandas as pd
 from sklearn.metrics import roc_curve, roc_auc_score, classification_report

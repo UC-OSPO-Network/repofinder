@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Jun 23 10:01:21 2025
-
-@author: juanitagomez
-"""
 
 import matplotlib.pyplot as plt
 

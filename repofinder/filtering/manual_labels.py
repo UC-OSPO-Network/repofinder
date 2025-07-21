@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Mar  4 17:11:25 2025
-
-@author: juanitagomez
-"""
 
 import pandas as pd
 import sqlite3

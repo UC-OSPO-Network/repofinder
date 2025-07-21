@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Mar  4 12:55:042 2025
 
-@author: juanitagomez
-"""
 from scipy.optimize import minimize
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.inspection import permutation_importance

@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Jan  9 07:22:34 2025
-
-@author: juanitagomez
-"""
 
 import sqlite3
 import json

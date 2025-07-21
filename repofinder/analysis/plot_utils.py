@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Jun 23 10:00:26 2025
 
-@author: juanitagomez
-"""
 import sqlite3
 import pandas as pd
 from matplotlib.colors import ListedColormap

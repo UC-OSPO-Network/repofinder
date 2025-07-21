@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Mar  4 13:50:46 2025
-
-@author: juanitagomez
-"""
 
 from repofinder.scraping.get_repositories import get_repositories
 from repofinder.scraping.json_to_db import create_and_populate_database

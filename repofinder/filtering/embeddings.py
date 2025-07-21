@@ -1,11 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""
-Created on Mon Jan 27 13:31:21 2025
-
-@author: juanitagomez
-"""
 import sqlite3
 import pandas as pd
 from repofinder.filtering.filter_utils import get_combined_data

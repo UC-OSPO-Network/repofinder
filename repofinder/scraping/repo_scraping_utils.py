@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Dec  4 12:42:47 2024
 
-@author: juanitagomez
-"""
 import requests
 import logging
 import time

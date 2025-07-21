@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Jul 10 11:37:29 2025
-
-@author: juanitagomez
-"""
 
 import matplotlib.pyplot as plt
 import random

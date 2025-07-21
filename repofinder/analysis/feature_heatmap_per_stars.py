@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Jul 15 16:53:08 2025
-
-@author: juanitagomez
-"""
 
 import matplotlib.pyplot as plt
 import seaborn as sns

@@ -1,12 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Apr  7 18:40:26 2025
-
-@author: juanitagomez
-"""
-
-
 
 import os
 

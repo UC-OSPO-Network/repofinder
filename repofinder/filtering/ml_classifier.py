@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Mar  4 16:55:56 2025
-
-@author: juanitagomez
-"""
 
 from repofinder.filtering.classification_models import least_squares, random_forest, svm,  grid_search, logistic_regression, neural_network
 from repofinder.filtering.university_matrix import build_matrix_with_attributes

@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Jul 18 19:17:02 2025
-
-@author: juanitagomez
-"""
 
 import pandas as pd
 from sklearn.metrics import accuracy_score, f1_score

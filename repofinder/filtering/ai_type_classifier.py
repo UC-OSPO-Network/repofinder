@@ -1,11 +1,5 @@
-
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Apr 28 17:10:35 2025
-
-@author: juanitagomez
-"""
 
 from repofinder.filtering.filter_utils import get_type_combined_data
 
