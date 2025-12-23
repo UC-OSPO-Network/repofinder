@@ -1,0 +1,14 @@
+# Docker (New)
+.docker/
+postgres_data/
+docker-compose.override.yml
+
+# Security & Python (Standard)
+.env
+__pycache__/
+*.py[cod]
+venv/
+Data/
+*.db
+*.json
+*.csv
