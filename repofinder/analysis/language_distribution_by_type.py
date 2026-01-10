@@ -7,7 +7,7 @@ import pandas as pd
 def plot_language_distribution_by_type(
     filtered_data, acronym="", ax=None, color_map=None,
     title_prefix="", hide_ylabel=False, language_order=None,
-    ylim=None, label_size=25, title_size=24, other_thres=0.02
+    ylim=None, label_size=25, title_size=24, props=15, other_thres=0.02
     ):
     """
     Plot a stacked bar chart showing programming language distribution across GPT-predicted project types.
@@ -139,7 +139,7 @@ def plot_language_distribution_by_type(
             f'{percent:.1f}%',
             (x_positions[i], count + total_repositories * 0.02),
             ha='center', va='bottom',
-            fontsize=13, color='black'
+            fontsize=props, color='black'
         )
         
         
@@ -167,9 +167,9 @@ def plot_language_distribution_by_type(
         ax.set_ylabel("")  # hide label only, keep ticks & labels visible
     
     ax.set_xticks(x_positions)
-    ax.set_xticklabels(language_labels, rotation=45, ha='right', fontsize=14)
-    ax.tick_params(axis='y', labelsize=18)
-    ax.tick_params(axis='x', labelsize=18)
+    ax.set_xticklabels(language_labels, rotation=45, ha='right', fontsize=label_size)
+    ax.tick_params(axis='y', labelsize=label_size)
+    ax.tick_params(axis='x', labelsize=label_size)
     
     # Set y-limit once based on data max + margin
     max_height = max(bottoms)
@@ -178,8 +178,8 @@ def plot_language_distribution_by_type(
     # Legend inside top-right corner of the plot
     ax.legend(
         title="Project Type",
-        fontsize=14,
-        title_fontsize=16,
+        fontsize=label_size,
+        title_fontsize=label_size,
         loc='upper left',
         frameon=True,
         framealpha=0.9

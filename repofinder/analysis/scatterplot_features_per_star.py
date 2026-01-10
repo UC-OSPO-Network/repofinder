@@ -58,7 +58,7 @@ def plot_feature_presence_by_stars_grid(
 
     # Bin all repos to get total counts per bin
     df['star_bin'] = pd.cut(df[star_col], bins=bins, right=False)
-    total_counts = df.groupby('star_bin').size()
+    total_counts = df.groupby('star_bin', observed=True).size()
 
     # Precompute bin midpoints once
     bin_centers = np.array([interval.left + (interval.right - interval.left) / 2 for interval in total_counts.index])
@@ -70,7 +70,7 @@ def plot_feature_presence_by_stars_grid(
         df_feature = df[df[feature].notna()]
 
         # Count repos with feature per star bin
-        feature_counts = df_feature.groupby('star_bin').size()
+        feature_counts = df_feature.groupby('star_bin', observed=True).size()
 
         # Compute percentage (handle bins with zero total count)
         percentages = (feature_counts / total_counts * 100).reindex(total_counts.index, fill_value=0)
@@ -149,7 +149,7 @@ def plot_avg_feature_presence_by_stars(
 
     # Bin all repos to get total counts per bin
     df['star_bin'] = pd.cut(df[star_col], bins=bins, right=False)
-    total_counts = df.groupby('star_bin').size()
+    total_counts = df.groupby('star_bin', observed=True).size()
 
     # Precompute bin midpoints once
     bin_centers = np.array([
@@ -162,7 +162,7 @@ def plot_avg_feature_presence_by_stars(
 
     for feature in features:
         df_feature = df[df[feature].notna()]
-        feature_counts = df_feature.groupby('star_bin').size()
+        feature_counts = df_feature.groupby('star_bin', observed=True).size()
         percentages = (feature_counts / total_counts * 100).reindex(total_counts.index, fill_value=0)
         percentages_per_feature.append(percentages)
 

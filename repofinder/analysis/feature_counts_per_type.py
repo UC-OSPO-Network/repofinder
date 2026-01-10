@@ -10,7 +10,7 @@ import pandas as pd
 def plot_feature_counts_per_type(
     filtered_data, features, acronym="", top=False, ax=None, title_prefix="",
     order=None, feature_colors=None, ylim=None, hide_ylabel=False,
-    label_size=25, title_size=24
+    label_size=25, title_size=24, textprops=18,
     ):
     """
     Plot a stacked bar chart of feature presence counts across GPT-predicted project types.
@@ -136,7 +136,7 @@ def plot_feature_counts_per_type(
         percent = (count / total_repositories) * 100
         ax.annotate(f'{percent:.1f}%',
                     (x_positions[i], count + total_repositories * 0.03),
-                    ha='center', va='bottom', fontsize=14, color='black')
+                    ha='center', va='bottom', fontsize=textprops, color='black')
 
 
     # Draw a vertical dashed line to separate 'Project Type'
@@ -173,13 +173,13 @@ def plot_feature_counts_per_type(
 
     ax.set_xticks(x_positions)
     ax.set_xticklabels(order, rotation=45, ha='right')
-    ax.tick_params(axis='x', labelsize=18)
-    ax.tick_params(axis='y', labelsize=18)
+    ax.tick_params(axis='x', labelsize=textprops)
+    ax.tick_params(axis='y', labelsize=textprops)
 
     max_height = max(bottoms_array)
     ax.set_ylim(0, max_height + total_repositories * 0.13)
     ax.set_xlim(min(x_positions) - 0.5, max(x_positions) + 0.8)
-    ax.legend(title="Project Type", fontsize=14, title_fontsize=16)
+    ax.legend(title="Project Type", fontsize=textprops, title_fontsize=textprops)
 
     if top:
         plt.savefig(f'plots/{acronym}/CountPerFeatureTop_Stacked.png', dpi=300)

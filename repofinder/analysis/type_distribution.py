@@ -8,7 +8,7 @@ import matplotlib.colors as mcolors
 
 def plot_type_distribution(
     filtered_data, acronym, ax=None, color_map=None, 
-    title_prefix=None, label_size=25, title_size=24):
+    title_prefix=None, label_size=25, title_size=24, textprops=15):
     """
     Plots a pie chart representing the distribution of repository types based on GPT-predicted categories.
 
@@ -52,7 +52,7 @@ def plot_type_distribution(
         colors=colors,
         autopct='%1.1f%%',
         startangle=140,
-        textprops={'fontsize': 18}
+        textprops={'fontsize': textprops}
     )
         
     for i, text in enumerate(texts):
