@@ -12,10 +12,62 @@ import matplotlib as mpl
 # Set Lato as the default font globally
 mpl.rcParams['font.family'] = 'Lato'
 
-def plot_university_roc_curves(acronym, ax, file_path, models, label_map, test_set,
-                               ai_file=None, ai2_file=None, weights_file=None,
+def plot_university_roc_curves(acronym, ax, base_file, models, label_map, test_set,
+                               ml_files=None, ai_files=None, weights_file=None,
                                title_prefix=""):
-    df = pd.read_csv(f"{file_path}")
+    """
+    Plot ROC curves for a university.
+
+    This function generates ROC curves for multiple classification models
+    (ML, AI, and SBC) for a single university. It merges predictions from
+    various sources, filters to test set samples, and generates classification
+    reports.
+
+    Parameters
+    ----------
+    acronym : str
+        University acronym (e.g., "UCSD", "UCSC").
+    ax : matplotlib.axes.Axes
+        Matplotlib axis object to plot on.
+    base_file : str
+        Path to base prediction file to load initial dataframe. Can be any
+        prediction file (ML, AI, or SBC).
+    models : list of str
+        List of ML model names to plot (e.g., ["svm"]).
+    label_map : dict
+        Dictionary mapping model keys to display names for legends.
+    test_set : str
+        Path to test set CSV file containing html_url and manual_label columns.
+    ml_files : list of str, optional
+        List of ML prediction file paths (default: None).
+    ai_files : list of tuple, optional
+        List of tuples (file_path, model_key) for AI models (default: None).
+    weights_file : str, optional
+        Path to SBC (score-based classifier) weights file (default: None).
+    title_prefix : str, optional
+        Prefix for plot title (default: "").
+
+    Returns
+    -------
+    matplotlib.axes.Axes
+        The matplotlib axis object with plotted ROC curves.
+
+    Notes
+    -----
+    - Filters predictions to only include test set samples with valid labels (0 or 1).
+    - Generates a classification report CSV file saved to
+      `results/{acronym}/classification_report_{acronym}_4&5.csv`.
+    - Skips models that are not found in the merged dataframe.
+    - Uses Youden's J statistic to determine optimal threshold for classification.
+    """
+    # Load base file or create from test set
+    if base_file:
+        df = pd.read_csv(f"{base_file}")
+    else:
+        # Create minimal dataframe from test set
+        test_df = pd.read_csv(test_set, usecols=['html_url', 'manual_label'])
+        df = test_df.copy()
+    
     test_df = pd.read_csv(test_set, usecols=['html_url', 'manual_label'])
     models_local = copy.deepcopy(models)
 
@@ -33,10 +85,30 @@ def plot_university_roc_curves(acronym, ax, file_path, models, label_map, test_s
             except Exception as e:
                 print(f"[{acronym}] Error loading {model_key}: {e}")
 
-
-    # Merge predictions
-    safe_merge(ai_file, 'gpt_belonging', 'Predictions with ai', 'ai')
-    safe_merge(ai2_file, 'gpt_belonging', 'Predictions with ai2', 'ai2')
+    # Merge ML predictions
+    if ml_files:
+        for ml_file in ml_files:
+            try:
+                ml_df = pd.read_csv(ml_file, lineterminator='\n')
+                # Find prediction columns (columns that look like "Predictions with {model}")
+                prediction_cols = [col for col in ml_df.columns if col.startswith('Predictions with ')]
+                for col in prediction_cols:
+                    model_name = col.replace('Predictions with ', '')
+                    # Merge this specific column
+                    temp = ml_df[['html_url', col]].copy()
+                    temp = temp[temp[col] != 'error']
+                    temp[col] = pd.to_numeric(temp[col], errors='coerce')
+                    df = df.merge(temp, on='html_url', how='left')
+                    models_local.append(model_name)
+            except Exception as e:
+                print(f"[{acronym}] Error loading ML file {ml_file}: {e}")
+    
+    # Merge AI predictions (support multiple AI models)
+    if ai_files:
+        for ai_file, model_key in ai_files:
+            safe_merge(ai_file, 'gpt_belonging', f'Predictions with {model_key}', model_key)
+    
+    # Merge SBC predictions
     safe_merge(weights_file, 'total_score', 'Predictions with weights', 'weights')
     
     # Load test set and preserve its manual_label
@@ -98,40 +170,89 @@ def plot_university_roc_curves(acronym, ax, file_path, models, label_map, test_s
     
     # Write report
     report_df = pd.DataFrame(report_rows)
-    csv_path = f"results/{acronym}/classification_report_{acronym}.csv"
+    csv_path = f"results/{acronym}/classification_report_{acronym}_4&5.csv"
     report_df.to_csv(csv_path, index=False)
 
     return ax
 
 
 
-def roc_multi(acronyms, file_paths, models, ai_predictions_files, 
-              ai_predictions_files2, weights_files):
+def roc_multi(acronyms, base_files, models, ml_files_list=None, 
+              ai_files_list=None, weights_files=None, label_map=None):
+    """
+    Generate ROC curves for multiple universities.
 
-    label_map = {
-        "svm": "SVM",
-        "ai2": "gpt-4o",
-        "ai": "gpt-3.5",
-        "weights": "SBC"
-    }
+    This function creates a multi-panel figure with ROC curves for each
+    university, plotting predictions from ML models, AI models, and SBC.
+
+    Parameters
+    ----------
+    acronyms : list of str
+        List of university acronyms to plot (e.g., ["UCSD", "UCSC"]).
+    base_files : list of str
+        List of base prediction file paths, one per acronym. Used as the
+        initial dataframe for merging other predictions.
+    models : list of str
+        List of ML model names to plot (e.g., ["svm"]).
+    ml_files_list : list of list of str, optional
+        List of ML prediction file lists (one list per ML model type).
+        Each inner list contains one file per acronym (default: None).
+    ai_files_list : list of tuple, optional
+        List of tuples (file_list, model_key) where file_list contains
+        one file per acronym for each AI model (default: None).
+    weights_files : list of str, optional
+        List of SBC weights file paths, one per acronym (default: None).
+    label_map : dict, optional
+        Dictionary mapping model keys to display names. If None, uses
+        default mapping with "svm" -> "SVM" and "weights" -> "SBC"
+        (default: None).
+
+    Returns
+    -------
+    None
+        Saves the plot to "results/roc_combined_4&5.png" and displays it.
+
+    Notes
+    -----
+    - Creates a subplot for each university with letter labels (a), (b), etc.
+    - Saves the combined plot as a high-resolution PNG (300 DPI).
+    - Only the first subplot has a y-axis label.
+    """
+
+    if label_map is None:
+        label_map = {
+            "svm": "SVM",
+            "weights": "SBC"
+        }
 
     fig, axes = plt.subplots(ncols=len(acronyms), figsize=(7 * len(acronyms), 7), sharey=True)
 
-    for idx, (acronym, file_path) in enumerate(zip(acronyms, file_paths)):
+    for idx, acronym in enumerate(acronyms):
         ax = axes[idx]
-        ai_file = ai_predictions_files[idx] if ai_predictions_files else None
-        ai2_file = ai_predictions_files2[idx] if ai_predictions_files2 else None
-        weights_file = weights_files[idx] if weights_files else None
+        base_file = base_files[idx] if base_files else None
+        
+        # Get ML file for this acronym
+        # ml_files_list is a list of file lists (one list per ML model type)
+        # Since one ML file contains all ML model predictions, we use the first list
+        ml_files = None
+        if ml_files_list and len(ml_files_list) > 0 and idx < len(ml_files_list[0]):
+            ml_files = [ml_files_list[0][idx]]  # Single file in a list for plot_university_roc_curves
+        
+        # Get AI files for this acronym (list of (file_path, model_key) tuples)
+        ai_files = None
+        if ai_files_list:
+            ai_files = [(files[idx], model_key) for files, model_key in ai_files_list if idx < len(files)]
+        
+        weights_file = weights_files[idx] if weights_files and idx < len(weights_files) else None
         letter = string.ascii_lowercase[idx]
         title_prefix = f"({letter}) "
 
-
         test_set = f"Data/test_data/test_set_{acronym}.csv"
         plot_university_roc_curves(
-            acronym, ax, file_path, models, 
+            acronym, ax, base_file, models, 
             label_map, test_set,
-            ai_file=ai_file,
-            ai2_file=ai2_file,
+            ml_files=ml_files,
+            ai_files=ai_files,
             weights_file=weights_file,
             title_prefix=title_prefix
         )
@@ -142,31 +263,115 @@ def roc_multi(acronyms, file_paths, models, ai_predictions_files,
         ax.legend(loc="lower right", fontsize=22)
 
     plt.tight_layout()
-    plt.savefig("results/roc_combined.png", dpi=300, bbox_inches="tight")
+    plt.savefig("results/roc_combined_4&5.png", dpi=300, bbox_inches="tight")
     plt.show()
 
 
 
 def build_paths_for(method, acronyms):
-    file_paths = []
-    ai_files_35 = []
-    ai_files_4o = []
+    """
+    Build file paths for prediction files.
+
+    This function constructs file paths for ML, AI, and SBC prediction files
+    based on the method and university acronyms.
+
+    Parameters
+    ----------
+    method : str
+        ML method name (e.g., "embeddings", "matrix").
+    acronyms : list of str
+        List of university acronyms (e.g., ["UCSD", "UCSC"]).
+
+    Returns
+    -------
+    tuple
+        Three-element tuple containing:
+        - ml_files (list of str): List of ML prediction file paths,
+          one per acronym. Format: `results/{acronym}/predictions_{method}_{acronym}.csv`
+        - ai_files_dict (dict): Dictionary mapping model keys (e.g., "gpt-4o")
+          to lists of AI file paths, one per acronym. Format:
+          `results/{acronym}/predictions_ai_gpt-{version}_{acronym}.csv`
+        - sbc_files (list of str): List of SBC prediction file paths,
+          one per acronym. Format: `results/{acronym}/predictions_sbc_{acronym}.csv`
+
+    Notes
+    -----
+    - Supports AI models: gpt-3.5-turbo, gpt-4o, gpt-5-mini, gpt-5
+    - All paths are relative to the project root directory.
+    """
+    ml_files = []
+    ai_files_dict = {}  # {model_key: [file1, file2, ...]}
     sbc_files = []
 
     for acronym in acronyms:
-        file_path = f"results/{acronym}/predictions_{method}_{acronym}.csv"
-        ai_file_35 = f"results/{acronym}/predictions_ai_gpt-3.5-turbo_{acronym}.csv"
-        ai_file_4o = f'results/{acronym}/predictions_ai_gpt-4o_{acronym}.csv'
+        # ML files: predictions_{method}_{acronym}.csv
+        ml_file = f"results/{acronym}/predictions_{method}_{acronym}.csv"
+        ml_files.append(ml_file)
+        
+        # AI files: predictions_ai_gpt-{version}_{acronym}.csv
+        ai_versions = ['3.5-turbo', '4o', '5-mini', '5']
+        for version in ai_versions:
+            model_key = f"gpt-{version}"
+            if model_key not in ai_files_dict:
+                ai_files_dict[model_key] = []
+            ai_file = f"results/{acronym}/predictions_ai_gpt-{version}_{acronym}.csv"
+            ai_files_dict[model_key].append(ai_file)
+        
+        # SBC files
         sbc_file = f"results/{acronym}/predictions_sbc_{acronym}.csv"
-
-        file_paths.append(file_path)
-        ai_files_35.append(ai_file_35)
-        ai_files_4o.append(ai_file_4o)
         sbc_files.append(sbc_file)
 
-    return file_paths, ai_files_35, ai_files_4o, sbc_files
+    return ml_files, ai_files_dict, sbc_files
 
-def create_roc_curves(acronyms):
+def create_roc_curves(acronyms, curves_to_plot=['sbc', 'ml', 'gpt-4o', 'gpt-5-mini'], method='embeddings'):
+    """
+    Create ROC curves for specified models across multiple universities.
+
+    This function orchestrates the generation of ROC curves by determining
+    which prediction files to load based on the requested curves, building
+    file paths, and calling the plotting functions.
+
+    Parameters
+    ----------
+    acronyms : list of str
+        List of university acronyms to plot (e.g., ["UCSD", "UCSC"]).
+    curves_to_plot : list of str, optional
+        List of curve types to plot. Valid options (case-insensitive):
+        - 'sbc' or 'scorebased' or 'weights': Score-based classifier
+        - 'ml' or 'machinelearning': Machine learning models (e.g., SVM)
+        - 'gpt-4o' or 'gpt4o' or 'gpt4': GPT-4o predictions
+        - 'gpt-5-mini' or 'gpt-mini-5' or 'gpt5mini': GPT-5-mini predictions
+        - 'gpt-3.5-turbo' or 'gpt-35' or 'gpt35': GPT-3.5-turbo predictions
+        - 'gpt-5' or 'gpt5': GPT-5 predictions
+        (default: ['sbc', 'ml', 'gpt-4o', 'gpt-5-mini'])
+    method : str, optional
+        ML method name for building ML file paths (default: 'embeddings').
+
+    Returns
+    -------
+    None
+        Generates and saves ROC curve plots.
+
+    Notes
+    -----
+    - Automatically determines the base file from available prediction files
+      (prioritizes ML, then AI, then SBC).
+    - Normalizes curve names to handle variations (e.g., 'gpt-5-mini' and
+      'gpt5mini' are treated the same).
+    - Only includes models that have corresponding prediction files.
+    - Creates a label map for all requested models with formatted display names.
+    """
+    # Normalize curve names (case-insensitive, handle variations)
+    curves_set = {c.lower().replace('-', '').replace('_', '').replace('.', '') for c in curves_to_plot}
+    
+    # Build all paths
+    ml_files, ai_files_dict, sbc_files = build_paths_for(method, acronyms)
+    
+    # Determine which files to use based on curves_to_plot
+    use_ml = any(c in curves_set for c in ['ml', 'machinelearning'])
+    use_sbc = any(c in curves_set for c in ['sbc', 'scorebased', 'weights'])
+    
+    # ML models list (only used if ML is requested)
     models = [
         # "least_squares",
         # "random_forest", 
@@ -174,12 +379,65 @@ def create_roc_curves(acronyms):
         "svm", 
         # "grid_search",
         # "logistic_regression"
-    ]
-    file_paths, ai_files_35, ai_files_4o, weights_files= build_paths_for("embeddings", acronyms)
+    ] if use_ml else []
     
-    roc_multi(acronyms, file_paths, models=models,
-              ai_predictions_files=ai_files_35,
-              ai_predictions_files2=ai_files_4o,
-              weights_files=weights_files)
+    # Determine which AI models to include
+    ai_files_list = []  # List of (file_list, model_key) tuples
+    base_files = []
+    
+    # Find requested AI models (directly match against available model keys)
+    requested_ai_models = []
+    for curve in curves_to_plot:
+        # Normalize the curve name for comparison (case-insensitive, ignore dashes/underscores/dots)
+        normalized_curve = curve.lower().replace('-', '').replace('_', '').replace('.', '')
+        # Check each available model key
+        for model_key in ai_files_dict.keys():
+            normalized_key = model_key.lower().replace('-', '').replace('_', '').replace('.', '')
+            if normalized_curve == normalized_key:
+                if model_key not in requested_ai_models:
+                    requested_ai_models.append(model_key)
+                break
+    
+    # Build AI files list
+    for model_key in requested_ai_models:
+        if model_key in ai_files_dict:
+            ai_files_list.append((ai_files_dict[model_key], model_key))
+    
+    # Determine base file (first available file, one per acronym)
+    if use_ml and ml_files:
+        base_files = ml_files
+    elif ai_files_list:
+        # Use first AI file as base
+        base_files = ai_files_list[0][0]  # This is already a list of files (one per acronym)
+    elif use_sbc and sbc_files:
+        base_files = sbc_files
+    else:
+        # Fallback: use ML files even if not requested
+        base_files = ml_files
+    
+    # Prepare ML files list (only if requested)
+    # ml_files_list should be a list of file lists (one list per ML model type)
+    # Since we have one ML file per acronym, we wrap it in a list
+    ml_files_list = None
+    if use_ml and ml_files:
+        ml_files_list = [ml_files]  # List containing one list of ML files
+    
+    # Prepare weights files (only if requested)
+    weights_files_param = sbc_files if use_sbc else None
+    
+    # Build label map with AI models
+    label_map = {
+        "svm": "SVM",
+        "weights": "SBC"
+    }
+    for model_key in requested_ai_models:
+        # Use model_key directly for AI models (e.g., "gpt-5-mini", "gpt-4o")
+        label_map[model_key] = model_key
+    
+    roc_multi(acronyms, base_files, models=models,
+              ml_files_list=ml_files_list,
+              ai_files_list=ai_files_list,
+              weights_files=weights_files_param,
+              label_map=label_map)
     
 
