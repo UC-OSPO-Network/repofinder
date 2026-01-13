@@ -66,55 +66,48 @@ def get_feature_content(full_name, headers, feature):
             print(f"Failed to fetch release downloads for {full_name}: {e}")
             return None
     
-
-    # Optional API endpoint for structured data (e.g., code of conduct)
+    
     feature_api_endpoints = {
         "code_of_conduct": f"{base_url}/community/code_of_conduct",
         "security_policy": f"{base_url}/security/policy"
     }
 
-    if feature in feature_api_endpoints:
-        try:
-            res, _ = github_api_request(feature_api_endpoints[feature], headers)
-            return res.get("key") or res.get("content")  # fallback to raw content if no key
-        except:
-            pass  # Try fallback paths next
+    # Community files endpoints
+    
+    community_url = f"https://api.github.com/repos/{full_name}/community/profile"
+    community = ["code_of_conduct_file", "contributing", "issue_template", "pull_request_template"]
 
-    # Fallback file paths to try for each feature
-    fallback_paths = {
-        "code_of_conduct": [
-            ".github/CODE_OF_CONDUCT.md",
-            "CODE_OF_CONDUCT.md"
-        ],
-        "contributing": [
-            ".github/CONTRIBUTING.md",
-            "CONTRIBUTING.md"
-        ],
-        "security_policy": [
-            ".github/SECURITY.md",
-            "SECURITY.md"
-        ],
-        "issue_templates": [
-            ".github/ISSUE_TEMPLATE/config.yml",  # GitHub issue template config
-            ".github/ISSUE_TEMPLATE"
-        ],
-        "pull_request_template": [
-            ".github/PULL_REQUEST_TEMPLATE.md",
-            "PULL_REQUEST_TEMPLATE.md"
-        ]
-    }
 
-    for path in fallback_paths.get(feature, []):
+    if feature in community:
         try:
-            res, _ = github_api_request(f"{base_url}/contents/{path}", headers)
-            if isinstance(res, list):
-                # If it's a directory listing, just return True (exists)
-                return "Directory exists"
+            res, _ = github_api_request(community_url, headers)
+            path = res['files'][feature]
+            if not path:
+                return None
+            
+            res, _ = github_api_request(path, headers)
             return base64.b64decode(res['content']).decode('utf-8')
-        except:
-            continue
+            
+        except Exception as e:
+            print(e)
+            
+        
+    if feature == "security":
+        
+        fallback_paths = [
+            ".github/SECURITY.md",
+            "SECURITY.md",
+            "docs/SECURITY.md"]
 
-    print(f"{feature} not found for {full_name}.")
+        for path in fallback_paths.get(feature, []):
+            try:
+                res, _ = github_api_request(f"{base_url}/contents/{path}", headers)
+                if isinstance(res, list):
+                    # If it's a directory listing, just return True (exists)
+                    return "Directory exists"
+                return base64.b64decode(res['content']).decode('utf-8')
+            except:
+                continue
     return None
 
 def get_features_data(repo_file, db_file, headers, features_list):
