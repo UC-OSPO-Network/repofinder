@@ -75,7 +75,7 @@ def scrape(university_acronyms=["UCSB", "UCSC", "UCSD"]):
         print('Repositories from users populated in database')
 
         get_features_data(repo_file, db_file, HEADERS, FEATURES)
-        print('Extra features done', end_time - start_time)
+        print('Extra features done')
 
         get_organization_data(repo_file, db_file, HEADERS)
         print('Organizations done')
