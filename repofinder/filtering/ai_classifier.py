@@ -274,7 +274,7 @@ def _process_row(row_data):
     return row_idx, answer, explanation
 
 def compute_ai_predictions(acronym, config_file, db_file, client, model="gpt-5-mini", subset=False, 
-                           max_workers=10, rate_limit=10, checkpoint_interval=100, resume=True,
+                           max_workers=30, rate_limit=10, checkpoint_interval=100, resume=True,
                            truncate=20000, truncation_type="start", start_length=15000, end_length=5000):
     """
     Classify whether repositories belong to a university using OpenAI's GPT API.
@@ -351,34 +351,144 @@ def compute_ai_predictions(acronym, config_file, db_file, client, model="gpt-5-m
     - Uses exponential backoff retry logic for transient API errors.
     """
 
-    predictions_path = f'results/{acronym}/predictions_ai_{model}_{acronym}.csv'
+    def clean_model_name(model):
+        """
+        Clean the model name by replacing "." with "-"
+        """
+        model = model.replace(".", "-")
+        return model
+    
+    # STEP 1: Determine subset path and build predictions path
+    # Pass subset to get_combined_data (if subset is False or None, pass None; otherwise pass the file path)
+    subset_path = None if (subset is False or subset is None or not subset) else subset
+    
+    # Load subset file if provided to check for missing repos
+    subset_df = None
+    if subset_path:
+        print(f"Filtering repositories using subset file: {subset_path}")
+        try:
+            subset_df = pd.read_csv(subset_path)
+            if 'html_url' not in subset_df.columns:
+                print(f"Warning: 'html_url' column not found in subset file. Cannot check for missing repos.")
+            else:
+                # Check which repositories in subset are not in database
+                db_conn = sqlite3.connect(db_file)
+                try:
+                    db_urls_df = pd.read_sql_query("SELECT DISTINCT html_url FROM repositories WHERE html_url IS NOT NULL", db_conn)
+                    db_urls_set = set(db_urls_df['html_url'].dropna().unique())
+                    subset_urls_set = set(subset_df['html_url'].dropna().unique())
+                    missing_urls = subset_urls_set - db_urls_set
+                    
+                    if missing_urls:
+                        print(f"\n⚠️  Found {len(missing_urls)} repositories in test set that are NOT in the database:")
+                        for url in sorted(missing_urls):
+                            print(f"   - {url}")
+                        print()
+                    else:
+                        print(f"✓ All {len(subset_urls_set)} repositories from test set are present in the database.\n")
+                except Exception as e:
+                    print(f"Warning: Could not check for missing repositories in database: {e}")
+                finally:
+                    db_conn.close()
+        except Exception as e:
+            print(f"Warning: Could not read subset file {subset_path}: {e}")
+            subset_df = None
+    
+    # Add "_subset" suffix to filename if subset is provided
+    subset_suffix = "_subset" if subset_path else ""
+    predictions_path = f'results/{acronym}/predictions_ai_{clean_model_name(model)}_{acronym}{subset_suffix}.csv'
     
     # Ensure results directory exists
     os.makedirs(os.path.dirname(predictions_path), exist_ok=True)
     
-    # Load existing results if resuming
+    df = get_combined_data(config_file, db_file, acronym, truncate=truncate, subset=subset_path, 
+                           truncation_type=truncation_type, start_length=start_length, end_length=end_length)
+    
+    # Filter repositories: not archived, size > 0, not a fork, not a template
+    initial_count = len(df)
+    print(f"\nTotal repositories loaded: {initial_count}")
+    
+    # Apply filters
+    # Keep repositories that are: not archived, size > 0, not fork, not template
+    # Handle various data types (boolean, int, string) and NULL/NaN values
+    
+    if 'archived' in df.columns:
+        # Convert to numeric for comparison, keeping NaN
+        archived_numeric = pd.to_numeric(df['archived'], errors='coerce')
+        archived_bool = df['archived'] == False
+        # Keep: archived is 0, False, or NaN
+        df = df[(archived_numeric == 0) | (archived_bool) | (archived_numeric.isna())]
+    
+    if 'size' in df.columns:
+        df['size'] = pd.to_numeric(df['size'], errors='coerce')
+        # Keep: size > 0 OR size is NaN (matching SQL query: size > 0 OR size IS NULL)
+        df = df[(df['size'] > 0) | (df['size'].isna())]
+    
+    if 'fork' in df.columns:
+        # Convert to numeric for comparison, keeping NaN
+        fork_numeric = pd.to_numeric(df['fork'], errors='coerce')
+        fork_bool = df['fork'] == False
+        # Keep: fork is 0, False, or NaN
+        df = df[(fork_numeric == 0) | (fork_bool) | (fork_numeric.isna())]
+    
+    if 'is_template' in df.columns:
+        # Convert to numeric for comparison, keeping NaN
+        template_numeric = pd.to_numeric(df['is_template'], errors='coerce')
+        template_bool = df['is_template'] == False
+        # Keep: is_template is 0, False, or NaN
+        df = df[(template_numeric == 0) | (template_bool) | (template_numeric.isna())]
+    
+    filtered_count = len(df)
+    print(f"After filtering (not archived, size > 0, not fork, not template): {filtered_count}")
+    print(f"  - Filtered out: {initial_count - filtered_count} repositories")
+    
+    # Print breakdown of what was filtered
+    if initial_count > 0:
+        print(f"  - Retention rate: {(filtered_count / initial_count * 100):.1f}%")
+    
+    total_repositories = len(df)
+    print(f"\nTotal repositories to check: {total_repositories}")
+    print(f"Note: This is the number of repositories that will be candidates for prediction.")
+    print(f"      The number of 'affiliated' repositories will be determined AFTER predictions are computed and threshold is applied.")
+    
+    # STEP 2: Load existing predictions from file and compare
     existing_results = {}
+    existing_urls_set = set()
     if resume and os.path.exists(predictions_path):
         try:
             existing_df = pd.read_csv(predictions_path)
             if 'html_url' in existing_df.columns and 'gpt_belonging' in existing_df.columns:
                 # Create a dict mapping html_url to (gpt_belonging, gpt_explanation)
+                # Also create a set for fast lookup
                 for _, row in existing_df.iterrows():
-                    if pd.notna(row.get('gpt_belonging')) and row.get('gpt_belonging') != 'error':
-                        existing_results[row['html_url']] = (
-                            row.get('gpt_belonging'),
-                            row.get('gpt_explanation', '')
-                        )
-                print(f"Found {len(existing_results)} already processed repositories. Resuming...")
+                    html_url = row.get('html_url')
+                    if pd.notna(html_url):
+                        # Only add to existing_urls_set if it has a VALID prediction
+                        # This way, repositories with errors will be reprocessed
+                        if pd.notna(row.get('gpt_belonging')) and row.get('gpt_belonging') != 'error':
+                            existing_urls_set.add(html_url)
+                            existing_results[html_url] = (
+                                row.get('gpt_belonging'),
+                                row.get('gpt_explanation', '')
+                            )
+                print(f"Found {len(existing_urls_set)} repositories in predictions file")
+                print(f"  - {len(existing_results)} with valid predictions")
+                print(f"  - {len(existing_urls_set) - len(existing_results)} with errors or empty")
         except Exception as e:
             print(f"Warning: Could not load existing results: {e}. Starting fresh.")
+    else:
+        print(f"No existing predictions file found (or resume=False). Starting fresh.")
     
-    # Pass subset to get_combined_data (if subset is False or None, pass None; otherwise pass the file path)
-    subset_path = None if (subset is False or subset is None or not subset) else subset
-    if subset_path:
-        print(f"Filtering repositories using subset file: {subset_path}")
-    df = get_combined_data(config_file, db_file, acronym, truncate=truncate, subset=subset_path, 
-                           truncation_type=truncation_type, start_length=start_length, end_length=end_length)
+    # STEP 3: Compare repositories with predictions file
+    df_urls_set = set(df['html_url'].dropna().unique())
+    already_in_predictions = df_urls_set.intersection(existing_urls_set)
+    new_repositories = df_urls_set - existing_urls_set
+    
+    print(f"\nRepository comparison:")
+    print(f"  - Total repositories from database: {total_repositories}")
+    print(f"  - Already in predictions file: {len(already_in_predictions)}")
+    print(f"  - New repositories to process: {len(new_repositories)}")
+    print(f"\nComputing predictions for {len(new_repositories)} new repositories...")
     
     with open(config_file, encoding="utf-8") as envfile:
         config = json.load(envfile)
@@ -437,12 +547,18 @@ def compute_ai_predictions(acronym, config_file, db_file, client, model="gpt-5-m
         html_url = row.get('html_url', '')
         size = row.get('size', 0)
         
-        # Check if already processed
-        if html_url in existing_results:
-            results[i] = existing_results[html_url][0]
-            explanations[i] = existing_results[html_url][1]
+        # Check if already in predictions file (skip these)
+        if html_url in existing_urls_set:
+            # Use existing prediction if available, otherwise mark as skipped
+            if html_url in existing_results:
+                results[i] = existing_results[html_url][0]
+                explanations[i] = existing_results[html_url][1]
+            else:
+                # In predictions file but no valid prediction - skip it
+                results[i] = "error"
+                explanations[i] = "Already in predictions file but marked as error"
             num_skipped += 1
-        # Check if repository is empty (size <= 0)
+        # Check if repository is empty (size <= 0) - only for NEW repositories
         else:
             try:
                 size_val = int(float(size)) if size is not None and not pd.isna(size) else 0

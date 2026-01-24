@@ -7,7 +7,7 @@ import pandas as pd
 import os
 
 
-def compute_predictions_sbc(acronym, config_file, db_file):
+def compute_predictions_sbc(acronym, config_file, db_file, subset=None):
     """
     Computes repository affiliation scores based on organization, contributor, and repository metadata.
 
@@ -25,6 +25,9 @@ def compute_predictions_sbc(acronym, config_file, db_file):
             - UNIVERSITY_WEBSITE_URL
             - ADDITIONAL_QUERIES (list of extra keywords)
         db_file (str): Path to the SQLite database containing the repository metadata.
+        subset (str, optional): Path to CSV file with html_url column to filter repositories.
+            If provided, only computes predictions for repositories in the subset.
+            If None, processes all repositories (default: None).
     Returns:
         str: Path to the generated CSV file containing the repository-level scores.
     """
@@ -50,8 +53,25 @@ def compute_predictions_sbc(acronym, config_file, db_file):
             score += text.lower().count(keyword) * base_score
         return score
 
-    # Retrieve all repositories
-    cursor.execute("SELECT full_name, html_url FROM repositories")
+    # Load subset if provided
+    subset_urls = None
+    if subset:
+        subset_df = pd.read_csv(subset)
+        if 'html_url' not in subset_df.columns:
+            raise ValueError(f"Subset CSV must contain 'html_url' column. Found columns: {list(subset_df.columns)}")
+        subset_urls = set(subset_df['html_url'].dropna().unique())
+        print(f"Filtering to {len(subset_urls)} repositories from subset")
+
+    # Retrieve all repositories (or filtered by subset)
+    if subset_urls:
+        # Filter repositories to only those in subset
+        # Convert set to tuple for SQL IN clause
+        subset_urls_list = list(subset_urls)
+        placeholders = ','.join(['?' for _ in subset_urls_list])
+        query = f"SELECT full_name, html_url FROM repositories WHERE html_url IN ({placeholders})"
+        cursor.execute(query, subset_urls_list)
+    else:
+        cursor.execute("SELECT full_name, html_url FROM repositories")
     repositories = cursor.fetchall()
 
     results = []
@@ -136,7 +156,10 @@ def compute_predictions_sbc(acronym, config_file, db_file):
             "total_score": round(total_score / 100, 2),
         }
         results.append(result) 
-    output_path = f"results/{acronym}/predictions_sbc_{acronym}.csv"
+    
+    # Add "_subset" suffix to filename if subset is provided
+    subset_suffix = "_subset" if subset else ""
+    output_path = f"results/{acronym}/predictions_sbc_{acronym}{subset_suffix}.csv"
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     df = pd.DataFrame(results)
     df.to_csv(output_path, index=False)

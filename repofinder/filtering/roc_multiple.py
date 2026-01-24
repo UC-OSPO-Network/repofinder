@@ -4,7 +4,7 @@
 import pandas as pd
 from sklearn.metrics import roc_curve, roc_auc_score, classification_report
 import matplotlib.pyplot as plt
-import re
+import os
 import copy
 import string
 import matplotlib as mpl
@@ -56,19 +56,14 @@ def plot_university_roc_curves(acronym, ax, base_file, models, label_map, test_s
     -----
     - Filters predictions to only include test set samples with valid labels (0 or 1).
     - Generates a classification report CSV file saved to
-      `results/{acronym}/classification_report_{acronym}_4&5.csv`.
+      `results/{acronym}/classification_report_{acronym}.csv`.
     - Skips models that are not found in the merged dataframe.
     - Uses Youden's J statistic to determine optimal threshold for classification.
     """
-    # Load base file or create from test set
-    if base_file:
-        df = pd.read_csv(f"{base_file}")
-    else:
-        # Create minimal dataframe from test set
-        test_df = pd.read_csv(test_set, usecols=['html_url', 'manual_label'])
-        df = test_df.copy()
-    
+
+    # Create minimal dataframe from test set
     test_df = pd.read_csv(test_set, usecols=['html_url', 'manual_label'])
+    df = test_df.copy()
     models_local = copy.deepcopy(models)
 
     # Merge predictions
@@ -98,8 +93,8 @@ def plot_university_roc_curves(acronym, ax, base_file, models, label_map, test_s
                     temp = ml_df[['html_url', col]].copy()
                     temp = temp[temp[col] != 'error']
                     temp[col] = pd.to_numeric(temp[col], errors='coerce')
-                    df = df.merge(temp, on='html_url', how='left')
-                    models_local.append(model_name)
+                    if model_name in models_local:
+                        df = df.merge(temp, on='html_url', how='left')
             except Exception as e:
                 print(f"[{acronym}] Error loading ML file {ml_file}: {e}")
     
@@ -133,29 +128,91 @@ def plot_university_roc_curves(acronym, ax, base_file, models, label_map, test_s
         if col_name not in df.columns or df[col_name].isnull().all():
             continue
         y_prob = df[col_name]
-        fpr, tpr, thresholds = roc_curve(y_true, y_prob)
-        auc = roc_auc_score(y_true, y_prob)
+        
+        # Filter out NaN values - only keep rows where both y_true and y_prob are valid
+        valid_mask = y_true.notna() & y_prob.notna()
+        y_true_clean = y_true[valid_mask]
+        y_prob_clean = y_prob[valid_mask]
+        
+        if len(y_true_clean) == 0:
+            continue
+            
+        fpr, tpr, thresholds = roc_curve(y_true_clean, y_prob_clean)
+        auc = roc_auc_score(y_true_clean, y_prob_clean)
         label = label_map.get(model, model)
         ax.plot(fpr, tpr, label=f"{label} (AUC = {auc:.2f})", linewidth=3)
         
         # Classification Report
+        # Use Youden's J statistic (TPR - FPR) for threshold selection,
+        # with a minimum threshold constraint to avoid very small thresholds.
+        min_threshold = 0.3
         j_scores = tpr - fpr
-        best_threshold = thresholds[j_scores.argmax()]
-        y_pred = (y_prob >= best_threshold).astype(int)
+
+        valid_mask_thr = thresholds >= min_threshold
+        if valid_mask_thr.any():
+            valid_thresholds = thresholds[valid_mask_thr]
+            valid_scores = j_scores[valid_mask_thr]
+            best_threshold = valid_thresholds[valid_scores.argmax()]
+        else:
+            # Fallback if ROC thresholds don't include anything >= min_threshold
+            best_threshold = min_threshold
+        y_pred_clean = (y_prob_clean >= best_threshold).astype(int)
+        
+        # Compute confusion counts using the *selected* threshold (best_threshold)
+        # True Negatives (TN): y=0, pred=0
+        # False Positives (FP): y=0, pred=1
+        # False Negatives (FN): y=1, pred=0
+        # True Positives (TP): y=1, pred=1
+        tn = int(((y_true_clean == 0) & (y_pred_clean == 0)).sum())
+        fp = int(((y_true_clean == 0) & (y_pred_clean == 1)).sum())
+        fn = int(((y_true_clean == 1) & (y_pred_clean == 0)).sum())
+        tp = int(((y_true_clean == 1) & (y_pred_clean == 1)).sum())
+
+        n_total = int(len(y_true_clean))
+        n_neg = int((y_true_clean == 0).sum())
+        n_pos = int((y_true_clean == 1).sum())
+
+        # Rates by class (these are what people usually mean by FPR/FNR)
+        # FPR% = FP / (# actual negatives) * 100
+        # FNR% = FN / (# actual positives) * 100
+        false_positive_rate_pct = (fp / n_neg * 100) if n_neg > 0 else 0.0
+        false_negative_rate_pct = (fn / n_pos * 100) if n_pos > 0 else 0.0
+
+        # Also include % of the full evaluated set (sometimes more intuitive)
+        false_positive_pct_total = (fp / n_total * 100) if n_total > 0 else 0.0
+        false_negative_pct_total = (fn / n_total * 100) if n_total > 0 else 0.0
     
         # Inside model loop:
-        report_dict = classification_report(y_true, y_pred, output_dict=True)
+        report_dict = classification_report(y_true_clean, y_pred_clean, output_dict=True)
         accuracy = report_dict['accuracy']
+        
+        # Handle missing classes in classification report
+        precision_0 = round(report_dict.get('0', {}).get('precision', 0.0), 2) if '0' in report_dict else 0.0
+        recall_0 = round(report_dict.get('0', {}).get('recall', 0.0), 2) if '0' in report_dict else 0.0
+        f1_0 = round(report_dict.get('0', {}).get('f1-score', 0.0), 2) if '0' in report_dict else 0.0
+        precision_1 = round(report_dict.get('1', {}).get('precision', 0.0), 2) if '1' in report_dict else 0.0
+        recall_1 = round(report_dict.get('1', {}).get('recall', 0.0), 2) if '1' in report_dict else 0.0
+        f1_1 = round(report_dict.get('1', {}).get('f1-score', 0.0), 2) if '1' in report_dict else 0.0
+        
         report_rows.append({
             "Model": label,
             "Threshold": round(best_threshold, 2),
-            "Precision 0": round(report_dict['0']['precision'], 2),
-            "Recall 0": round(report_dict['0']['recall'], 2),
-            "F1 0": round(report_dict['0']['f1-score'], 2),
-            "Precision 1": round(report_dict['1']['precision'], 2),
-            "Recall 1": round(report_dict['1']['recall'], 2),
-            "F1 1": round(report_dict['1']['f1-score'], 2),
+            "N": n_total,
+            "N pos": n_pos,
+            "N neg": n_neg,
+            "FP": fp,
+            "FN": fn,
+            "Precision 0": precision_0,
+            "Recall 0": recall_0,
+            "F1 0": f1_0,
+            "Precision 1": precision_1,
+            "Recall 1": recall_1,
+            "F1 1": f1_1,
             "Accuracy": round(accuracy, 2),
+            "False Positive %": round(false_positive_rate_pct, 2),
+            "False Negative %": round(false_negative_rate_pct, 2),
+            "False Positive % (total)": round(false_positive_pct_total, 2),
+            "False Negative % (total)": round(false_negative_pct_total, 2),
         })
     
     # Plot random baseline
@@ -170,7 +227,9 @@ def plot_university_roc_curves(acronym, ax, base_file, models, label_map, test_s
     
     # Write report
     report_df = pd.DataFrame(report_rows)
-    csv_path = f"results/{acronym}/classification_report_{acronym}_4&5.csv"
+    csv_path = f"results/{acronym}/classification_report_{acronym}.csv"
+    # Create output directory if it doesn't exist
+    os.makedirs(os.path.dirname(csv_path), exist_ok=True)
     report_df.to_csv(csv_path, index=False)
 
     return ax
@@ -225,7 +284,15 @@ def roc_multi(acronyms, base_files, models, ml_files_list=None,
             "weights": "SBC"
         }
 
+    # Handle single acronym case (axes will be a single Axes object, not an array)
+    if len(acronyms) == 0:
+        raise ValueError("At least one acronym must be provided")
+    
     fig, axes = plt.subplots(ncols=len(acronyms), figsize=(7 * len(acronyms), 7), sharey=True)
+    
+    # Convert single Axes to list for consistent indexing
+    if len(acronyms) == 1:
+        axes = [axes]
 
     for idx, acronym in enumerate(acronyms):
         ax = axes[idx]
@@ -260,10 +327,12 @@ def roc_multi(acronyms, base_files, models, ml_files_list=None,
         if idx == 0:
             ax.set_ylabel("True Positive Rate", fontsize=32, labelpad=15)
 
-        ax.legend(loc="lower right", fontsize=22)
+        ax.legend(loc="lower right", fontsize=17)
 
     plt.tight_layout()
-    plt.savefig("results/roc_combined_4&5.png", dpi=300, bbox_inches="tight")
+    # Create output directory if it doesn't exist
+    os.makedirs("results", exist_ok=True)
+    plt.savefig("results/roc_combined.png", dpi=300, bbox_inches="tight")
     plt.show()
 
 
@@ -287,12 +356,12 @@ def build_paths_for(method, acronyms):
     tuple
         Three-element tuple containing:
         - ml_files (list of str): List of ML prediction file paths,
-          one per acronym. Format: `results/{acronym}/predictions_{method}_{acronym}.csv`
+          one per acronym. Format: `results/{acronym}/predictions_{method}_{acronym}_subset.csv`
         - ai_files_dict (dict): Dictionary mapping model keys (e.g., "gpt-4o")
           to lists of AI file paths, one per acronym. Format:
-          `results/{acronym}/predictions_ai_gpt-{version}_{acronym}.csv`
+          `results/{acronym}/predictions_ai_gpt-{version}_{acronym}_subset.csv`
         - sbc_files (list of str): List of SBC prediction file paths,
-          one per acronym. Format: `results/{acronym}/predictions_sbc_{acronym}.csv`
+          one per acronym. Format: `results/{acronym}/predictions_sbc_{acronym}_subset.csv`
 
     Notes
     -----
@@ -304,26 +373,28 @@ def build_paths_for(method, acronyms):
     sbc_files = []
 
     for acronym in acronyms:
-        # ML files: predictions_{method}_{acronym}.csv
-        ml_file = f"results/{acronym}/predictions_{method}_{acronym}.csv"
+        # ML files: predictions_{method}_{acronym}_subset.csv
+        ml_file = f"results/{acronym}/predictions_{method}_{acronym}_subset.csv"
         ml_files.append(ml_file)
         
-        # AI files: predictions_ai_gpt-{version}_{acronym}.csv
+        # AI files: predictions_ai_gpt-{version}_{acronym}_subset.csv
         ai_versions = ['3.5-turbo', '4o', '5-mini', '5']
         for version in ai_versions:
             model_key = f"gpt-{version}"
             if model_key not in ai_files_dict:
                 ai_files_dict[model_key] = []
-            ai_file = f"results/{acronym}/predictions_ai_gpt-{version}_{acronym}.csv"
+            # Convert version for file path: 3.5-turbo -> 3-5-turbo
+            path_version = version.replace('.', '-')
+            ai_file = f"results/{acronym}/predictions_ai_gpt-{path_version}_{acronym}_subset.csv"
             ai_files_dict[model_key].append(ai_file)
         
         # SBC files
-        sbc_file = f"results/{acronym}/predictions_sbc_{acronym}.csv"
+        sbc_file = f"results/{acronym}/predictions_sbc_{acronym}_subset.csv"
         sbc_files.append(sbc_file)
 
     return ml_files, ai_files_dict, sbc_files
 
-def create_roc_curves(acronyms, curves_to_plot=['sbc', 'ml', 'gpt-4o', 'gpt-5-mini'], method='embeddings'):
+def create_roc_curves(acronyms, curves_to_plot=['gpt-4o', 'gpt-5-mini'], method='embeddings'):
     """
     Create ROC curves for specified models across multiple universities.
 
@@ -368,8 +439,11 @@ def create_roc_curves(acronyms, curves_to_plot=['sbc', 'ml', 'gpt-4o', 'gpt-5-mi
     ml_files, ai_files_dict, sbc_files = build_paths_for(method, acronyms)
     
     # Determine which files to use based on curves_to_plot
-    use_ml = any(c in curves_set for c in ['ml', 'machinelearning'])
-    use_sbc = any(c in curves_set for c in ['sbc', 'scorebased', 'weights'])
+    # Normalize check values to match the normalization of curves_set
+    use_ml = any(c.lower().replace('-', '').replace('_', '').replace('.', '') in curves_set 
+                 for c in ['ml', 'machinelearning', 'svc', 'svm', 'embeddings', 'matrix'])
+    use_sbc = any(c.lower().replace('-', '').replace('_', '').replace('.', '') in curves_set 
+                  for c in ['sbc', 'scorebased', 'weights'])
     
     # ML models list (only used if ML is requested)
     models = [
@@ -406,7 +480,7 @@ def create_roc_curves(acronyms, curves_to_plot=['sbc', 'ml', 'gpt-4o', 'gpt-5-mi
     # Determine base file (first available file, one per acronym)
     if use_ml and ml_files:
         base_files = ml_files
-    elif ai_files_list:
+    elif ai_files_list and len(ai_files_list) > 0:
         # Use first AI file as base
         base_files = ai_files_list[0][0]  # This is already a list of files (one per acronym)
     elif use_sbc and sbc_files:

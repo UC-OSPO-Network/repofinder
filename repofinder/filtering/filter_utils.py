@@ -81,6 +81,7 @@ def get_combined_data(env, db_file, acronym, truncate=20000, subset=None, trunca
             WHERE r.contributors IS NOT NULL
         )
         SELECT r.manual_label, r.html_url, r.id, r.homepage, r.readme, r.description, r.full_name, r.organization, r.owner, r.size,
+                r.archived, r.fork, r.is_template,
                 o.url, o.email, o.location, o.name, o.description AS org_description, o.company,
                 MAX(CASE WHEN c.rn = 1 THEN c.contributor END) AS c1,
                 MAX(CASE WHEN c.rn = 1 THEN ct.bio END) AS c1_bio,
@@ -94,7 +95,12 @@ def get_combined_data(env, db_file, acronym, truncate=20000, subset=None, trunca
         LEFT JOIN organizations o ON r.owner = o.login
         LEFT JOIN top_contributors c ON r.id = c.id
         LEFT JOIN contributors ct ON c.contributor = ct.login
+        WHERE (r.fork = 0 OR r.fork = FALSE OR r.fork IS NULL)
+          AND (r.size > 0 OR r.size IS NULL)
+          AND (r.archived = 0 OR r.archived = FALSE OR r.archived IS NULL)
+          AND (r.is_template = 0 OR r.is_template = FALSE OR r.is_template IS NULL)
         GROUP BY r.manual_label, r.html_url, r.id, r.homepage, r.readme, r.description, r.full_name, r.organization, r.owner, r.size,
+                  r.archived, r.fork, r.is_template,
                   o.url, o.email, o.location, o.name, o.description, o.company
     '''
 
@@ -278,7 +284,7 @@ def get_type_combined_data(env, db_file, acronym, truncate=20000, subset=None, t
             COALESCE(cc.number_of_contributors, 0) AS number_of_contributors,
             COALESCE(r.forks, 0) AS number_of_forks,
             COALESCE(r.stargazers_count, 0) AS number_of_stars,
-            COALESCE(r.ai_prediction, 0) AS ai_prediction
+            COALESCE(r.affiliation_prediction_gpt_5_mini, 0) AS ai_prediction
         FROM repositories r
         LEFT JOIN contributor_counts cc ON r.full_name = cc.repository_name
     '''

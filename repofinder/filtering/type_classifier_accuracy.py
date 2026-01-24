@@ -30,6 +30,8 @@ def type_classifier_accuracy(test_file, predictions_file, acronym, output_prefix
 
     # Load GPT predictions
     df_gpt = pd.read_csv(predictions_file)
+    # Remove project_type column from predictions to avoid suffix conflicts during merge
+    df_gpt = df_gpt.drop(columns=["project_type"], errors="ignore")
 
     # Debug: check for missing URLs
     missing_urls = set(df_repos["html_url"]) - set(df_gpt["html_url"])

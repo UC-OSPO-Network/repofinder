@@ -36,7 +36,7 @@ def prepare_data(filename):
     return matrix, labels, all_data
     
 
-def run_models(filename, weights_output, acronym, method, all_models=True, client=None):
+def run_models(filename, weights_output, acronym, method, all_models=True, client=None, subset=None):
     """
     Runs classification models on prepared data and saves prediction results.
     
@@ -47,6 +47,9 @@ def run_models(filename, weights_output, acronym, method, all_models=True, clien
         embeddings (bool, optional): Whether the data contains embeddings. Defaults to True.
         all_models (bool, optional): Whether to run all models or only a selected one. Defaults to True.
         client (object, optional): Optional client for embedding generation (unused in this snippet).
+        subset (str, optional): Path to CSV file with html_url column to filter predictions.
+            If provided, only includes predictions for repositories in the subset in the output.
+            If None, includes predictions for all repositories (default: None).
     
     Returns:
         str: Path to the CSV file containing model predictions.
@@ -56,6 +59,15 @@ def run_models(filename, weights_output, acronym, method, all_models=True, clien
     df = pd.read_csv(filename)
     A, M, all_data = prepare_data(filename)
     filename = filename.split('.')[0]
+    
+    # Load subset if provided
+    subset_urls = None
+    if subset:
+        subset_df = pd.read_csv(subset)
+        if 'html_url' not in subset_df.columns:
+            raise ValueError(f"Subset CSV must contain 'html_url' column. Found columns: {list(subset_df.columns)}")
+        subset_urls = set(subset_df['html_url'].dropna().unique())
+        print(f"Filtering predictions to {len(subset_urls)} repositories from subset")
     if all_models:
         # List of model functions with their names
         models = [
@@ -115,6 +127,11 @@ def run_models(filename, weights_output, acronym, method, all_models=True, clien
     # Add predictions as new columns to the original dataframe
     df = pd.concat([df, predictions_df], axis=1)
     
+    # Filter to subset if provided
+    if subset_urls:
+        df = df[df['html_url'].isin(subset_urls)]
+        print(f"Filtered output to {len(df)} repositories from subset")
+    
     last_7_cols = df.columns[-7:].tolist()  # Use .tolist() for clarity
     cols_to_keep = ['html_url'] + last_7_cols
 
@@ -129,7 +146,7 @@ def run_models(filename, weights_output, acronym, method, all_models=True, clien
    
 
 
-def train_models(acronym, config_file, db_file, method="embeddings", build_matrix=False, client=None):
+def train_models(acronym, config_file, db_file, method="embeddings", build_matrix=False, client=None, subset=None):
     """
     trains the machine learning models on university repository data.
     
@@ -143,6 +160,9 @@ def train_models(acronym, config_file, db_file, method="embeddings", build_matri
         method (str, optional): 'matrix' or 'embeddings' to select training data type. Defaults to 'embeddings'.
         build_matrix (bool, optional): Whether to build the matrix before training. Defaults to False.
         client (object, optional): Client instance for embedding generation (used if method is 'embeddings').
+        subset (str, optional): Path to CSV file with html_url column to filter predictions.
+            If provided, only includes predictions for repositories in the subset in the output.
+            If None, includes predictions for all repositories (default: None).
     
     Returns:
         str: Path to the CSV file with model predictions.
@@ -159,19 +179,23 @@ def train_models(acronym, config_file, db_file, method="embeddings", build_matri
             csv_matrix = f'results/{acronym}/repository_university_matrix_{acronym}.csv'
         weights_output1 = f'results/{acronym}/weights_matrix_{acronym}.csv'
         print("Running models")
-        output_filename = run_models(csv_matrix, weights_output1, acronym, method, all_models=True)
+        output_filename = run_models(csv_matrix, weights_output1, acronym, method, all_models=True, subset=subset)
     
     # Embeddings 
     if method == "embeddings":
         
         if build_matrix: 
             print("Building embeddings matrix")
-            csv_embeddings = build_matrix_with_embeddings(config_file, db_file, acronym, client=client)
+            csv_embeddings = build_matrix_with_embeddings(config_file, db_file, acronym, client=client, subset=subset)
         else:
-            csv_embeddings = f'results/{acronym}/repository_embeddings_{acronym}.csv'
+            # Determine filename based on subset usage
+            if subset:
+                csv_embeddings = f'results/{acronym}/repository_embeddings_{acronym}_subset.csv'
+            else:
+                 csv_embeddings = f'results/{acronym}/repository_embeddings_{acronym}.csv'
         weights_output2 = f'results/{acronym}/weights_embeddings_{acronym}.csv'
         print(f"Running models with {method}")
-        output_filename= run_models(csv_embeddings, weights_output2, acronym, method, all_models=True, client=client)
+        output_filename = run_models(csv_embeddings, weights_output2, acronym, method, all_models=True, client=client, subset=subset)
     return output_filename
 
 
