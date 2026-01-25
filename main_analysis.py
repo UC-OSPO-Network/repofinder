@@ -73,7 +73,7 @@ def plot_analysis(all_data_dict):
     for i, (acronym, df) in enumerate(all_data_dict.items()):
         filtered = filter_data(df, threshold=thresholds[acronym])
         count = filtered[
-            ['description', 'readme', 'license', 'code_of_conduct',
+            ['description', 'readme', 'license', 'code_of_conduct_file',
              'contributing', 'security_policy', 'issue_templates', 'pull_request_template']
         ].notna().sum().max()
         max_count = max(max_count, count)
