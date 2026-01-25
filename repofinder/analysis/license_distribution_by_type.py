@@ -7,7 +7,8 @@ import pandas as pd
 def plot_license_distribution_by_type(
     filtered_data, acronym="", ax=None, color_map=None,
     title_prefix="", hide_ylabel=False, license_order=None,
-    ylim=None, label_size=25, title_size=24, textprops=16, other_thres=0.02
+    ylim=None, label_size=25, title_size=24, textprops=16, other_thres=0.02,
+    legend_size=None
 ):
     """
     Plot a stacked bar chart showing license distribution across GPT-predicted project types.
@@ -20,7 +21,7 @@ def plot_license_distribution_by_type(
     Parameters
     ----------
     filtered_data : pandas.DataFrame
-        DataFrame containing at least the columns 'license' and 'gpt_category'.
+        DataFrame containing at least the columns 'license' and 'type_prediction_gpt_5_mini'.
     acronym : str, optional
         Acronym to include in the plot title, e.g., a university or organization abbreviation.
     ax : matplotlib.axes.Axes, optional
@@ -42,6 +43,8 @@ def plot_license_distribution_by_type(
     other_thres : float, default=0.02
         Threshold for filtering minor licenses. Licenses representing less than this
         fraction of the total are grouped into an "Other" category.
+    legend_size : int, optional
+        Font size for legend text and title. If None, uses label_size.
     
     Returns
     -------
@@ -55,7 +58,7 @@ def plot_license_distribution_by_type(
     data['license'] = data['license'].fillna('None')
 
     # Count licenses per project type
-    grouped = data.groupby('license')['gpt_category'].value_counts().unstack(fill_value=0)
+    grouped = data.groupby('license')['type_prediction_gpt_5_mini'].value_counts().unstack(fill_value=0)
 
     # Filter major licenses (at least 2% globally)
     license_totals = data['license'].value_counts()
@@ -88,7 +91,7 @@ def plot_license_distribution_by_type(
     grouped = grouped.loc[total_counts.sort_values().index]
     
     # Compute the project type totals (sum over all licenses)
-    project_type_totals = filtered_data['gpt_category'].value_counts()
+    project_type_totals = filtered_data['type_prediction_gpt_5_mini'].value_counts()
     project_type_totals.name = 'Project Type'
 
     # Append project type totals as a new "bar" on the right
@@ -168,10 +171,11 @@ def plot_license_distribution_by_type(
     ax.set_ylim(0, max_height + total_repositories * 0.11)
     
     # Legend inside top-right corner of the plot
+    legend_fontsize = legend_size if legend_size is not None else label_size
     ax.legend(
         title="Project Type",
-        fontsize=label_size,
-        title_fontsize=label_size,
+        fontsize=legend_fontsize,
+        title_fontsize=legend_fontsize,
         loc='upper left',
         frameon=True,
         framealpha=0.9

@@ -7,7 +7,8 @@ import pandas as pd
 def plot_language_distribution_by_type(
     filtered_data, acronym="", ax=None, color_map=None,
     title_prefix="", hide_ylabel=False, language_order=None,
-    ylim=None, label_size=25, title_size=24, props=15, other_thres=0.02
+    ylim=None, label_size=25, title_size=24, props=12, other_thres=0.02,
+    legend_size=None
     ):
     """
     Plot a stacked bar chart showing programming language distribution across GPT-predicted project types.
@@ -22,7 +23,7 @@ def plot_language_distribution_by_type(
     Parameters
     ----------
     filtered_data : pandas.DataFrame
-        DataFrame containing at least the columns 'language' and 'gpt_category'.
+        DataFrame containing at least the columns 'language' and 'type_prediction_gpt_5_mini'.
     acronym : str, optional
         Acronym to include in the plot title (e.g., a university or organizational abbreviation).
     ax : matplotlib.axes.Axes, optional
@@ -44,6 +45,8 @@ def plot_language_distribution_by_type(
     other_thres : float, default=0.02
         Minimum threshold (as a proportion of total repositories) for a language to be shown as its own bar.
         Languages below this threshold are grouped into the "Other" category.
+    legend_size : int, optional
+        Font size for legend text and title. If None, uses label_size.
 
     Returns
     -------
@@ -66,7 +69,7 @@ def plot_language_distribution_by_type(
         'Jupyter Notebook': 'Jupyter NB'})
 
     # Count languages per project type
-    grouped = data.groupby('language')['gpt_category'].value_counts().unstack(fill_value=0)
+    grouped = data.groupby('language')['type_prediction_gpt_5_mini'].value_counts().unstack(fill_value=0)
 
     # Filter major languages (at least 2% globally)
     language_totals = data['language'].value_counts()
@@ -94,7 +97,7 @@ def plot_language_distribution_by_type(
         grouped = grouped.loc[total_counts.sort_values().index]
     
     # Compute the project type totals (sum over all languages)
-    project_type_totals = filtered_data['gpt_category'].value_counts()
+    project_type_totals = filtered_data['type_prediction_gpt_5_mini'].value_counts()
     project_type_totals.name = 'Project Type'
 
     # Append project type totals as a new "bar" on the right
@@ -176,10 +179,11 @@ def plot_language_distribution_by_type(
     ax.set_ylim(0, max_height + total_repositories * 0.11)
     
     # Legend inside top-right corner of the plot
+    legend_fontsize = legend_size if legend_size is not None else label_size
     ax.legend(
         title="Project Type",
-        fontsize=label_size,
-        title_fontsize=label_size,
+        fontsize=legend_fontsize,
+        title_fontsize=legend_fontsize,
         loc='upper left',
         frameon=True,
         framealpha=0.9

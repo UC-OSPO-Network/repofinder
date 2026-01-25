@@ -10,7 +10,7 @@ import pandas as pd
 def plot_feature_counts_per_type(
     filtered_data, features, acronym="", top=False, ax=None, title_prefix="",
     order=None, feature_colors=None, ylim=None, hide_ylabel=False,
-    label_size=25, title_size=24, textprops=18,
+    label_size=25, title_size=24, textprops=18, legend_size=None,
     ):
     """
     Plot a stacked bar chart of feature presence counts across GPT-predicted project types.
@@ -24,7 +24,7 @@ def plot_feature_counts_per_type(
     Parameters
     ----------
     filtered_data : pandas.DataFrame
-        DataFrame that includes columns for the specified `features` and a 'gpt_category' column
+        DataFrame that includes columns for the specified `features` and a 'type_prediction_gpt_5_mini' column
         representing predicted project types.
     features : list of str
         List of feature column names to include in the plot (e.g., 'readme', 'license').
@@ -48,6 +48,8 @@ def plot_feature_counts_per_type(
         Font size for axis labels.
     title_size : int, default=24
         Font size for the plot title.
+    legend_size : int, optional
+        Font size for legend text and title. If None, uses textprops.
 
     Returns
     -------
@@ -62,22 +64,22 @@ def plot_feature_counts_per_type(
         'description': 'Description',
         'readme': 'README',
         'license': 'License',
-        'code_of_conduct': 'Code of Conduct',
+        'code_of_conduct_file': 'Code of Conduct',
         'contributing': 'Contributing Guide',
         'security_policy': 'Security Policy',
         'issue_templates': 'Issue Templates',
         'pull_request_template': 'PR Template',
-        'gpt_category': "Project Type"
+        'type_prediction_gpt_5_mini': "Project Type"
         
     }
 
-    # Validate the gpt_category column
-    if "gpt_category" not in filtered_data.columns:
-        raise ValueError("filtered_data must contain a 'gpt_category' column")
+    # Validate the type_prediction_gpt_5_mini column
+    if "type_prediction_gpt_5_mini" not in filtered_data.columns:
+        raise ValueError("filtered_data must contain a 'type_prediction_gpt_5_mini' column")
 
     # Map original feature names to display names
     data = filtered_data.copy()
-    data = data[features + ['gpt_category']]
+    data = data[features + ['type_prediction_gpt_5_mini']]
     data = data.rename(columns=feature_display_names)
 
     # Compute grouped counts
@@ -90,7 +92,7 @@ def plot_feature_counts_per_type(
 
     grouped = grouped.loc[order]
 
-    # Default colors for each gpt_category
+    # Default colors for each type_prediction_gpt_5_mini
     category_list = grouped.columns.tolist()
     cmap = plt.get_cmap('tab20')
     category_colors = {cat: cmap(i) for i, cat in enumerate(category_list)}
@@ -179,7 +181,8 @@ def plot_feature_counts_per_type(
     max_height = max(bottoms_array)
     ax.set_ylim(0, max_height + total_repositories * 0.13)
     ax.set_xlim(min(x_positions) - 0.5, max(x_positions) + 0.8)
-    ax.legend(title="Project Type", fontsize=textprops, title_fontsize=textprops)
+    legend_fontsize = legend_size if legend_size is not None else textprops
+    ax.legend(title="Project Type", fontsize=legend_fontsize, title_fontsize=legend_fontsize)
 
     if top:
         plt.savefig(f'plots/{acronym}/CountPerFeatureTop_Stacked.png', dpi=300)

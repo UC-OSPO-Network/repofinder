@@ -15,7 +15,7 @@ def plot_type_distribution(
     Parameters
     ----------
     filtered_data : pandas.DataFrame
-        The filtered dataset containing the 'gpt_category' column.
+        The filtered dataset containing the 'type_prediction_gpt_5_mini' column.
 
     acronym : str
         Acronym for the institution or group being plotted.
@@ -35,7 +35,7 @@ def plot_type_distribution(
         This function generates a pie chart but does not return any values.
     """
     total_repositories = len(filtered_data)
-    category_counts = filtered_data['gpt_category'].value_counts()
+    category_counts = filtered_data['type_prediction_gpt_5_mini'].value_counts()
 
     labels = category_counts.index.tolist()
 

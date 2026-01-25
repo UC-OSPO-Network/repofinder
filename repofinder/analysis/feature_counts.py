@@ -45,7 +45,7 @@ def plot_feature_counts(
         The mapping of feature display names to their corresponding colors used in the plot.
     """
     features = [
-        'description', 'readme', 'license', 'code_of_conduct',
+        'description', 'readme', 'license', 'code_of_conduct_file',
         'contributing', 'security_policy', 'issue_templates', 'pull_request_template'
     ]
     
@@ -53,7 +53,7 @@ def plot_feature_counts(
         'description': 'Description',
         'readme': 'README',
         'license': 'License',
-        'code_of_conduct': 'Code of Conduct',
+        'code_of_conduct_file': 'Code of Conduct',
         'contributing': 'Contributing Guide',
         'security_policy': 'Security Policy',
         'issue_templates': 'Issue Templates',

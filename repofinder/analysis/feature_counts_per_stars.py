@@ -12,7 +12,7 @@ def plot_feature_distribution_by_star_bucket(
         'description': 'Description',
         'readme': 'README',
         'license': 'License',
-        'code_of_conduct': 'Code of Conduct',
+        'code_of_conduct_file': 'Code of Conduct',
         'contributing': 'Contributing Guide',
         'security_policy': 'Security Policy',
         'issue_templates': 'Issue Templates',

@@ -44,7 +44,7 @@ def plot_analysis_by_type_combined(all_data_dict):
     """
     os.makedirs('plots/combined', exist_ok=True)
 
-    thresholds = {"UCSB": 0.3, "UCSC": 0.6, "UCSD": 0.3}
+    thresholds = {"UCSB": 0.7, "UCSC": 0.65, "UCSD": 0.4}
     
     
     # TYPE DISTRIBUTION
@@ -99,7 +99,8 @@ def plot_analysis_by_type_combined(all_data_dict):
         ax=ax, 
         label_size=22, 
         title_size=23,
-        other_thres=0.009)
+        other_thres=0.009,
+        legend_size=15)
     plt.tight_layout()
     plt.savefig("plots/combined/all_license_distribution.png", dpi=300)
     #plt.show()
@@ -112,16 +113,17 @@ def plot_analysis_by_type_combined(all_data_dict):
         merged_filtered_df, 
         acronym="", 
         ax=ax, 
-        label_size=22, 
+        label_size=20, 
         title_size=23,
-        other_thres=0.02)
+        other_thres=0.02,
+        legend_size=15)
     plt.tight_layout()
     plt.savefig("plots/combined/all_language_distribution.png", dpi=300)
     #plt.show()
     plt.close()
     
     features = [
-        'description', 'readme', 'license', 'code_of_conduct',
+        'description', 'readme', 'license', 'code_of_conduct_file',
         'contributing', 'security_policy', 'issue_templates', 'pull_request_template'
     ]
     
@@ -134,7 +136,8 @@ def plot_analysis_by_type_combined(all_data_dict):
         acronym="", 
         ax=ax, 
         label_size=22, 
-        title_size=23)
+        title_size=23,
+        legend_size=15)
     plt.tight_layout()
     plt.savefig("plots/combined/all_features_distribution.png", dpi=300)
     #plt.show()
@@ -142,7 +145,7 @@ def plot_analysis_by_type_combined(all_data_dict):
     
     # FEATURE COUNT BY STARS
     
-    dev_df = merged_filtered_df[merged_filtered_df['gpt_category'] == 'DEV']
+    dev_df = merged_filtered_df[merged_filtered_df['type_prediction_gpt_5_mini'] == 'DEV']
     fig, ax = plt.subplots(figsize=(8, 6))
     plot_feature_heatmap_by_star_bucket(
         dev_df,
@@ -190,7 +193,25 @@ def plot_analysis_by_type_combined(all_data_dict):
 
 
 
-def get_all_data(acronyms = ['UCB', 'UCD', 'UCI', 'UCLA', 'UCM', 'UCR', 'UCSB', 'UCSC', 'UCSD', 'UCSF']):
+def get_all_data(acronyms = None):
+    """
+    Get data for all universities or specified acronyms.
+    
+    Parameters
+    ----------
+    acronyms : list, optional
+        List of university acronyms. If None, uses all UC campuses.
+        Default: None (all campuses).
+    
+    Returns
+    -------
+    dict
+        Dictionary mapping acronyms to DataFrames.
+    """
+    if acronyms is None:
+        # Default to all UC campuses
+        acronyms = ["UCB", "UCD", "UCLA", "UCM", "UCR", "UCSB", "UCSC", "UCSF", 'UCSD', 'UCI']
+    
     all_data = {}
     for acronym in acronyms:
         path = f"Data/db/repository_data_{acronym}_database.db"
