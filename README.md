@@ -59,20 +59,23 @@ python repofinder/main_scraping.py
 
 
 It will execute the following steps:
-1. **Repository Finder:** Generates a JSON file with repositories based on a configuration file (~5 mins).
-2. **Database Creation:** Reads the JSON file and creates a database (~1 secs).
-3. **Organization Data Collection:** Gathers organization metadata (~1 hour).
-4. **Extra Features Extraction:** Retrieves extra features that are not collected by default. (This includes release downloads, readme, code of conduct, contributing, security policy, issue templates, pull request template, subscribers count) (~24 hours).
-5. **Contributor Data Collection:** Fetches contributor details (~4 hours).
+1. **Repository Finder:** Generates a JSON file with repositories based on a configuration file.
+2. **Database Creation:** Reads the JSON file and creates a database.
+3. **Organization Data Collection:** Gathers organization metadata.
+4. **Repository Collection from Organizations:** Finds repositories owned by discovered organizations.
+5. **User Data Collection:** Identifies users affiliated with the university.
+6. **Repository Collection from Users:** Finds repositories owned by discovered users.
+7. **Extra Features Extraction:** Retrieves extra features that are not collected by default (includes release downloads, readme, code of conduct, contributing, security policy, issue templates, pull request template, subscribers count).
+8. **Contributor Data Collection:** Fetches contributor details for repositories.
 
-Execution times may vary based on the number of repositories and API rate limits.
+Note: Execution times vary based on the number of repositories and API rate limits. You can selectively comment out steps in `main_scraping.py` to run only specific parts of the pipeline.
 
 ## Filtering
 This step filters repositories in two stages: (1) identifying whether a repository is affiliated with a university and (2) classifying the type of project (DEV, EDU, DATA, DOCS, WEB, OTHER). Both tasks are handled in the `main_filtering.py` script.
 
 1. Score-based classification, which applies a set of heuristic rules over repository and contributor metadata.
 2. Supervised machine learning models using embedding models.
-3. Large Language Model (LLM) classification using OpenAI models (e.g., GPT-4o and GPT-3.5).
+3. Large Language Model (LLM) classification using OpenAI models (e.g., GPT-4o, GPT-5-mini, and GPT-3.5-turbo).
 
 There are manual labels and test sets for UCSB, UCSC and UCSD so you can use all classification methods for these three universities.
 
