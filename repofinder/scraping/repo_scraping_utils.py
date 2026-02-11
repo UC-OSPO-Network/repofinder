@@ -180,22 +180,29 @@ def build_repo_queries(config_file):
 
 
 
-def search_repositories_with_queries(query_terms, headers):
+def search_repositories_with_queries(query_terms, headers, max_repositories=1000):
     """
     Searches GitHub repositories based on query terms and records matching queries.
 
     Args:
         query_terms (list): List of query strings.
         headers (dict): HTTP headers for the request.
+        max_repositories (int): Maximum number of repositories to collect (default: 1000).
 
     Returns:
         dict: A dictionary of repositories with their matching queries.
     """
     repositories = [] # TODO: Figure out what to do with duplicates
     for query_term in query_terms:
+        if len(repositories) >= max_repositories:
+            logger.info(f"Reached maximum repository limit of {max_repositories}. Stopping collection.")
+            break
         params = {'q': query_term, 'per_page': 100}
         url = f"{GITHUB_API_URL}/search/repositories"
         while url:
+            if len(repositories) >= max_repositories:
+                logger.info(f"Reached maximum repository limit of {max_repositories}. Stopping collection.")
+                break
             logger.debug(f"Searching repositories with URL: {url} and params: {params}")
             try:
                 data, headers_response = github_api_request(url, headers, params)
@@ -205,11 +212,18 @@ def search_repositories_with_queries(query_terms, headers):
             if data:  # TODO: Figure out caching
                 items = data.get('items', [])
                 repositories.extend(items)
+                # Trim to max_repositories if we exceeded the limit
+                if len(repositories) > max_repositories:
+                    repositories = repositories[:max_repositories]
+                    logger.info(f"Reached maximum repository limit of {max_repositories}. Stopping collection.")
+                    break
                 next_url = get_next_link(headers_response)
                 url = next_url
                 params = None  # Parameters are only needed for the initial request
             else:
                 break
+        if len(repositories) >= max_repositories:
+            break
     return repositories
 
 

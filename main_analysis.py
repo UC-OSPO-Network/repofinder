@@ -15,13 +15,12 @@ matplotlib.rcParams['font.family'] = 'Lato'
 def plot_analysis(all_data_dict):
     """
     Generate and save grouped bar plots for language usage, license types,
-    and repository feature presence across multiple universities.
+    and repository feature presence for GT.
 
     Parameters
     ----------
     all_data_dict : dict of {str: pd.DataFrame}
-        A dictionary mapping university acronyms (e.g., "UCSB", "UCSC", "UCSD") to their
-        corresponding repository metadata DataFrames.
+        A dictionary mapping university acronym (e.g., "GT") to repository metadata DataFrame.
     
     Notes
     -----
@@ -35,16 +34,20 @@ def plot_analysis(all_data_dict):
     """
     os.makedirs('plots/combined', exist_ok=True)
 
-    thresholds = {"UCSB": 0.3, "UCSC": 0.6, "UCSD": 0.3}
+    default_threshold = 0.3
 
     # LANGUAGE DISTRIBUTION
-    fig, axes = plt.subplots(1, 3, figsize=(18, 6))
+    n_unis = len(all_data_dict)
+    fig, axes = plt.subplots(1, max(n_unis, 1), figsize=(6 * max(n_unis, 1), 6))
+    if n_unis == 1:
+        axes = [axes]
     lang_color_map = build_shared_color_map(all_data_dict, column='language')
     
     for i, (acronym, df) in enumerate(all_data_dict.items()):
         letter = string.ascii_lowercase[i]
         title_prefix = f"({letter}) "
-        filtered = filter_data(df, threshold=thresholds[acronym])
+        thresh = default_threshold
+        filtered = filter_data(df, threshold=thresh)
         plot_language_distribution(filtered, acronym, ax=axes[i], color_map=lang_color_map, title_prefix=title_prefix)
     plt.tight_layout()
     plt.savefig("plots/combined/language_distribution_grouped.png", dpi=300)
@@ -52,12 +55,15 @@ def plot_analysis(all_data_dict):
     plt.close()
 
     # LICENSE DISTRIBUTION
-    fig, axes = plt.subplots(1, 3, figsize=(18, 6))
+    fig, axes = plt.subplots(1, max(n_unis, 1), figsize=(6 * max(n_unis, 1), 6))
+    if n_unis == 1:
+        axes = [axes]
     lang_color_map = build_shared_color_map(all_data_dict, column='license')
     for i, (acronym, df) in enumerate(all_data_dict.items()):
         letter = string.ascii_lowercase[i]
         title_prefix = f"({letter}) "
-        filtered = filter_data(df, threshold=thresholds[acronym])
+        thresh = default_threshold
+        filtered = filter_data(df, threshold=thresh)
         plot_license_distribution(filtered, acronym, ax=axes[i], color_map=lang_color_map, title_prefix=title_prefix)
     plt.tight_layout()
     plt.savefig("plots/combined/license_distribution_grouped.png", dpi=300, bbox_inches='tight')
@@ -71,7 +77,7 @@ def plot_analysis(all_data_dict):
     max_count = 0
     
     for i, (acronym, df) in enumerate(all_data_dict.items()):
-        filtered = filter_data(df, threshold=thresholds[acronym])
+        filtered = filter_data(df, threshold=default_threshold)
         count = filtered[
             ['description', 'readme', 'license', 'code_of_conduct_file',
              'contributing', 'security_policy', 'issue_templates', 'pull_request_template']
@@ -81,11 +87,14 @@ def plot_analysis(all_data_dict):
     ylim = max_count + int(max_count * 0.09)  # Add 9% headroom for percentage labels
     
     # Step 2: Plot with shared scale and controlled y-axis labels
-    fig, axes = plt.subplots(1, 3, figsize=(18, 8), constrained_layout=True)
+    n_unis = len(all_data_dict)
+    fig, axes = plt.subplots(1, max(n_unis, 1), figsize=(6 * max(n_unis, 1), 8), constrained_layout=True)
+    if n_unis == 1:
+        axes = [axes]
     for i, (acronym, df) in enumerate(all_data_dict.items()):
         letter = string.ascii_lowercase[i]
         title_prefix = f"({letter})"
-        filtered = filter_data(df, threshold=thresholds[acronym])
+        filtered = filter_data(df, threshold=default_threshold)
         order, feature_colors = plot_feature_counts(
             filtered,
             acronym,
@@ -102,10 +111,15 @@ def plot_analysis(all_data_dict):
 
 
 
-def get_all_data(acronyms = ['UCSB', 'UCSC', 'UCSD']):
+def get_all_data(acronyms=None):
+    if acronyms is None:
+        acronyms = ['GT']
     all_data = {}
     for acronym in acronyms:
         path = f"Data/db/repository_data_{acronym}_database.db"
+        if not os.path.exists(path):
+            print(f"Skipping {acronym}: database not found at {path}")
+            continue
         data = db_to_df(path, acronym)
         all_data[acronym] = data
     return all_data
