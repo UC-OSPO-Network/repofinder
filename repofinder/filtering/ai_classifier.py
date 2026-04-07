@@ -11,6 +11,13 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from threading import Semaphore
 
+
+def _chat_deployment_or_model(model: str) -> str:
+    """Use Azure deployment name from env if set; otherwise the given model name."""
+    deployment = (os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT") or os.getenv("AZURE_OPENAI_DEPLOYMENT") or "").strip()
+    return deployment or model
+
+
 def _format_field_with_truncation_info(field_name, field_value, truncation_type, truncate, start_length, end_length):
     """
     Format a field value with explicit truncation information for LLM prompts.
@@ -209,9 +216,11 @@ def _process_row(row_data):
         
         for attempt in range(max_retries):
             try:
+                # Azure uses deployment names; use env override when set
+                deployment = _chat_deployment_or_model(model)
                 if model == "gpt-5" or model == "gpt-5-mini":
                     kwargs = {
-                        "model": model,
+                        "model": deployment,
                         "messages": [
                             {"role": "system", "content": system_message},
                             {"role": "user", "content": prompt}
@@ -220,19 +229,21 @@ def _process_row(row_data):
                     }
                 else:
                     kwargs = {
-                        "model": model,
+                        "model": deployment,
                         "messages": [
                             {"role": "system", "content": system_message},
                             {"role": "user", "content": prompt}
                         ],
-                        "temperature": 0,  # deterministic
                         "timeout": 60.0  # 60 second timeout
                     }
-                
-                # Set seed only if using gpt-4o or gpt-4-turbo
-                if model.startswith("gpt-4o"):
+                    # Azure often allows only default temperature (1); omit temperature when using Azure
+                    if not (os.getenv("AZURE_OPENAI_ENDPOINT") or "").strip():
+                        kwargs["temperature"] = 0  # deterministic for OpenAI
+
+                # Set seed only if using gpt-4o or gpt-4-turbo (OpenAI; Azure may not support seed)
+                if model.startswith("gpt-4o") and not (os.getenv("AZURE_OPENAI_ENDPOINT") or "").strip():
                     kwargs["seed"] = 42
-                
+
                 response = client.chat.completions.create(**kwargs)
                 content = response.choices[0].message.content.strip()
                 # Parse response
@@ -273,9 +284,10 @@ def _process_row(row_data):
     
     return row_idx, answer, explanation
 
-def compute_ai_predictions(acronym, config_file, db_file, client, model="gpt-5-mini", subset=False, 
+def compute_ai_predictions(acronym, config_file, db_file, client, model="gpt-5-mini", subset=False,
                            max_workers=30, rate_limit=10, checkpoint_interval=100, resume=True,
-                           truncate=20000, truncation_type="start", start_length=15000, end_length=5000):
+                           truncate=20000, truncation_type="start", start_length=15000, end_length=5000,
+                           max_repos=None):
     """
     Classify whether repositories belong to a university using OpenAI's GPT API.
 
@@ -324,6 +336,9 @@ def compute_ai_predictions(acronym, config_file, db_file, client, model="gpt-5-m
     end_length : int, optional
         Number of characters from end for "start_end" truncation type
         (default: 5000).
+    max_repos : int, optional
+        If set, only process at most this many repositories (truncates after
+        filtering and resume check). Use for testing or to limit API usage (default: None).
 
     Returns
     -------
@@ -483,6 +498,10 @@ def compute_ai_predictions(acronym, config_file, db_file, client, model="gpt-5-m
     df_urls_set = set(df['html_url'].dropna().unique())
     already_in_predictions = df_urls_set.intersection(existing_urls_set)
     new_repositories = df_urls_set - existing_urls_set
+
+    if max_repos is not None and max_repos > 0 and len(new_repositories) > max_repos:
+        new_repositories = set(list(new_repositories)[:max_repos])
+        print(f"  - Truncated to {max_repos} repositories (max_repos limit)")
     
     print(f"\nRepository comparison:")
     print(f"  - Total repositories from database: {total_repositories}")

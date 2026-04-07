@@ -11,6 +11,12 @@ from threading import Semaphore
 from repofinder.filtering.filter_utils import get_type_combined_data
 
 
+def _chat_deployment_or_model(model: str) -> str:
+    """Use Azure deployment name from env if set; otherwise the given model name."""
+    deployment = (os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT") or os.getenv("AZURE_OPENAI_DEPLOYMENT") or "").strip()
+    return deployment or model
+
+
 def _process_type_row(row_data):
     """
     Process a single repository row for type classification with retry logic.
@@ -84,9 +90,11 @@ def _process_type_row(row_data):
         
         for attempt in range(max_retries):
             try:
+                # Azure uses deployment names; use env override when set
+                deployment = _chat_deployment_or_model(model)
                 if model == "gpt-5" or model == "gpt-5-mini":
                     kwargs = {
-                        "model": model,
+                        "model": deployment,
                         "messages": [
                             {"role": "system", "content": system_message},
                             {"role": "user", "content": prompt}
@@ -95,17 +103,19 @@ def _process_type_row(row_data):
                     }
                 else:
                     kwargs = {
-                        "model": model,
+                        "model": deployment,
                         "messages": [
                             {"role": "system", "content": system_message},
                             {"role": "user", "content": prompt}
                         ],
-                        "temperature": 0,  # deterministic
                         "timeout": 60.0  # 60 second timeout
                     }
-                
-                # Set seed only if using gpt-4o or gpt-4-turbo
-                if model.startswith("gpt-4o"):
+                    # Azure often allows only default temperature (1); omit temperature when using Azure
+                    if not (os.getenv("AZURE_OPENAI_ENDPOINT") or "").strip():
+                        kwargs["temperature"] = 0  # deterministic for OpenAI
+
+                # Set seed only if using gpt-4o or gpt-4-turbo (OpenAI; Azure may not support seed)
+                if model.startswith("gpt-4o") and not (os.getenv("AZURE_OPENAI_ENDPOINT") or "").strip():
                     kwargs["seed"] = 42
 
                 response = client.chat.completions.create(**kwargs)
@@ -153,7 +163,7 @@ def _process_type_row(row_data):
 def compute_ai_type_predictions(acronym, config_file, db_file, client, model="gpt-4o", subset=False,
                                 max_workers=30, rate_limit=10, checkpoint_interval=100, resume=True,
                                 truncate=20000, truncation_type="start", start_length=15000, end_length=5000,
-                                affiliated_only=False, affiliation_threshold=None):
+                                affiliated_only=False, affiliation_threshold=None, max_repos=None):
     """
     Classify repositories into categories using OpenAI GPT with concurrent processing.
 
@@ -208,6 +218,8 @@ def compute_ai_type_predictions(acronym, config_file, db_file, client, model="gp
     affiliation_threshold : float, optional
         Threshold for affiliation filtering. If None, uses default thresholds:
         UCSB=0.7, UCSC=0.65, UCSD=0.4, others=0.5 (default: None).
+    max_repos : int, optional
+        If set, only process at most this many repositories (default: None).
 
     Returns
     -------
@@ -383,7 +395,11 @@ def compute_ai_type_predictions(acronym, config_file, db_file, client, model="gp
     df_urls_set = set(df['html_url'].dropna().unique())
     already_in_predictions = df_urls_set.intersection(existing_urls_set)
     new_repositories = df_urls_set - already_in_predictions
-    
+
+    if max_repos is not None and max_repos > 0 and len(new_repositories) > max_repos:
+        new_repositories = set(list(new_repositories)[:max_repos])
+        print(f"  - Truncated to {max_repos} repositories (max_repos limit)")
+
     print(f"\nRepository comparison:")
     print(f"  - Total repositories from database: {total_repositories}")
     print(f"  - Already in predictions file: {len(already_in_predictions)}")

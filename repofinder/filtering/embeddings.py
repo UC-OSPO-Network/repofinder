@@ -1,9 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
 import sqlite3
 import pandas as pd
 from repofinder.filtering.filter_utils import get_combined_data, truncate_text
+
+
+def _embedding_deployment_or_model(model: str) -> str:
+    """Use Azure embedding deployment name from env if set; otherwise the given model name.
+    Only AZURE_OPENAI_EMBEDDING_DEPLOYMENT is used here (chat deployment must not be used for embeddings).
+    """
+    deployment = (os.getenv("AZURE_OPENAI_EMBEDDING_DEPLOYMENT") or "").strip()
+    return deployment or model
+
 
 def get_embedding(text, client, model="text-embedding-3-small", max_chars=10000, start_length=7000, end_length=3000):
     """
@@ -40,8 +50,9 @@ def get_embedding(text, client, model="text-embedding-3-small", max_chars=10000,
     # This handles edge cases where truncate_text might not work as expected
     if len(text) > 8000:
         text = text[:8000]
-    
-    return client.embeddings.create(input=[text], model=model).data[0].embedding
+
+    deployment = _embedding_deployment_or_model(model)
+    return client.embeddings.create(input=[text], model=deployment).data[0].embedding
 
 
 def build_matrix_with_embeddings(env, db_file, acronym, client, subset=None):
