@@ -143,6 +143,9 @@ def graphql_api_request(query, headers, rate_limiter=None):
             if response.status_code == 200:
                 payload = response.json()
                 if payload.get("errors"):
+                    if payload.get("data") is not None:
+                        logger.warning(f"GraphQL partial errors: {payload['errors']}")
+                        return payload.get("data")
                     logger.error(f"GraphQL errors: {payload['errors']}")
                     return None
                 return payload.get("data")
@@ -208,15 +211,24 @@ def _repository_graphql_fields():
         repositories(first: %s, after: %s, ownerAffiliations: OWNER) {
           nodes {
             databaseId
+            id
             name
             nameWithOwner
             description
+            diskUsage
             homepageUrl
             url
+            sshUrl
             isPrivate
             isFork
             isArchived
             isDisabled
+            isTemplate
+            hasIssuesEnabled
+            hasProjectsEnabled
+            hasWikiEnabled
+            hasDiscussionsEnabled
+            visibility
             stargazerCount
             forkCount
             createdAt
@@ -240,6 +252,8 @@ def _repository_graphql_fields():
                 topic { name }
               }
             }
+            issues(states: OPEN) { totalCount }
+            watchers { totalCount }
             defaultBranchRef { name }
           }
           pageInfo {
@@ -269,6 +283,12 @@ def _build_repository_batch_query(owner_kind, owners):
 def _repository_node_to_rest_dict(node):
     owner = node.get("owner") or {}
     license_info = node.get("licenseInfo")
+    full_name = node.get("nameWithOwner")
+    html_url = node.get("url")
+    api_url = f"{GITHUB_API_URL}/repos/{full_name}" if full_name else None
+    clone_url = f"{html_url}.git" if html_url else None
+    git_url = f"git://github.com/{full_name}.git" if full_name else None
+    visibility = node.get("visibility")
     topics = [
         topic_node.get("topic", {}).get("name")
         for topic_node in (node.get("repositoryTopics") or {}).get("nodes", [])
@@ -277,17 +297,38 @@ def _repository_node_to_rest_dict(node):
 
     return {
         "id": node.get("databaseId"),
+        "node_id": node.get("id"),
         "name": node.get("name"),
-        "full_name": node.get("nameWithOwner"),
-        "html_url": node.get("url"),
+        "full_name": full_name,
+        "url": api_url,
+        "html_url": html_url,
+        "clone_url": clone_url,
+        "git_url": git_url,
+        "ssh_url": node.get("sshUrl"),
+        "svn_url": html_url,
         "description": node.get("description"),
         "homepage": node.get("homepageUrl"),
         "private": node.get("isPrivate"),
         "fork": node.get("isFork"),
         "archived": node.get("isArchived"),
         "disabled": node.get("isDisabled"),
+        "is_template": node.get("isTemplate"),
+        "size": node.get("diskUsage"),
+        "has_issues": node.get("hasIssuesEnabled"),
+        "has_projects": node.get("hasProjectsEnabled"),
+        "has_wiki": node.get("hasWikiEnabled"),
+        "has_discussions": node.get("hasDiscussionsEnabled"),
+        "has_pages": None,
+        "has_downloads": None,
+        "visibility": visibility.lower() if isinstance(visibility, str) else visibility,
         "stargazers_count": node.get("stargazerCount"),
+        "watchers": node.get("stargazerCount"),
+        "watchers_count": node.get("stargazerCount"),
+        "subscribers_count": (node.get("watchers") or {}).get("totalCount"),
         "forks_count": node.get("forkCount"),
+        "forks": node.get("forkCount"),
+        "open_issues": (node.get("issues") or {}).get("totalCount"),
+        "open_issues_count": (node.get("issues") or {}).get("totalCount"),
         "created_at": node.get("createdAt"),
         "updated_at": node.get("updatedAt"),
         "pushed_at": node.get("pushedAt"),
@@ -332,6 +373,20 @@ def _fetch_repositories_graphql(owner_kind, owner_dicts, headers):
     owners = [{"login": owner["login"], "cursor": None, "source": owner} for owner in owner_dicts]
     repos = []
     processed = 0
+    total_owners = len(owner_dicts)
+    next_progress_report = 10
+    last_reported = 0
+
+    def mark_owner_processed():
+        nonlocal processed, next_progress_report, last_reported
+        processed += 1
+        while processed >= next_progress_report:
+            print(f"Processed {next_progress_report}/{total_owners} {owner_kind}s...")
+            last_reported = next_progress_report
+            next_progress_report += 10
+        if processed == total_owners and last_reported != processed:
+            print(f"Processed {processed}/{total_owners} {owner_kind}s...")
+            last_reported = processed
 
     while owners:
         batch = owners[:GRAPHQL_REPO_BATCH_SIZE]
@@ -342,14 +397,14 @@ def _fetch_repositories_graphql(owner_kind, owner_dicts, headers):
         if data is None:
             for owner in batch:
                 repos.extend(_fetch_repositories_rest_paginated(owner["source"], headers))
-                processed += 1
+                mark_owner_processed()
             continue
 
         for index, owner in enumerate(batch):
             owner_data = data.get(f"owner_{index}")
             if not owner_data:
                 repos.extend(_fetch_repositories_rest_paginated(owner["source"], headers))
-                processed += 1
+                mark_owner_processed()
                 continue
 
             repositories = owner_data.get("repositories") or {}
@@ -367,10 +422,7 @@ def _fetch_repositories_graphql(owner_kind, owner_dicts, headers):
                     "source": owner["source"],
                 })
             else:
-                processed += 1
-
-        if processed and processed % 10 == 0:
-            print(f"Processed {processed}/{len(owner_dicts)} {owner_kind}s...")
+                mark_owner_processed()
 
     return repos, processed
 
