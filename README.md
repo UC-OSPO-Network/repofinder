@@ -1,7 +1,7 @@
 # Repository Finder
 
 ## Overview
-Repository Finder is a tool that identifies and analyzes open-source repositories affiliated with universities using GitHub metadata and contributor analysis. The pipeline is split into four modular scripts:
+Repository Finder is a tool that identifies and analyzes open-source repositories affiliated with universities using GitHub metadata and contributor analysis. The institutions covered by this project are members of [CURIOSS](https://curioss.org/) (Community for University and Research Institution OSPOs). The pipeline is split into four modular scripts:
 
 - **main_scraping.py**: Fetches and stores raw repository, organization, and contributor data.
 
@@ -9,7 +9,7 @@ Repository Finder is a tool that identifies and analyzes open-source repositorie
 
 - **main_analysis.py**: Analyzes and visualizes filtered repository data, including license usage, language distribution, and community practices.
 
-- **main_analysis_combined.py**: Analyzes and visualizes aggregated repository data by type. We use this script to analyze the data of the 10 University of California campuses.
+- **main_analysis_combined.py**: Analyzes and visualizes aggregated repository data by type. We use this script to analyze data across all 32 supported institutions.
 
 ## Installation
 1. **Clone the repository:**
@@ -35,21 +35,44 @@ This step collects raw data from GitHub, including repositories, organizations, 
 Data/db/repository_data_{ACRONYM}_database.db
 ```
 
-There are already configuration files available for ten universities from the University of California System:
-- UCB (University of California, Berkeley)  
-- UCD (University of California, Davis)  
-- UCI (University of California, Irvine)  
-- UCLA (University of California, Los Angeles)  
-- UCM (University of California, Merced)  
-- UCR (University of California, Riverside)  
-- UCSD (University of California, San Diego)  
-- UCSB (University of California, Santa Barbara)  
-- UCSC (University of California, Santa Cruz)  
+There are already configuration files available for **32 institutions** in `config/`:
+
+- BIOHUB (Biohub)
+- CMU (Carnegie Mellon University)
+- ETH (ETH Zürich)
+- GEORGIA_TECH (Georgia Institute of Technology)
+- GWU (George Washington University)
+- JHU (Johns Hopkins University)
+- LERO (Lero — The Science Foundation Ireland Research Centre for Software)
+- MGB (Mass General Brigham)
+- MSU (Mississippi State University)
+- OSU (Oregon State University)
+- RIT (Rochester Institute of Technology)
+- SLU (Saint Louis University)
+- SNT (SnT – Université du Luxembourg)
+- STANFORD (Stanford University)
+- SYRACUSE (Syracuse University)
+- TCD (Trinity College Dublin)
+- UCB (University of California, Berkeley)
+- UCD (University of California, Davis)
+- UCI (University of California, Irvine)
+- UCL (University College London)
+- UCLA (University of California, Los Angeles)
+- UCM (University of California, Merced)
+- UCR (University of California, Riverside)
+- UCSB (University of California, Santa Barbara)
+- UCSC (University of California, Santa Cruz)
+- UCSD (University of California, San Diego)
 - UCSF (University of California, San Francisco)
+- UGA (Université Grenoble Alpes)
+- UMICH (University of Michigan)
+- UT_AUSTIN (University of Texas at Austin)
+- UVM (University of Vermont)
+- UWMADISON (University of Wisconsin, Madison)
 
-For a simple test case, replace `university_acronyms = ['UCSD']` in `repofinder/main_scraping.py` with the acronym of the university you would like to collect data from.
+For a simple test case, replace `university_acronyms = ['UCSD']` in `repofinder/main_scraping.py` with the acronym of the institution you would like to collect data from (use the config slug, e.g. `georgia_tech`, `ut_austin`).
 
-For any other university, create a configuration file inside the config folder and update the path accordingly.
+For any additional institution, create a configuration file inside the `config/` folder (e.g. `config/config_{acronym}.json`) and update the path accordingly.
 
 
 Run the scraping script:
