@@ -32,7 +32,7 @@ FEATURES = [
     "security_policy",
 ]
 
-def scrape(university_acronyms=["UCSB", "UCSC", "UCSD"]):
+def scrape(university_acronyms=["GT"]):
     for acronym in university_acronyms:
     
         config_file= f"config/config_{acronym}.json"
