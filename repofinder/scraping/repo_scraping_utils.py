@@ -16,8 +16,11 @@ logger.setLevel(logging.DEBUG)
 
 
 GITHUB_API_URL = "https://api.github.com"
+GITHUB_GRAPHQL_URL = "https://api.github.com/graphql"
 MAX_RETRIES = 3
 RETRY_DELAY = 1  # seconds
+GRAPHQL_REPO_BATCH_SIZE = 50
+GRAPHQL_REPO_PAGE_SIZE = 100
 
 
 def github_api_request(url, headers, params=None, rate_limiter=None):
@@ -97,6 +100,74 @@ def github_api_request(url, headers, params=None, rate_limiter=None):
             rate_limiter.release()
 
 
+def graphql_api_request(query, headers, rate_limiter=None):
+    """
+    Sends a POST request to the GitHub GraphQL API with retry and rate-limit handling.
+
+    Parameters
+    ----------
+    query : str
+        GraphQL query string.
+    headers : dict
+        HTTP headers for authenticated GitHub API requests.
+    rate_limiter : Semaphore, optional
+        Thread-safe rate limiter for concurrent requests (default is None).
+
+    Returns
+    -------
+    dict or None
+        The GraphQL response data, or None if the request fails.
+    """
+    if rate_limiter:
+        rate_limiter.acquire()
+
+    try:
+        for attempt in range(1, MAX_RETRIES + 1):
+            logger.debug(f"GraphQL attempt {attempt}")
+            try:
+                response = requests.post(
+                    GITHUB_GRAPHQL_URL,
+                    headers=headers,
+                    json={"query": query},
+                    timeout=30,
+                )
+            except requests.exceptions.RequestException as e:
+                if attempt == MAX_RETRIES:
+                    logger.error(f"GraphQL request failed after {MAX_RETRIES} attempts: {e}")
+                    return None
+                wait_time = RETRY_DELAY * (2 ** (attempt - 1))
+                logger.warning(f"GraphQL request error: {e}. Retrying in {wait_time}s...")
+                time.sleep(wait_time)
+                continue
+
+            if response.status_code == 200:
+                payload = response.json()
+                if payload.get("errors"):
+                    if payload.get("data") is not None:
+                        logger.warning(f"GraphQL partial errors: {payload['errors']}")
+                        return payload.get("data")
+                    logger.error(f"GraphQL errors: {payload['errors']}")
+                    return None
+                return payload.get("data")
+
+            if response.status_code == 403 and response.headers.get("X-RateLimit-Remaining") == "0":
+                reset_time = int(response.headers.get("X-RateLimit-Reset", time.time()))
+                sleep_time = max(reset_time - int(time.time()), 1)
+                logger.warning(f"GraphQL rate limit exceeded. Sleeping for {sleep_time} seconds.")
+                time.sleep(sleep_time)
+                continue
+
+            logger.error(f"GraphQL error: {response.status_code} - {response.reason}")
+            if attempt == MAX_RETRIES:
+                return None
+            time.sleep(RETRY_DELAY * (2 ** (attempt - 1)))
+
+        return None
+    finally:
+        if rate_limiter:
+            rate_limiter.release()
+
+
 def get_next_link(headers):
     """
     Parses the 'Link' header from a GitHub API response to find the next page URL.
@@ -125,6 +196,235 @@ def get_next_link(headers):
             next_url = url_part.lstrip('<').rstrip('>')
             return next_url
     return None
+
+
+def _is_bot_login(login):
+    if not isinstance(login, str):
+        return False
+    bots_to_skip = ["copilot", "dependabot", "github-actions"]
+    login_lower = login.lower()
+    return any(bot in login_lower for bot in bots_to_skip) or login.endswith("[bot]")
+
+
+def _repository_graphql_fields():
+    return """
+        repositories(first: %s, after: %s, ownerAffiliations: OWNER) {
+          nodes {
+            databaseId
+            id
+            name
+            nameWithOwner
+            description
+            diskUsage
+            homepageUrl
+            url
+            sshUrl
+            isPrivate
+            isFork
+            isArchived
+            isDisabled
+            isTemplate
+            hasIssuesEnabled
+            hasProjectsEnabled
+            hasWikiEnabled
+            hasDiscussionsEnabled
+            visibility
+            stargazerCount
+            forkCount
+            createdAt
+            updatedAt
+            pushedAt
+            primaryLanguage { name }
+            owner {
+              login
+              avatarUrl
+              url
+              __typename
+            }
+            licenseInfo {
+              key
+              name
+              spdxId
+              url
+            }
+            repositoryTopics(first: 100) {
+              nodes {
+                topic { name }
+              }
+            }
+            issues(states: OPEN) { totalCount }
+            watchers { totalCount }
+            defaultBranchRef { name }
+          }
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+        }
+    """
+
+
+def _build_repository_batch_query(owner_kind, owners):
+    fields = []
+    for index, owner in enumerate(owners):
+        alias = f"owner_{index}"
+        after = json.dumps(owner.get("cursor")) if owner.get("cursor") else "null"
+        login = json.dumps(owner["login"])
+        fields.append(
+            f"""
+            {alias}: {owner_kind}(login: {login}) {{
+              {_repository_graphql_fields() % (GRAPHQL_REPO_PAGE_SIZE, after)}
+            }}
+            """
+        )
+    return "query BatchRepositories {\n" + "\n".join(fields) + "\n}"
+
+
+def _repository_node_to_rest_dict(node):
+    owner = node.get("owner") or {}
+    license_info = node.get("licenseInfo")
+    full_name = node.get("nameWithOwner")
+    html_url = node.get("url")
+    api_url = f"{GITHUB_API_URL}/repos/{full_name}" if full_name else None
+    clone_url = f"{html_url}.git" if html_url else None
+    git_url = f"git://github.com/{full_name}.git" if full_name else None
+    visibility = node.get("visibility")
+    topics = [
+        topic_node.get("topic", {}).get("name")
+        for topic_node in (node.get("repositoryTopics") or {}).get("nodes", [])
+        if topic_node.get("topic", {}).get("name")
+    ]
+
+    return {
+        "id": node.get("databaseId"),
+        "node_id": node.get("id"),
+        "name": node.get("name"),
+        "full_name": full_name,
+        "url": api_url,
+        "html_url": html_url,
+        "clone_url": clone_url,
+        "git_url": git_url,
+        "ssh_url": node.get("sshUrl"),
+        "svn_url": html_url,
+        "description": node.get("description"),
+        "homepage": node.get("homepageUrl"),
+        "private": node.get("isPrivate"),
+        "fork": node.get("isFork"),
+        "archived": node.get("isArchived"),
+        "disabled": node.get("isDisabled"),
+        "is_template": node.get("isTemplate"),
+        "size": node.get("diskUsage"),
+        "has_issues": node.get("hasIssuesEnabled"),
+        "has_projects": node.get("hasProjectsEnabled"),
+        "has_wiki": node.get("hasWikiEnabled"),
+        "has_discussions": node.get("hasDiscussionsEnabled"),
+        "has_pages": None,
+        "has_downloads": None,
+        "visibility": visibility.lower() if isinstance(visibility, str) else visibility,
+        "stargazers_count": node.get("stargazerCount"),
+        "watchers": node.get("stargazerCount"),
+        "watchers_count": node.get("stargazerCount"),
+        "subscribers_count": (node.get("watchers") or {}).get("totalCount"),
+        "forks_count": node.get("forkCount"),
+        "forks": node.get("forkCount"),
+        "open_issues": (node.get("issues") or {}).get("totalCount"),
+        "open_issues_count": (node.get("issues") or {}).get("totalCount"),
+        "created_at": node.get("createdAt"),
+        "updated_at": node.get("updatedAt"),
+        "pushed_at": node.get("pushedAt"),
+        "language": (node.get("primaryLanguage") or {}).get("name"),
+        "topics": topics,
+        "default_branch": (node.get("defaultBranchRef") or {}).get("name"),
+        "owner": {
+            "login": owner.get("login"),
+            "avatar_url": owner.get("avatarUrl"),
+            "html_url": owner.get("url"),
+            "type": "Organization" if owner.get("__typename") == "Organization" else "User",
+        },
+        "license": {
+            "key": license_info.get("key"),
+            "name": license_info.get("name"),
+            "spdx_id": license_info.get("spdxId"),
+            "url": license_info.get("url"),
+        } if license_info else None,
+    }
+
+
+def _fetch_repositories_rest_paginated(owner_dict, headers):
+    repos_url = owner_dict.get("repos_url")
+    if not repos_url:
+        return []
+
+    repos = []
+    url = repos_url
+    params = {"per_page": 100}
+    while url:
+        repositories, response_headers = github_api_request(url, headers, params)
+        if repositories:
+            repos.extend(repositories)
+            url = get_next_link(response_headers or {})
+            params = None
+        else:
+            break
+    return repos
+
+
+def _fetch_repositories_graphql(owner_kind, owner_dicts, headers):
+    owners = [{"login": owner["login"], "cursor": None, "source": owner} for owner in owner_dicts]
+    repos = []
+    processed = 0
+    total_owners = len(owner_dicts)
+    next_progress_report = 10
+    last_reported = 0
+
+    def mark_owner_processed():
+        nonlocal processed, next_progress_report, last_reported
+        processed += 1
+        while processed >= next_progress_report:
+            print(f"Processed {next_progress_report}/{total_owners} {owner_kind}s...")
+            last_reported = next_progress_report
+            next_progress_report += 10
+        if processed == total_owners and last_reported != processed:
+            print(f"Processed {processed}/{total_owners} {owner_kind}s...")
+            last_reported = processed
+
+    while owners:
+        batch = owners[:GRAPHQL_REPO_BATCH_SIZE]
+        owners = owners[GRAPHQL_REPO_BATCH_SIZE:]
+        query = _build_repository_batch_query(owner_kind, batch)
+        data = graphql_api_request(query, headers)
+
+        if data is None:
+            for owner in batch:
+                repos.extend(_fetch_repositories_rest_paginated(owner["source"], headers))
+                mark_owner_processed()
+            continue
+
+        for index, owner in enumerate(batch):
+            owner_data = data.get(f"owner_{index}")
+            if not owner_data:
+                repos.extend(_fetch_repositories_rest_paginated(owner["source"], headers))
+                mark_owner_processed()
+                continue
+
+            repositories = owner_data.get("repositories") or {}
+            repos.extend(
+                _repository_node_to_rest_dict(node)
+                for node in repositories.get("nodes", [])
+                if node
+            )
+
+            page_info = repositories.get("pageInfo") or {}
+            if page_info.get("hasNextPage"):
+                owners.append({
+                    "login": owner["login"],
+                    "cursor": page_info.get("endCursor"),
+                    "source": owner["source"],
+                })
+            else:
+                mark_owner_processed()
+
+    return repos, processed
 
 
 def build_repo_queries(config_file):
@@ -388,45 +688,14 @@ def get_repositories_from_organizations(university_acronym, org_json, headers):
     org_df = pd.read_json(org_json)
     org_dicts = org_df.to_dict('records')
     
-    # List of bot patterns to skip
-    bots_to_skip = ["copilot", "dependabot", "github-actions"]
-    
-    repos = []
     # Filter out bots before counting
     valid_orgs = [org_dict for org_dict in org_dicts 
                   if org_dict.get("type") == "Organization" 
-                  and not any(bot.lower() in org_dict.get("login", "").lower() for bot in bots_to_skip)
-                  and not org_dict.get("login", "").endswith("[bot]")]
+                  and isinstance(org_dict.get("login"), str)
+                  and not _is_bot_login(org_dict.get("login", ""))]
     total_orgs = len(valid_orgs)
-    processed = 0
-    
-    # Process sequentially (no multithreading)
-    for org_dict in org_dicts:
-        if org_dict.get("type") != "Organization":
-            continue
-        
-        login = org_dict.get("login", "")
-        login_lower = login.lower()
-        
-        # Skip bot organizations
-        if any(bot.lower() in login_lower for bot in bots_to_skip) or login.endswith("[bot]"):
-            continue
-        
-        repos_url = org_dict.get("repos_url")
-        if not repos_url:
-            continue
-        
-        try:
-            repositories, _ = github_api_request(repos_url, headers)
-            if repositories:
-                repos.extend(repositories)
-            processed += 1
-            if processed % 10 == 0 or processed == total_orgs:
-                print(f"Processed {processed}/{total_orgs} organizations...")
-        except Exception as e:
-            logger.error(f"Error fetching repositories for organization {login}: {e}")
-            processed += 1
-            continue
+
+    repos, processed = _fetch_repositories_graphql("organization", valid_orgs, headers)
     
     output_filename_json = f"Data/json/repository_data_org_scraping_{university_acronym}.json"
     os.makedirs('Data/json', exist_ok=True)
@@ -458,46 +727,14 @@ def get_repositories_from_users(university_acronym, user_json, headers):
     user_df = pd.read_json(user_json)
     user_dicts = user_df.to_dict('records')
     
-    # List of bot patterns to skip
-    bots_to_skip = ["copilot", "dependabot", "github-actions"]
-    
-    repos = []
     # Filter out bots before counting
     valid_users = [user_dict for user_dict in user_dicts 
                    if user_dict.get("type") != "Organization"
-                   and not any(bot.lower() in user_dict.get("login", "").lower() for bot in bots_to_skip)
-                   and not user_dict.get("login", "").endswith("[bot]")]
+                   and isinstance(user_dict.get("login"), str)
+                   and not _is_bot_login(user_dict.get("login", ""))]
     total_users = len(valid_users)
-    processed = 0
-    
-    # Process sequentially (no multithreading)
-    for user_dict in user_dicts:
-        # Only process users, not organizations
-        if user_dict.get("type") == "Organization":
-            continue
-        
-        login = user_dict.get("login", "")
-        login_lower = login.lower()
-        
-        # Skip bot users
-        if any(bot.lower() in login_lower for bot in bots_to_skip) or login.endswith("[bot]"):
-            continue
-        
-        repos_url = user_dict.get("repos_url")
-        if not repos_url:
-            continue
-        
-        try:
-            repositories, _ = github_api_request(repos_url, headers)
-            if repositories:
-                repos.extend(repositories)
-            processed += 1
-            if processed % 10 == 0 or processed == total_users:
-                print(f"Processed {processed}/{total_users} users...")
-        except Exception as e:
-            logger.error(f"Error fetching repositories for user {login}: {e}")
-            processed += 1
-            continue
+
+    repos, processed = _fetch_repositories_graphql("user", valid_users, headers)
     
     output_filename_json = f"Data/json/repository_data_user_scraping_{university_acronym}.json"
     os.makedirs('Data/json', exist_ok=True)
@@ -541,4 +778,3 @@ def process_items_concurrently(items, process_func, max_workers=10, rate_limit=1
                 logger.error(f"Error processing item: {e}")
     
     return results
-        
