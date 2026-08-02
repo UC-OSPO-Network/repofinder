@@ -26,7 +26,14 @@ Repository Finder is a tool that identifies and analyzes open-source repositorie
      ```
      GITHUB_TOKEN=your_personal_access_token
      OPENAI_API_KEY=your_openai_token  # Optional: only needed for LLM-based models
-     ```
+ ### Database Setup (Optional)
+To run a production-ready PostgreSQL database instead of the default SQLite:
+
+1. Ensure [Docker Desktop](https://www.docker.com/products/docker-desktop/) is installed and running.
+2. Start the database:
+   ```bash
+   docker-compose up -d
+    ```
 
 ## Scraping 
 
